@@ -1,0 +1,18 @@
+# Build options
+LTO_ENABLE = yes
+
+# HW feature options
+ENCODER_ENABLE = yes
+OLED_ENABLE = yes
+
+# SW feature options
+CONSOLE_ENABLE = no
+SECRETS_ENABLE = yes
+EXTRAKEY_ENABLE = yes
+MOUSEKEY_ENABLE = yes
+LEADER_ENABLE = yes
+CUSTOM_LEADER_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = yes
+TAP_DANCE_ENABLE = yes
+UNICODEMAP_ENABLE = yes
+KEY_LOCK_ENABLE = yes
