@@ -2,7 +2,6 @@
 
 #include "config_common.h"
 
-
 // Device
 #define VENDOR_ID 0xACDC
 #define PRODUCT_ID 0x0001

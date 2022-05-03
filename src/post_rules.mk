@@ -1,4 +1,3 @@
-
 CUSTOM_LEADER_ENABLE ?= no
 ifeq ($(strip $(CUSTOM_LEADER_ENABLE)), yes)
 	LEADER_ENABLE = no
