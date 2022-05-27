@@ -116,8 +116,8 @@ enum keycode_aliases {
     __ESC__ = _______,
     __TAB__ = _______,
 
-    K_LWR = TT(L_LOWER),
-    K_RSE = TT(L_RAISE),
+    K_LWR = MO(L_LOWER),
+    K_RSE = MO(L_RAISE),
 
 #if defined(TAP_DANCE_ENABLE)
     K_CLR = TD(TD_CLR),
