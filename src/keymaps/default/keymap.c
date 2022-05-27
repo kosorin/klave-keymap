@@ -726,12 +726,10 @@ bool oled_task_user(void) {
 
 void dynamic_macro_record_start_user(void) {
     dynamic_macro_recording = true;
-    dynamic_macro_led_blink();
 }
 
 void dynamic_macro_record_end_user(int8_t direction) {
     dynamic_macro_recording = false;
-    dynamic_macro_led_blink();
 }
 
 #endif
