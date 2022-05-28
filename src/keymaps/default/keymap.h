@@ -94,6 +94,7 @@ enum layers {
     L_LOWER,
     L_RAISE,
     L_ADJUST,
+    L_GAME,
 };
 
 enum custom_keycodes {

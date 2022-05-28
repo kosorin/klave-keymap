@@ -86,6 +86,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /**/                            __MOD__,    __MOD__,    __LYR__,    IIIIIII,    IIIIIII,    /**/    IIIIIII,    IIIIIII,    __LYR__,    __MOD__,    __MOD__,                                /**/
     /*                                                                                                                                                                                            */
     _),
+    [L_GAME] = LAYOUT(
+    /*                                                                                                                                                                                            */
+    /**/    __ESC__,    _______,    _______,    _______,    _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    KC_PSCR,        /**/
+    /**/    __TAB__,    _______,    _______,    _______,    _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    _______,        /**/
+    /**/    __MOD__,    _______,    _______,    _______,    _______,    _______,    _______,    /**/    _______,    _______,    _______,    _______,    _______,    _______,    __MOD__,        /**/
+    /**/    KC_F11,     _______,    _______,    _______,    _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    TG(L_GAME),     /**/
+    /**/                                                                                        /**/                                                                                            /**/
+    /**/                                                                KC_F1,      KC_F2,      /**/    KC_F6,      KC_F7,                                                                      /**/
+    /**/                            KC_F3,      KC_LALT,    KC_LCTL,    __SPC__,    __NPC__,    /**/    __NPC__,    __NPC__,    KC_F8,      KC_F9,      KC_F10,                                 /**/
+    /*                                                                                                                                                                                            */
+    _),
 };
 
 
@@ -321,6 +332,9 @@ static void *leader_func_start(uint8_t keycode) {
             // Call `srand` once for each session
             srand(timer_read());
             return leader_func_random;
+        case KC_G:
+            layer_move(L_GAME);
+            return NULL;
         default:
             return NULL;
     }
@@ -484,7 +498,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 static void render_layers(void) {
     static const uint8_t column_offset = 9;
     static const uint8_t line_offset = 0;
-    static const uint8_t sprites = 5;
+    static const uint8_t sprites = 6;
     static const uint8_t sprite_height = SPRITE_HEIGHT(4);
     static const uint8_t sprite_width = SPRITE_WIDTH(3);
     static const char PROGMEM unknown_sprite[SPRITE_HEIGHT(4)][SPRITE_WIDTH(3)] = {
@@ -493,7 +507,7 @@ static void render_layers(void) {
         { 0, 0, 0, 0, 0, 219, 128, 3, 128, 131, 3, 135, 142, 12, 140, 135, 3, 128, 219, 0, 0, 0, 0, 0, },
         { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
     };
-    static const char PROGMEM layer_sprites[5][SPRITE_HEIGHT(4)][SPRITE_WIDTH(3)] = {
+    static const char PROGMEM layer_sprites[6][SPRITE_HEIGHT(4)][SPRITE_WIDTH(3)] = {
         { // Base
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
             { 0, 0, 0, 0, 0, 192, 48, 12, 3, 204, 48, 12, 3, 204, 48, 12, 3, 12, 48, 192, 0, 0, 0, 0, },
@@ -525,6 +539,12 @@ static void render_layers(void) {
             { 0, 0, 0, 0, 0, 192, 176, 92, 171, 220, 112, 172, 87, 236, 176, 92, 171, 92, 176, 192, 0, 0, 0, 0, },
             { 0, 0, 0, 0, 3, 13, 58, 213, 171, 222, 53, 234, 87, 237, 58, 213, 170, 213, 58, 13, 3, 0, 0, 0, },
             { 0, 0, 0, 0, 0, 0, 0, 0, 3, 16, 48, 112, 243, 112, 48, 16, 3, 0, 0, 0, 0, 0, 0, 0, },
+        },
+        { // Game
+            { 0, 0, 0, 128, 64, 32, 16, 16, 16, 16, 16, 144, 144, 32, 32, 32, 64, 128, 0, 0, 0, 0, 0, 0, },
+            { 0, 0, 0, 7, 8, 8, 16, 224, 0, 198, 6, 31, 31, 6, 6, 0, 0, 3, 252, 0, 128, 128, 0, 0, },
+            { 0, 0, 0, 192, 32, 32, 16, 15, 0, 198, 192, 48, 48, 192, 192, 0, 0, 128, 127, 1, 0, 0, 1, 0, },
+            { 0, 0, 0, 3, 4, 8, 16, 16, 16, 16, 16, 19, 19, 8, 8, 8, 4, 3, 0, 0, 0, 0, 0, 0, },
         },
     };
 
