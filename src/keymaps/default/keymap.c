@@ -481,15 +481,21 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 #define SPRITE_WIDTH(width) (width * 8)
 #define SPRITE_HEIGHT(height) (height)
-#define SPRITE_ANIMATION_TICK(frame, fps, frame_count) \
-    static uint16_t frame##_time = 0; \
-    static uint8_t frame = 0; \
+#define SPRITE_ANIMATION_TICK(frame, fps, frame_count, enabled) \
+    static int8_t frame = -1; \
     static uint16_t frame##_elapsed = 0; \
-    frame##_elapsed = timer_elapsed(frame##_time); \
-    if (frame##_elapsed > 1000 / fps) { \
-        frame##_time += frame##_elapsed; \
-        frame = (frame + 1) % frame_count; \
-    }
+    static uint16_t frame##_time = 0; \
+    if (enabled) { \
+        frame##_elapsed = timer_elapsed(frame##_time); \
+        if (frame##_elapsed > 1000 / fps) { \
+            frame##_time += frame##_elapsed; \
+            frame = (frame + 1) % frame_count; \
+        } \
+    } else { \
+        frame = -1; \
+        frame##_elapsed = 0; \
+        frame##_time = 0; \
+    };
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_0;
@@ -507,7 +513,7 @@ static void render_layers(void) {
         { 0, 0, 0, 0, 0, 219, 128, 3, 128, 131, 3, 135, 142, 12, 140, 135, 3, 128, 219, 0, 0, 0, 0, 0, },
         { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
     };
-    static const char PROGMEM layer_sprites[6][SPRITE_HEIGHT(4)][SPRITE_WIDTH(3)] = {
+    static const char PROGMEM layer_sprites[][SPRITE_HEIGHT(4)][SPRITE_WIDTH(3)] = {
         { // Base
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
             { 0, 0, 0, 0, 0, 192, 48, 12, 3, 204, 48, 12, 3, 204, 48, 12, 3, 12, 48, 192, 0, 0, 0, 0, },
@@ -561,7 +567,7 @@ static void render_caps_lock(void) {
     static const uint8_t line_offset = 0;
     static const uint8_t sprite_height = SPRITE_HEIGHT(4);
     static const uint8_t sprite_width = SPRITE_WIDTH(2);
-    static const char PROGMEM caps_lock_sprites[2][SPRITE_HEIGHT(4)][SPRITE_WIDTH(2)] = {
+    static const char PROGMEM caps_lock_sprites[][SPRITE_HEIGHT(4)][SPRITE_WIDTH(2)] = {
         { // Off
             { 0, 0, 0, 0, 128, 192, 96, 96, 96, 96, 96, 192, 128, 0, 0, 0, },
             { 0, 0, 0, 0, 103, 108, 108, 224, 96, 96, 108, 204, 135, 0, 0, 0, },
@@ -595,7 +601,7 @@ static void render_progress_ring(void) {
         { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
         { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
     };
-    static const char PROGMEM ring_sprites[8][SPRITE_HEIGHT(2)][SPRITE_WIDTH(2)] = {
+    static const char PROGMEM ring_sprites[][SPRITE_HEIGHT(2)][SPRITE_WIDTH(2)] = {
         {
             { 0, 0, 0, 2, 14, 31, 15, 15, 15, 31, 14, 2, 0, 0, 0, 0, },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
@@ -648,7 +654,7 @@ static void render_progress_ring(void) {
     }
 #endif
 
-    SPRITE_ANIMATION_TICK(frame, fps, frame_count);
+    SPRITE_ANIMATION_TICK(frame, fps, frame_count, enabled);
 
     for (uint8_t row = 0; row < sprite_height; row++) {
         oled_set_cursor(column_offset, line_offset + row);
