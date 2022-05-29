@@ -133,6 +133,7 @@ const uint32_t PROGMEM unicode_map[] = {
     [U_Ccu   ] = 0x010c, // Č
     [U_Ncu   ] = 0x0147, // Ň
     [U_Uru   ] = 0x016e, // Ů
+    [U__LETTER_PAIRS_END] = 0x2327, // ⌧
     [U_DEG   ] = 0x00b0, // ° Znak stupně
     [U_ACUTE ] = 0x00b4, // ´ Čárka
     [U_CARON ] = 0x02c7, // ˇ Háček
@@ -416,12 +417,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_LSFT:
-        case KC_RSFT:
-            if (record->event.pressed && get_mods() == MOD_MASK_SHIFT) {
-                tap_code(KC_CAPS_LOCK);
-            }
-            break;
 #if defined(UNICODEMAP_ENABLE) && defined(TAP_DANCE_ENABLE)
         case K_LUC:
         case K_RUC:
@@ -461,6 +456,41 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
     return state;
 }
+
+
+#if defined(CAPS_WORD_ENABLE)
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        case KC_A ... KC_Z:
+            add_weak_mods(MOD_BIT(KC_LSFT));
+            return true;
+
+        case KC_1 ... KC_0:
+        case KC_UNDERSCORE:
+        case KC_BACKSPACE:
+            return true;
+
+#if defined(UNICODEMAP_ENABLE)
+        case K_LUC:
+        case K_RUC:
+            return true;
+        case QK_UNICODEMAP_PAIR ... QK_UNICODEMAP_PAIR_MAX:
+            if ((((keycode - QK_UNICODEMAP_PAIR) & 0x7F)) < U__LETTER_PAIRS_END) {
+                add_weak_mods(MOD_BIT(KC_LSFT));
+                return true;
+            }
+            else {
+                return false;
+            }
+#endif
+
+        default:
+            return false;
+    }
+}
+
+#endif
 
 
 #if defined(ENCODER_ENABLE)
@@ -586,13 +616,30 @@ static void render_caps_lock(void) {
             { 0, 255, 255, 255, 9, 153, 153, 152, 25, 153, 153, 156, 14, 255, 255, 255, },
             { 0, 31, 63, 127, 127, 127, 127, 127, 124, 121, 121, 121, 124, 127, 63, 31, },
         },
+#if defined(CAPS_WORD_ENABLE)
+        { // Word
+            { 0, 248, 12, 6, 130, 194, 98, 98, 98, 98, 98, 194, 130, 6, 12, 248, },
+            { 0, 255, 0, 0, 103, 108, 108, 224, 96, 96, 108, 204, 135, 0, 0, 255, },
+            { 0, 255, 0, 0, 246, 102, 102, 103, 230, 102, 102, 99, 241, 0, 0, 255, },
+            { 0, 31, 48, 96, 64, 64, 64, 64, 67, 70, 70, 70, 67, 96, 48, 31, },
+        },
+#endif
     };
 
     const led_t led_state = host_keyboard_led_state();
 
+    uint8_t sprite_index = led_state.caps_lock ? 1 : 0;
+
+#if defined(CAPS_WORD_ENABLE)
+    SPRITE_ANIMATION_TICK(caps_word_frame, 4, 2, is_caps_word_on());
+    if (caps_word_frame == 0) {
+        sprite_index = 2;
+    }
+#endif
+
     for (uint8_t row = 0; row < sprite_height; row++) {
         oled_set_cursor(column_offset, line_offset + row);
-        oled_write_raw_P(caps_lock_sprites[led_state.caps_lock ? 1 : 0][row], sprite_width);
+        oled_write_raw_P(caps_lock_sprites[sprite_index][row], sprite_width);
     }
 }
 

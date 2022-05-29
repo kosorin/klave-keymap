@@ -45,6 +45,7 @@ enum unicode_names {
     U_Ccu,
     U_Ncu,
     U_Uru,
+    U__LETTER_PAIRS_END,
     U_DEG,
     U_ACUTE,
     U_CARON,
