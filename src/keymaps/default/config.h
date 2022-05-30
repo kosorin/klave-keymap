@@ -12,7 +12,7 @@
 // Tapping
 #undef NO_ACTION_TAPPING
 #define TAPPING_TERM 200
-#define TAPPING_TOGGLE 3
+#define TAPPING_TOGGLE 2
 #define PERMISSIVE_HOLD
 
 // Custom leader key
@@ -20,8 +20,8 @@
 
 // One shot
 #define NO_ACTION_ONESHOT
-#define ONESHOT_TAP_TOGGLE 3
-#define ONESHOT_TIMEOUT 3000
+#define ONESHOT_TAP_TOGGLE 2
+#define ONESHOT_TIMEOUT 0
 
 // Dynamic macros
 #define DYNAMIC_MACRO_NO_NESTING
