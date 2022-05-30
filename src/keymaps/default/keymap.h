@@ -82,7 +82,6 @@ enum tap_dances {
 #endif
     TD_CLR,
     TD_BOOT,
-    TD_LCK_SLP,
 };
 #endif
 
@@ -123,11 +122,9 @@ enum keycode_aliases {
 #if defined(TAP_DANCE_ENABLE)
     K_CLR = TD(TD_CLR),
     K_BOOT = TD(TD_BOOT),
-    K_LCK_SLP = TD(TD_LCK_SLP),
 #else
     K_CLR = EE_CLR,
     K_BOOT = QK_BOOT,
-    K_LCK_SLP = RGUI(KC_L),
 #endif
 
 #if defined(UNICODEMAP_ENABLE) && defined(TAP_DANCE_ENABLE)

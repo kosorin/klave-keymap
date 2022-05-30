@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /**/    __MOD__,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY1,    KC_MPLY,    /**/    IIIIIII,    KC_SLSH,    KC_1,       KC_2,       KC_3,       KC_MINS,    __MOD__,        /**/
     /**/    __MOD__,    KC_AMPR,    KC_PIPE,    KC_BSLS,    KC_SLSH,    K_WINC,                 /**/                KC_PERC,    KC_0,       KC_COMM,    KC_DOT,     KC_EQL,     __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                KC_LOCK,    K_LCK_SLP,  /**/    __MOD__,    XXXXXXX,                                                                    /**/
+    /**/                                                                KC_LOCK,    XXXXXXX,    /**/    __MOD__,    XXXXXXX,                                                                    /**/
     /**/                            __MOD__,    __MOD__,    __LYR__,    __SPC__,    __NPC__,    /**/    __NPC__,    __NPC__,    __LYR__,    __MOD__,    __MOD__,                                /**/
     /*                                                                                                                                                                                            */
     _),
@@ -245,15 +245,6 @@ static void td_bootloader(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-static void td_lock_sleep(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        tap_code16(RGUI(KC_L));
-    }
-    else if (state->count >= 3) {
-        tap_code(KC_SYSTEM_SLEEP);
-    }
-}
-
 qk_tap_dance_action_t tap_dance_actions[] = {
 #if defined(UNICODEMAP_ENABLE)
     [TD_LUC] = ACTION_TAP_DANCE_UNICODE(&((td_unicode_key_t){ .layer = L_UNICODE, .shift = { .keycode = KC_LSFT, }, })),
@@ -261,7 +252,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
     [TD_CLR] = ACTION_TAP_DANCE_FN(td_clear_eeprom),
     [TD_BOOT] = ACTION_TAP_DANCE_FN(td_bootloader),
-    [TD_LCK_SLP] = ACTION_TAP_DANCE_FN(td_lock_sleep),
 };
 
 #endif
@@ -320,6 +310,20 @@ static void *leader_func_random(uint8_t keycode) {
     }
 }
 
+static void *leader_func_lock(uint8_t keycode) {
+    switch (keycode) {
+        case KC_L:
+            tap_code16(RGUI(KC_L));
+            break;
+        case KC_S:
+            tap_code(KC_SYSTEM_SLEEP);
+            break;
+        default:
+            break;
+    }
+    return NULL;
+}
+
 static void *leader_func_start(uint8_t keycode) {
 #if defined(SECRETS_ENABLE)
     void *secret_result = secret_leader_func_start(keycode);
@@ -332,6 +336,8 @@ static void *leader_func_start(uint8_t keycode) {
             // Call `srand` once for each session
             srand(timer_read());
             return leader_func_random;
+        case KC_L:
+            return leader_func_lock;
         case KC_G:
             layer_move(L_GAME);
             return NULL;
