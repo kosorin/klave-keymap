@@ -70,6 +70,17 @@ enum unicode_names {
     U_WON,
     U_RUPEE,
     U_BTC,
+    U_SEC,
+    U_PAR,
+    U_CHECK,
+    U_CROSS,
+    U_INF,
+    U_PERM,
+    U_IBANG,
+    U_OBOX,
+    U_SQRT,
+    U_SPRIME,
+    U_DPRIME,
 };
 #endif
 
@@ -106,14 +117,6 @@ enum keycode_aliases {
     K_LEAD = KC_NO,
 #endif
 
-    IIIIIII = XXXXXXX,
-    __LYR__ = _______,
-    __MOD__ = _______,
-    __SPC__ = _______,
-    __NPC__ = _______,
-    __ESC__ = _______,
-    __TAB__ = _______,
-
     K_LWR = MO(L_LOWER),
     K_RSE = MO(L_RAISE),
 
@@ -126,25 +129,6 @@ enum keycode_aliases {
 #else
     K_LUC = KC_NO,
     K_RUC = KC_NO,
-#endif
-
-#if defined(UNICODEMAP_ENABLE)
-    K_Ua = XP(U_Ual, U_Uau),
-    K_Ea = XP(U_Eal, U_Eau),
-    K_Ia = XP(U_Ial, U_Iau),
-    K_Oa = XP(U_Oal, U_Oau),
-    K_Aa = XP(U_Aal, U_Aau),
-    K_Ya = XP(U_Yal, U_Yau),
-    K_Ec = XP(U_Ecl, U_Ecu),
-    K_Rc = XP(U_Rcl, U_Rcu),
-    K_Tc = XP(U_Tcl, U_Tcu),
-    K_Zc = XP(U_Zcl, U_Zcu),
-    K_Sc = XP(U_Scl, U_Scu),
-    K_Dc = XP(U_Dcl, U_Dcu),
-    K_Cc = XP(U_Ccl, U_Ccu),
-    K_Nc = XP(U_Ncl, U_Ncu),
-    K_Ur = XP(U_Url, U_Uru),
-    K_N_M_DASH = XP(U_NDASH, U_MDASH),
 #endif
 
     K_COMP = COMPOSE_KEY,

@@ -5,6 +5,9 @@
     #define NO_DEBUG
 #endif
 
+// Reset
+#undef NO_RESET
+
 // [custom] Compose
 #define COMPOSE_KEY KC_F19
 
