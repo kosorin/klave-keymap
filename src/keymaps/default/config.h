@@ -5,7 +5,7 @@
     #define NO_DEBUG
 #endif
 
-// Compose
+// [custom] Compose
 #define COMPOSE_KEY KC_F19
 
 // Layers
@@ -18,7 +18,7 @@
 #define TAPPING_TOGGLE 2
 #define PERMISSIVE_HOLD
 
-// Custom leader key
+// [custom] Leader key
 #define LEADER_CANCEL_KEY KC_ESC
 
 // One shot

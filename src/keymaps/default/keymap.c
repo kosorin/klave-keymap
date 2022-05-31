@@ -244,14 +244,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
 
 
-void keyboard_post_init_user(void) {
-    user_config.raw = eeconfig_read_user();
-}
-
-void matrix_scan_user(void) {
-}
-
-
 #if defined(CUSTOM_LEADER_ENABLE)
 
 static void send_string_random_number(uint8_t max_number_length) {
@@ -399,6 +391,58 @@ static bool process_leader(uint16_t keycode, const keyrecord_t *record) {
 #endif
 
 
+#if defined(DYNAMIC_MACRO_ENABLE)
+
+void dynamic_macro_record_start_user(void) {
+    dynamic_macro_recording = true;
+}
+
+void dynamic_macro_record_end_user(int8_t direction) {
+    dynamic_macro_recording = false;
+}
+
+#endif
+
+
+#if defined(CAPS_WORD_ENABLE)
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        case KC_A ... KC_Z:
+            add_weak_mods(MOD_BIT(KC_LSFT));
+            return true;
+
+        case KC_1 ... KC_0:
+        case KC_UNDERSCORE:
+        case KC_BACKSPACE:
+            return true;
+
+#if defined(UNICODEMAP_ENABLE)
+        case K_LUC:
+        case K_RUC:
+            return true;
+        case QK_UNICODEMAP_PAIR ... QK_UNICODEMAP_PAIR_MAX:
+            if ((((keycode - QK_UNICODEMAP_PAIR) & 0x7F)) < U__LETTER_PAIRS_END) {
+                add_weak_mods(MOD_BIT(KC_LSFT));
+                return true;
+            }
+            else {
+                return false;
+            }
+#endif
+
+        default:
+            return false;
+    }
+}
+
+#endif
+
+
+void keyboard_post_init_user(void) {
+    user_config.raw = eeconfig_read_user();
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #if defined(CUSTOM_LEADER_ENABLE)
@@ -463,41 +507,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
     return state;
 }
-
-
-#if defined(CAPS_WORD_ENABLE)
-
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        case KC_A ... KC_Z:
-            add_weak_mods(MOD_BIT(KC_LSFT));
-            return true;
-
-        case KC_1 ... KC_0:
-        case KC_UNDERSCORE:
-        case KC_BACKSPACE:
-            return true;
-
-#if defined(UNICODEMAP_ENABLE)
-        case K_LUC:
-        case K_RUC:
-            return true;
-        case QK_UNICODEMAP_PAIR ... QK_UNICODEMAP_PAIR_MAX:
-            if ((((keycode - QK_UNICODEMAP_PAIR) & 0x7F)) < U__LETTER_PAIRS_END) {
-                add_weak_mods(MOD_BIT(KC_LSFT));
-                return true;
-            }
-            else {
-                return false;
-            }
-#endif
-
-        default:
-            return false;
-    }
-}
-
-#endif
 
 
 #if defined(ENCODER_ENABLE)
@@ -733,19 +742,6 @@ bool oled_task_user(void) {
     return is_keyboard_master()
         ? oled_task_user_master()
         : false;
-}
-
-#endif
-
-
-#if defined(DYNAMIC_MACRO_ENABLE)
-
-void dynamic_macro_record_start_user(void) {
-    dynamic_macro_recording = true;
-}
-
-void dynamic_macro_record_end_user(int8_t direction) {
-    dynamic_macro_recording = false;
 }
 
 #endif
