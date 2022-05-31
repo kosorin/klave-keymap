@@ -321,7 +321,7 @@ static void *leader_func_start(uint8_t keycode) {
             return leader_func_boot;
         case KC_L:
             return leader_func_lock;
-        case KC_G:
+        case KC_RCTL:
             layer_move(L_GAME);
             return NULL;
         default:
