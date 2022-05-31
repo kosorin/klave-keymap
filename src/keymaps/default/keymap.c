@@ -606,7 +606,7 @@ static void render_layers(void) {
         },
     };
 
-    layer_state_t layer = get_highest_layer(layer_state);
+    uint8_t layer = get_highest_layer(layer_state);
 
     for (uint8_t row = 0; row < sprite_height; row++) {
         oled_set_cursor(column_offset, line_offset + row);
