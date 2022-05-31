@@ -5,6 +5,9 @@
     #define NO_DEBUG
 #endif
 
+// Compose
+#define COMPOSE_KEY KC_F19
+
 // Layers
 #undef NO_ACTION_LAYER
 #define LAYER_STATE_8BIT
@@ -28,7 +31,7 @@
 
 // Unicode
 #define UNICODE_SELECTED_MODES UC_WINC
-#define UNICODE_KEY_WINC KC_F19
+#define UNICODE_KEY_WINC COMPOSE_KEY
 
 // Key override
 #define KEY_OVERRIDE_REPEAT_DELAY 500

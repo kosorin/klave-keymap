@@ -109,6 +109,13 @@ enum custom_keycodes {
 
 
 enum keycode_aliases {
+#if !defined(CUSTOM_LEADER_ENABLE)
+    K_LEAD = KC_NO,
+#endif
+#if !defined(ENCODER_ENABLE)
+    K_ENC_SM = KC_NO,
+#endif
+
     IIIIIII = XXXXXXX,
     __LYR__ = _______,
     __MOD__ = _______,
@@ -158,13 +165,5 @@ enum keycode_aliases {
     K_N_M_DASH = XP(U_NDASH, U_MDASH),
 #endif
 
-#if !defined(CUSTOM_LEADER_ENABLE)
-    K_LEAD = KC_NO,
-#endif
-
-#if !defined(ENCODER_ENABLE)
-    K_ENC_SM = KC_NO,
-#endif
-
-    K_WINC = UNICODE_KEY_WINC,
+    K_COMP = COMPOSE_KEY,
 };
