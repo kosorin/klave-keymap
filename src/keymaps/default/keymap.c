@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _),
     [L_ADJUST] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    __ESC__,    XXXXXXX,    XXXXXXX,    K_BOOT,     K_CLR,      XXXXXXX,                /**/                KC_INS,     KC_NLCK,    KC_CLCK,    KC_SLCK,    XXXXXXX,    KC_PAUS,        /**/
+    /**/    __ESC__,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_INS,     KC_NLCK,    KC_CLCK,    KC_SLCK,    XXXXXXX,    KC_PAUS,        /**/
     /**/    __TAB__,    KC_F13,     KC_F14,     KC_F15,     KC_F16,     DM_REC2,                /**/                XXXXXXX,    KC_MPLY,    KC_VOLU,    KC_MSTP,    XXXXXXX,    XXXXXXX,        /**/
     /**/    __MOD__,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    DM_REC1,    IIIIIII,    /**/    IIIIIII,    XXXXXXX,    KC_MPRV,    KC_VOLD,    KC_MNXT,    XXXXXXX,    __MOD__,        /**/
     /**/    __MOD__,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_APP,     KC_MRWD,    KC_MUTE,    KC_MFFD,    XXXXXXX,    __MOD__,        /**/
@@ -234,25 +234,11 @@ static void td_unicode_on_each_tap(qk_tap_dance_state_t *state, void *user_data)
 
 #endif
 
-static void td_clear_eeprom(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count >= 3) {
-        eeconfig_init();
-    }
-}
-
-static void td_bootloader(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count >= 3) {
-        reset_keyboard();
-    }
-}
-
 qk_tap_dance_action_t tap_dance_actions[] = {
 #if defined(UNICODEMAP_ENABLE)
     [TD_LUC] = ACTION_TAP_DANCE_UNICODE(&((td_unicode_key_t){ .layer = L_UNICODE, .shift = { .keycode = KC_LSFT, }, })),
     [TD_RUC] = ACTION_TAP_DANCE_UNICODE(&((td_unicode_key_t){ .layer = L_UNICODE, .shift = { .keycode = KC_RSFT, }, })),
 #endif
-    [TD_CLR] = ACTION_TAP_DANCE_FN(td_clear_eeprom),
-    [TD_BOOT] = ACTION_TAP_DANCE_FN(td_bootloader),
 };
 
 #endif
@@ -311,6 +297,24 @@ static void *leader_func_random(uint8_t keycode) {
     }
 }
 
+static void *leader_func_boot(uint8_t keycode) {
+    switch (keycode) {
+        case KC_E:
+            eeconfig_init();
+            soft_reset_keyboard();
+            break;
+        case KC_S:
+            soft_reset_keyboard();
+            break;
+        case KC_R:
+            reset_keyboard();
+            break;
+        default:
+            break;
+    }
+    return NULL;
+}
+
 static void *leader_func_lock(uint8_t keycode) {
     switch (keycode) {
         case KC_L:
@@ -337,6 +341,8 @@ static void *leader_func_start(uint8_t keycode) {
             // Call `srand` once for each session
             srand(timer_read());
             return leader_func_random;
+        case KC_B:
+            return leader_func_boot;
         case KC_L:
             return leader_func_lock;
         case KC_G:
