@@ -3,14 +3,12 @@
 #include QMK_KEYBOARD_H
 
 
-typedef union {
-    uint32_t raw;
-    struct {
-#if defined(ENCODER_ENABLE)
-        bool encoder_scroll_mode : 1;
-#endif
-    };
-} user_config_t;
+// typedef union {
+//     uint32_t raw;
+//     struct {
+//         bool foo_bar : 1;
+//     };
+// } user_config_t;
 
 
 #if defined(UNICODEMAP_ENABLE)
@@ -100,18 +98,12 @@ enum custom_keycodes {
 #if defined(CUSTOM_LEADER_ENABLE)
     K_LEAD,
 #endif
-#if defined(ENCODER_ENABLE)
-    K_ENC_SM,
-#endif
 };
 
 
 enum keycode_aliases {
 #if !defined(CUSTOM_LEADER_ENABLE)
     K_LEAD = KC_NO,
-#endif
-#if !defined(ENCODER_ENABLE)
-    K_ENC_SM = KC_NO,
 #endif
 
     IIIIIII = XXXXXXX,

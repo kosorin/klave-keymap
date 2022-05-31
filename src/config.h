@@ -18,13 +18,12 @@
 #define DIODE_DIRECTION COL2ROW
 
 // Rotary encoder
-#define ENCODERS_PAD_A { F4 }
-#define ENCODERS_PAD_B { F5 }
+#define ENCODERS_PAD_A { }
+#define ENCODERS_PAD_B { }
+#define ENCODER_RESOLUTIONS { }
 #define ENCODERS_PAD_A_RIGHT { F5 }
 #define ENCODERS_PAD_B_RIGHT { F4 }
-#define ENCODER_RESOLUTION 2
-#define ENCODER_INDEX_LEFT 0
-#define ENCODER_INDEX_RIGHT 1
+#define ENCODER_RESOLUTIONS_RIGHT { 4 }
 
 // Communication
 #define USE_I2C

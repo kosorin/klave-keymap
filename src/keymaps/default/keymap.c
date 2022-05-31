@@ -18,15 +18,13 @@ static bool dynamic_macro_recording = false;
 extern bool watching;
 #endif
 
-user_config_t user_config;
+// user_config_t user_config;
 
-void eeconfig_init_user(void) {
-    user_config.raw = 0;
-#if defined(ENCODER_ENABLE)
-    user_config.encoder_scroll_mode = false;
-#endif
-    eeconfig_update_user(user_config.raw);
-}
+// void eeconfig_init_user(void) {
+//     user_config.raw = 0;
+//     user_config.foo_bar = false;
+//     eeconfig_update_user(user_config.raw);
+// }
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -34,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*                                                                                                                                                                                            */
     /**/    KC_ESC,     KC_7,       KC_5,       KC_3,       KC_1,       KC_9,                   /**/                KC_8,       KC_0,       KC_2,       KC_4,       KC_6,       KC_GRV,         /**/
     /**/    KC_TAB,     KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_QUOT,    KC_MINS,        /**/
-    /**/    KC_LSFT,    KC_A,       KC_R,       KC_S,       KC_T,       KC_P,       KC_MUTE,    /**/    K_ENC_SM,   KC_M,       KC_N,       KC_E,       KC_I,       KC_O,       KC_RSFT,        /**/
+    /**/    KC_LSFT,    KC_A,       KC_R,       KC_S,       KC_T,       KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       KC_N,       KC_E,       KC_I,       KC_O,       KC_RSFT,        /**/
     /**/    KC_LCTL,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_QUES,    KC_RCTL,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                K_LUC,      K_LEAD,     /**/    KC_HYPR,    K_RUC,                                                                      /**/
@@ -57,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_LOWER] = LAYOUT(
     /**/    __ESC__,    KC_F9,      KC_F10,     KC_F11,     KC_F12,     KC_PSCR,                /**/                XXXXXXX,    KC_7,       KC_8,       KC_9,       XXXXXXX,    XXXXXXX,        /**/
     /**/    __TAB__,    KC_F5,      KC_F6,      KC_F7,      KC_F8,      DM_PLY2,                /**/                KC_SLSH,    KC_4,       KC_5,       KC_6,       KC_MINS,    XXXXXXX,        /**/
-    /**/    __MOD__,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY1,    KC_MPLY,    /**/    IIIIIII,    KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_PLUS,    __MOD__,        /**/
+    /**/    __MOD__,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY1,    IIIIIII,    /**/    IIIIIII,    KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_PLUS,    __MOD__,        /**/
     /**/    __MOD__,    KC_AMPR,    KC_PIPE,    KC_BSLS,    KC_SLSH,    K_COMP,                 /**/                KC_PERC,    KC_0,       KC_COMM,    KC_DOT,     KC_EQL,     __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                KC_LOCK,    XXXXXXX,    /**/    __MOD__,    XXXXXXX,                                                                    /**/
@@ -440,7 +438,7 @@ bool caps_word_press_user(uint16_t keycode) {
 
 
 void keyboard_post_init_user(void) {
-    user_config.raw = eeconfig_read_user();
+    // user_config.raw = eeconfig_read_user();
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -452,14 +450,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 
     switch (keycode) {
-#if defined(ENCODER_ENABLE)
-        case K_ENC_SM:
-            if (record->event.pressed) {
-                user_config.encoder_scroll_mode ^= true;
-                eeconfig_update_user(user_config.raw);
-            }
-            return false;
-#endif
         default:
             return true;
     }
@@ -513,13 +503,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     switch (index) {
-        case ENCODER_INDEX_LEFT:
+        case 0:
             tap_code(clockwise ? KC_AUDIO_VOL_UP : KC_AUDIO_VOL_DOWN);
-            return false;
-        case ENCODER_INDEX_RIGHT:
-            tap_code(user_config.encoder_scroll_mode
-                ? (clockwise ? KC_PAGE_DOWN : KC_PAGE_UP)
-                : (clockwise ? KC_MS_WH_DOWN : KC_MS_WH_UP));
             return false;
         default:
             return true;
