@@ -427,6 +427,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 
     switch (keycode) {
+        case TT(L_LOWER):
+            return !record->event.pressed || !layer_state_is(L_LOWER);
+        case TT(L_RAISE):
+            return !record->event.pressed || !layer_state_is(L_RAISE);
         default:
             return true;
     }

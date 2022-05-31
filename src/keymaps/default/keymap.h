@@ -118,8 +118,8 @@ enum keycode_aliases {
 #else
     K_UC = KC_NO,
 #endif
-    K_LWR = MO(L_LOWER),
-    K_RSE = MO(L_RAISE),
+    K_LWR = TT(L_LOWER),
+    K_RSE = TT(L_RAISE),
 
     K_COMP = COMPOSE_KEY,
 };
