@@ -101,25 +101,15 @@ enum layers {
 };
 
 enum custom_keycodes {
-    K_SAFE_RANGE = SAFE_RANGE,
+    K__SAFE_RANGE = SAFE_RANGE,
 #if defined(CUSTOM_LEADER_ENABLE)
     K_LEAD,
 #endif
 };
 
-
-enum keycode_aliases {
+enum custom_keycodes_fallback {
+    K__FALLBACK,
 #if !defined(CUSTOM_LEADER_ENABLE)
     K_LEAD = KC_NO,
 #endif
-
-#if defined(UNICODEMAP_ENABLE)
-    K_UC = OSL(L_UNICODE),
-#else
-    K_UC = KC_NO,
-#endif
-    K_LWR = TT(L_LOWER),
-    K_RSE = TT(L_RAISE),
-
-    K_COMP = COMPOSE_KEY,
 };

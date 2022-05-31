@@ -35,6 +35,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     #define __NPC__ _______
     #define __ESC__ _______
     #define __TAB__ _______
+    #if defined(UNICODEMAP_ENABLE)
+        #define K_UC OSL(L_UNICODE)
+    #else
+        #define K_UC KC_NO
+    #endif
+    #define K_LWR TT(L_LOWER)
+    #define K_RSE TT(L_RAISE)
     [L_BASE] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    KC_ESC,     KC_7,       KC_5,       KC_3,       KC_1,       KC_9,                   /**/                KC_8,       KC_0,       KC_2,       KC_4,       KC_6,       KC_GRV,         /**/
@@ -42,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /**/    KC_LSFT,    KC_A,       KC_R,       KC_S,       KC_T,       KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       KC_N,       KC_E,       KC_I,       KC_O,       KC_RSFT,        /**/
     /**/    KC_LCTL,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_QUES,    KC_RCTL,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                K_LUC,      KC_HYPR,    /**/    K_LEAD,     K_RUC,                                                                      /**/
+    /**/                                                                K_UC,       KC_HYPR,    /**/    K_LEAD,     K_UC,                                                                       /**/
     /**/                            KC_LGUI,    KC_LALT,    K_LWR,      KC_SPC,     KC_ENT,     /**/    KC_DEL,     KC_BSPC,    K_RSE,      KC_RALT,    KC_RGUI,                                /**/
     /*                                                                                                                                                                                            */
     _),
@@ -78,6 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _),
 #endif
     [L_LOWER] = LAYOUT(
+    #define K_COMP COMPOSE_KEY
     /*                                                                                                                                                                                            */
     /**/    __ESC__,    KC_F9,      KC_F10,     KC_F11,     KC_F12,     KC_PSCR,                /**/                KC_PERC,    KC_7,       KC_8,       KC_9,       KC_EQL,     XXXXXXX,        /**/
     /**/    __TAB__,    KC_F5,      KC_F6,      KC_F7,      KC_F8,      DM_PLY2,                /**/                KC_SLSH,    KC_4,       KC_5,       KC_6,       KC_MINS,    XXXXXXX,        /**/
