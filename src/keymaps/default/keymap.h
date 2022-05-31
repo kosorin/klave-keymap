@@ -86,10 +86,6 @@ enum unicode_names {
 
 #if defined(TAP_DANCE_ENABLE)
 enum tap_dances {
-#if defined(UNICODEMAP_ENABLE)
-    TD_LUC,
-    TD_RUC,
-#endif
 };
 #endif
 
@@ -117,19 +113,13 @@ enum keycode_aliases {
     K_LEAD = KC_NO,
 #endif
 
+#if defined(UNICODEMAP_ENABLE)
+    K_UC = OSL(L_UNICODE),
+#else
+    K_UC = KC_NO,
+#endif
     K_LWR = MO(L_LOWER),
     K_RSE = MO(L_RAISE),
-
-#if defined(UNICODEMAP_ENABLE) && defined(TAP_DANCE_ENABLE)
-    K_LUC = TD(TD_LUC),
-    K_RUC = TD(TD_RUC),
-#elif defined(UNICODEMAP_ENABLE)
-    K_LUC = MO(L_UNICODE),
-    K_RUC = MO(L_UNICODE),
-#else
-    K_LUC = KC_NO,
-    K_RUC = KC_NO,
-#endif
 
     K_COMP = COMPOSE_KEY,
 };

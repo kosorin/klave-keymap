@@ -214,66 +214,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 
 #if defined(TAP_DANCE_ENABLE)
 
-#if defined(UNICODEMAP_ENABLE)
-
-typedef struct {
-    const uint8_t keycode;
-    bool state;
-} td_unicode_shift_t;
-
-typedef struct {
-    const uint8_t layer;
-    bool state;
-    td_unicode_shift_t shift;
-} td_unicode_key_t;
-
-static void td_unicode_layer_register(td_unicode_key_t *key) {
-    if (!key->state) {
-        key->state = true;
-        layer_on(key->layer);
-    }
-}
-
-static void td_unicode_layer_unregister(td_unicode_key_t *key) {
-    if (key->state) {
-        key->state = false;
-        layer_off(key->layer);
-    }
-}
-
-static void td_unicode_shift_register(td_unicode_key_t *key) {
-    if (!key->shift.state) {
-        key->shift.state = true;
-        register_code(key->shift.keycode);
-    }
-}
-
-static void td_unicode_shift_unregister(td_unicode_key_t *key) {
-    if (key->shift.state) {
-        key->shift.state = false;
-        unregister_code(key->shift.keycode);
-    }
-}
-
-#define ACTION_TAP_DANCE_UNICODE(key) { .fn = { td_unicode_on_each_tap, NULL, NULL, }, .user_data = (void *)key, }
-
-static void td_unicode_on_each_tap(qk_tap_dance_state_t *state, void *user_data) {
-    td_unicode_key_t *key = (td_unicode_key_t *)user_data;
-    if (state->count >= 1) {
-        td_unicode_layer_register(key);
-    }
-    if (state->count >= 2) {
-        td_unicode_shift_register(key);
-    }
-}
-
-#endif
-
 qk_tap_dance_action_t tap_dance_actions[] = {
-#if defined(UNICODEMAP_ENABLE)
-    [TD_LUC] = ACTION_TAP_DANCE_UNICODE(&((td_unicode_key_t){ .layer = L_UNICODE, .shift = { .keycode = KC_LSFT, }, })),
-    [TD_RUC] = ACTION_TAP_DANCE_UNICODE(&((td_unicode_key_t){ .layer = L_UNICODE, .shift = { .keycode = KC_RSFT, }, })),
-#endif
 };
 
 #endif
@@ -453,8 +394,7 @@ bool caps_word_press_user(uint16_t keycode) {
             return true;
 
 #if defined(UNICODEMAP_ENABLE)
-        case K_LUC:
-        case K_RUC:
+        case K_UC:
             return true;
         case QK_UNICODEMAP_PAIR ... QK_UNICODEMAP_PAIR_MAX:
             if ((((keycode - QK_UNICODEMAP_PAIR) & 0x7F)) < U__LETTER_PAIRS_END) {
@@ -495,16 +435,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-#if defined(UNICODEMAP_ENABLE) && defined(TAP_DANCE_ENABLE)
-        case K_LUC:
-        case K_RUC:
-            if (!record->event.pressed) {
-                td_unicode_key_t *td_unicode_key = (td_unicode_key_t *)(tap_dance_actions[keycode - QK_TAP_DANCE].user_data);
-                td_unicode_shift_unregister(td_unicode_key);
-                td_unicode_layer_unregister(td_unicode_key);
-            }
-            break;
-#endif
         default:
             break;
     }

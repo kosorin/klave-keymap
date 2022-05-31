@@ -25,7 +25,7 @@
 #define LEADER_CANCEL_KEY KC_ESC
 
 // One shot
-#define NO_ACTION_ONESHOT
+#undef NO_ACTION_ONESHOT
 #define ONESHOT_TAP_TOGGLE 2
 #define ONESHOT_TIMEOUT 0
 
