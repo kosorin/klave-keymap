@@ -427,6 +427,7 @@ bool caps_word_press_user(uint16_t keycode) {
             return true;
 
         case KC_1 ... KC_0:
+        case KC_MINUS:
         case KC_UNDERSCORE:
         case KC_BACKSPACE:
             return true;
