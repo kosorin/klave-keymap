@@ -97,7 +97,12 @@ enum layers {
     L_LOWER,
     L_RAISE,
     L_ADJUST,
+#if defined(MOUSEKEY_ENABLE)
+    L_MOUSE,
+    L_MOUSE_EXT,
+#endif
     L_GAME,
+    LAYER_COUNT,
 };
 
 enum custom_keycodes {
