@@ -94,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /**/    __MOD__,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY1,    IIIIIII,    /**/    IIIIIII,    KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_PLUS,    __MOD__,        /**/
     /**/    __MOD__,    K_OH_ADJ,   XXXXXXX,    XXXXXXX,    XXXXXXX,    K_COMP,                 /**/                KC_CIRC,    KC_0,       KC_COMM,    KC_DOT,     KC_ENT,     __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                KC_LOCK,    __MOD__,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
+    /**/                                                                XXXXXXX,    __MOD__,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
     /**/                            __MOD__,    __MOD__,    __LYR__,    __SPC__,    __NPC__,    /**/    __NPC__,    __NPC__,    __LYR__,    __MOD__,    __MOD__,                                /**/
     /*                                                                                                                                                                                            */
     _),
@@ -105,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /**/    __MOD__,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_HASH,    IIIIIII,    /**/    IIIIIII,    KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_EQL,     __MOD__,        /**/
     /**/    __MOD__,    KC_PLUS,    KC_ASTR,    KC_TILD,    KC_SLSH,    KC_BSLS,                /**/                KC_UNDS,    KC_MINS,    KC_SCLN,    KC_COLN,    KC_EXLM,    __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                _______,    __MOD__,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
+    /**/                                                                XXXXXXX,    __MOD__,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
     /**/                            __MOD__,    __MOD__,    __LYR__,    __SPC__,    __NPC__,    /**/    __NPC__,    __NPC__,    __LYR__,    __MOD__,    __MOD__,                                /**/
     /*                                                                                                                                                                                            */
     _),
@@ -116,12 +116,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     #define K_MS KC_NO
 #endif
     /*                                                                                                                                                                                            */
-    /**/    __ESC__,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_INS,     KC_NLCK,    KC_CLCK,    KC_SLCK,    XXXXXXX,    KC_PAUS,        /**/
-    /**/    __TAB__,    KC_F13,     KC_F14,     KC_F15,     KC_F16,     DM_REC2,                /**/                XXXXXXX,    KC_MPLY,    KC_VOLU,    KC_MSTP,    XXXXXXX,    XXXXXXX,        /**/
-    /**/    __MOD__,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    DM_REC1,    IIIIIII,    /**/    IIIIIII,    XXXXXXX,    KC_MPRV,    KC_VOLD,    KC_MNXT,    XXXXXXX,    __MOD__,        /**/
-    /**/    __MOD__,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_APP,     KC_MRWD,    KC_MUTE,    KC_MFFD,    XXXXXXX,    __MOD__,        /**/
+    /**/    __ESC__,    KC_F13,     KC_F14,     KC_F15,     KC_F16,     XXXXXXX,                /**/                XXXXXXX,    KC_NLCK,    KC_CLCK,    KC_SLCK,    XXXXXXX,    KC_PAUS,        /**/
+    /**/    __TAB__,    XXXXXXX,    KC_MSTP,    KC_VOLU,    KC_MPLY,    DM_REC2,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_INS,         /**/
+    /**/    __MOD__,    XXXXXXX,    KC_MPRV,    KC_VOLD,    KC_MNXT,    DM_REC1,    IIIIIII,    /**/    IIIIIII,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    __MOD__,        /**/
+    /**/    __MOD__,    XXXXXXX,    KC_MRWD,    KC_MUTE,    KC_MFFD,    KC_LOCK,                /**/                KC_APP,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                _______,    __MOD__,    /**/    XXXXXXX,    K_MS,                                                                       /**/
+    /**/                                                                XXXXXXX,    __MOD__,    /**/    XXXXXXX,    K_MS,                                                                       /**/
     /**/                            __MOD__,    __MOD__,    __LYR__,    IIIIIII,    IIIIIII,    /**/    IIIIIII,    IIIIIII,    __LYR__,    __MOD__,    __MOD__,                                /**/
     /*                                                                                                                                                                                            */
     _),
@@ -129,8 +129,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_MOUSE] = LAYOUT(
     #define K_MS_EXT MO(L_MOUSE_EXT)
     /*                                                                                                                                                                                            */
-    /**/    __ESC__,    KC_F5,      XXXXXXX,    XXXXXXX,    KC_F7,      KC_F11,                 /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
-    /**/    __TAB__,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    C(KC_W),                /**/                KC_PGUP,    KC_HOME,    KC_MS_U,    KC_END,     XXXXXXX,    XXXXXXX,        /**/
+    /**/    __ESC__,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_F7,      KC_F11,                 /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    __TAB__,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_F5,      C(KC_W),                /**/                KC_PGUP,    KC_HOME,    KC_MS_U,    KC_END,     XXXXXXX,    XXXXXXX,        /**/
     /**/    __MOD__,    XXXXXXX,    KC_ACL0,    KC_ACL1,    KC_ACL2,    C(KC_T),    _______,    /**/    _______,    KC_PGDN,    KC_MS_L,    KC_MS_D,    KC_MS_R,    KC_BTN2,    __MOD__,        /**/
     /**/    __MOD__,    C(KC_Z),    C(KC_X),    C(KC_C),    C(KC_V),    C(KC_N),                /**/                XXXXXXX,    KC_BTN4,    KC_BTN5,    XXXXXXX,    KC_BTN3,    __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
@@ -631,7 +631,8 @@ static void render_progress_ring(void) {
     static const uint8_t frame_count = 8;
     static const uint8_t sprite_height = SPRITE_HEIGHT(2);
     static const uint8_t sprite_width = SPRITE_WIDTH(2);
-    static const char PROGMEM empty_sprite[SPRITE_HEIGHT(2) * SPRITE_WIDTH(2)] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, };
+    static const char PROGMEM empty_sprite[SPRITE_HEIGHT(2) * SPRITE_WIDTH(2)] = 
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, };
     static const char PROGMEM ring_sprites[][SPRITE_HEIGHT(2) * SPRITE_WIDTH(2)] = {
         { 0, 0, 0, 2, 14, 31, 15, 15, 15, 31, 14, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
         { 0, 0, 0, 0, 0, 0, 0, 0, 12, 31, 62, 126, 124, 56, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
