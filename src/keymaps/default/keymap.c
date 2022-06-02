@@ -602,7 +602,7 @@ static void render_caps_lock(void) {
 
     for (uint8_t row = 0; row < sprite_height; row++) {
         oled_set_cursor(column_offset, line_offset + row);
-        oled_write_raw_P(caps_lock_sprites[sprite_index][row] + (sprite_width * row), sprite_width);
+        oled_write_raw_P(caps_lock_sprites[sprite_index] + (sprite_width * row), sprite_width);
     }
 }
 
