@@ -107,6 +107,7 @@ enum layers {
 
 enum custom_keycodes {
     K__SAFE_RANGE = SAFE_RANGE,
+    K_OH_ADJ,
 #if defined(CUSTOM_LEADER_ENABLE)
     K_LEAD,
 #endif

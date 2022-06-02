@@ -18,6 +18,8 @@ static bool dynamic_macro_recording = false;
 extern bool watching;
 #endif
 
+bool one_handed_adjust = false;
+
 // user_config_t user_config;
 
 // void eeconfig_init_user(void) {
@@ -90,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /**/    __ESC__,    KC_F9,      KC_F10,     KC_F11,     KC_F12,     KC_PSCR,                /**/                KC_PERC,    KC_7,       KC_8,       KC_9,       KC_EQL,     XXXXXXX,        /**/
     /**/    __TAB__,    KC_F5,      KC_F6,      KC_F7,      KC_F8,      DM_PLY2,                /**/                KC_SLSH,    KC_4,       KC_5,       KC_6,       KC_MINS,    XXXXXXX,        /**/
     /**/    __MOD__,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY1,    IIIIIII,    /**/    IIIIIII,    KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_PLUS,    __MOD__,        /**/
-    /**/    __MOD__,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    K_COMP,                 /**/                KC_CIRC,    KC_0,       KC_COMM,    KC_DOT,     KC_ENT,     __MOD__,        /**/
+    /**/    __MOD__,    K_OH_ADJ,   XXXXXXX,    XXXXXXX,    XXXXXXX,    K_COMP,                 /**/                KC_CIRC,    KC_0,       KC_COMM,    KC_DOT,     KC_ENT,     __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                KC_LOCK,    __MOD__,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
     /**/                            __MOD__,    __MOD__,    __LYR__,    __SPC__,    __NPC__,    /**/    __NPC__,    __NPC__,    __LYR__,    __MOD__,    __MOD__,                                /**/
@@ -470,6 +472,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return !record->event.pressed || !layer_state_is(L_LOWER);
         case TT(L_RAISE):
             return !record->event.pressed || !layer_state_is(L_RAISE);
+        case K_OH_ADJ:
+            if (record->event.pressed) {
+                layer_on(L_RAISE);
+                one_handed_adjust = true; 
+            }
+            return false;
         default:
             return true;
     }
@@ -484,6 +492,16 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
+    if (one_handed_adjust) {
+        if (!layer_state_cmp(state, L_LOWER)) {
+            state = state & ~((layer_state_t)1 << L_RAISE);
+            one_handed_adjust = false; 
+        }
+        else {
+            state |= (layer_state_t)1 << L_RAISE;
+        }
+    }
+
     state = update_tri_layer_state(state, L_LOWER, L_RAISE, L_ADJUST);
 
 #if !defined(OLED_ENABLE)
