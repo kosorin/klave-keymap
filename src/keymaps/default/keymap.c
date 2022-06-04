@@ -47,9 +47,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_BASE] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    KC_ESC,     KC_7,       KC_5,       KC_3,       KC_1,       KC_9,                   /**/                KC_8,       KC_0,       KC_2,       KC_4,       KC_6,       KC_GRV,         /**/
-    /**/    KC_TAB,     KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_QUOT,    KC_DLR,         /**/
+    /**/    KC_TAB,     KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_MINS,    KC_UNDS,        /**/
     /**/    KC_LSFT,    KC_A,       KC_R,       KC_S,       KC_T,       KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       KC_N,       KC_E,       KC_I,       KC_O,       KC_RSFT,        /**/
-    /**/    KC_LCTL,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_QUES,    KC_RCTL,        /**/
+    /**/    KC_LCTL,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_QUOT,    KC_RCTL,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                K_UC,       KC_HYPR,    /**/    K_LEAD,     K_UC,                                                                       /**/
     /**/                            KC_LGUI,    KC_LALT,    K_LWR,      KC_SPC,     KC_ENT,     /**/    KC_DEL,     KC_BSPC,    K_RSE,      KC_RALT,    KC_RGUI,                                /**/
@@ -75,11 +75,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     #define X_NBSP XP(U_NBSP, U_OBOX)
     #define X_PRIME XP(U_SPRIME, U_DPRIME)
     #define X_DASH XP(U_NDASH, U_MDASH)
+    #define X_B_QUO XP(U_BDQUO, U_BSQUO)
+    #define X_L_QUO XP(U_LDQUO, U_LSQUO)
+    #define X_R_QUO XP(U_RDQUO, U_RSQUO)
+    #define X_LA_QUO XP(U_LAQUO, U_LSAQUO)
+    #define X_RA_QUO XP(U_RAQUO, U_RSAQUO)
     /*                                                                                                                                                                                            */
-    /**/    __ESC__,    X(U_SEC),   XXXXXXX,    XXXXXXX,    X(U_CROSS), X(U_CHECK),             /**/                X(U_PERM),  XXXXXXX,    XXXXXXX,    X(U_INF),   X(U_DEG),   X(U_CENT),      /**/
-    /**/    __TAB__,    _______,    _______,    _______,    X_Dc,       _______,                /**/                _______,    X_Ur,       X_Ua,       X_Ya,       X_PRIME,    X(U_EURO),      /**/
+    /**/    __ESC__,    X_LA_QUO,   X_RA_QUO,   X_B_QUO,    X_L_QUO,    X_R_QUO,                /**/                X(U_PERM),  X(U_DEG),   X_PRIME,    XXXXXXX,    XXXXXXX,    X(U_CENT),      /**/
+    /**/    __TAB__,    _______,    _______,    _______,    X_Dc,       _______,                /**/                X(U_SEC),   X_Ur,       X_Ua,       X_Ya,       X_DASH,     X(U_EURO),      /**/
     /**/    __MOD__,    X_Aa,       X_Rc,       X_Sc,       X_Tc,       _______,    IIIIIII,    /**/    IIIIIII,    X_Nc,       X_Ec,       X_Ea,       X_Ia,       X_Oa,       __MOD__,        /**/
-    /**/    __MOD__,    X_Zc,       _______,    X_Cc,       _______,    X(U_BTC),               /**/                _______,    X_DASH,     X(U_MIDDOT),X(U_ELLIP), X(U_IBANG), __MOD__,        /**/
+    /**/    __MOD__,    X_Zc,       X(U_CROSS), X_Cc,       X(U_CHECK), X(U_BTC),               /**/                X(U_IBANG), X(U_INF),   X(U_MIDDOT),X(U_ELLIP), XXXXXXX,    __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                __LYR__,    __MOD__,    /**/    IIIIIII,    __LYR__,                                                                    /**/
     /**/                            __MOD__,    __MOD__,    IIIIIII,    X_NBSP,     X(U_PAR),   /**/    __NPC__,    __NPC__,    IIIIIII,    __MOD__,    __MOD__,                                /**/
@@ -109,9 +114,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     #define KC_RPRN_T SFT_T(KC_RPRN)
     /*                                                                                                                                                                                            */
     /**/    __ESC__,    XXXXXXX,    KC_CIRC,    KC_AMPR,    KC_PIPE,    KC_PERC,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
-    /**/    __TAB__,    KC_LABK,    KC_RABK,    KC_LCBR,    KC_RCBR,    KC_AT,                  /**/                KC_PGUP,    KC_HOME,    KC_UP,      KC_END,     KC_DQUO,    XXXXXXX,        /**/
+    /**/    __TAB__,    KC_LABK,    KC_RABK,    KC_LCBR,    KC_RCBR,    KC_AT,                  /**/                KC_PGUP,    KC_HOME,    KC_UP,      KC_END,     KC_MINS,    KC_DLR,         /**/
     /**/    __MOD__,    KC_LBRC_T,  KC_RBRC_T,  KC_LPRN_T,  KC_RPRN_T,  KC_HASH,    IIIIIII,    /**/    IIIIIII,    KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_EQL,     __MOD__,        /**/
-    /**/    __MOD__,    KC_PLUS,    KC_ASTR,    KC_TILD,    KC_SLSH,    KC_BSLS,                /**/                KC_UNDS,    KC_MINS,    KC_SCLN,    KC_COLN,    KC_EXLM,    __MOD__,        /**/
+    /**/    __MOD__,    KC_PLUS,    KC_ASTR,    KC_TILD,    KC_SLSH,    KC_BSLS,                /**/                KC_EXLM,    KC_QUES,    KC_SCLN,    KC_COLN,    KC_DQUO,    __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    __MOD__,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
     /**/                            __MOD__,    __MOD__,    __LYR__,    __SPC__,    __NPC__,    /**/    __NPC__,    __NPC__,    __LYR__,    __MOD__,    __MOD__,                                /**/
