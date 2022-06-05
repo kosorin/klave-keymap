@@ -92,15 +92,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _),
 #endif
     [L_LOWER] = LAYOUT(
-    #define KC_1_T SFT_T(KC_1)
-    #define KC_2_T CTL_T(KC_2)
-    #define KC_3_T ALT_T(KC_3)
-    #define KC_PLUS_T GUI_T(KC_PLUS)
     #define K_COMP COMPOSE_KEY
     /*                                                                                                                                                                                            */
     /**/    __ESC__,    KC_F9,      KC_F10,     KC_F11,     KC_F12,     KC_PSCR,                /**/                KC_PERC,    KC_7,       KC_8,       KC_9,       KC_EQL,     XXXXXXX,        /**/
     /**/    __TAB__,    KC_F5,      KC_F6,      KC_F7,      KC_F8,      DM_PLY2,                /**/                KC_SLSH,    KC_4,       KC_5,       KC_6,       KC_MINS,    XXXXXXX,        /**/
-    /**/    __MOD__,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY1,    IIIIIII,    /**/    IIIIIII,    KC_ASTR,    KC_1_T,     KC_2_T,     KC_3_T,     KC_PLUS_T,  __MOD__,        /**/
+    /**/    __MOD__,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY1,    IIIIIII,    /**/    IIIIIII,    KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_PLUS,    __MOD__,        /**/
     /**/    __MOD__,    K_OH_ADJ,   XXXXXXX,    XXXXXXX,    XXXXXXX,    K_COMP,                 /**/                KC_CIRC,    KC_0,       KC_COMM,    KC_DOT,     KC_ENT,     __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    __MOD__,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
@@ -108,14 +104,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*                                                                                                                                                                                            */
     _),
     [L_RAISE] = LAYOUT(
-    #define KC_LBRC_T GUI_T(KC_LBRC)
-    #define KC_RBRC_T ALT_T(KC_RBRC)
-    #define KC_LPRN_T CTL_T(KC_LPRN)
-    #define KC_RPRN_T SFT_T(KC_RPRN)
     /*                                                                                                                                                                                            */
     /**/    __ESC__,    XXXXXXX,    KC_CIRC,    KC_AMPR,    KC_PIPE,    KC_PERC,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/    __TAB__,    KC_LABK,    KC_RABK,    KC_LCBR,    KC_RCBR,    KC_AT,                  /**/                KC_PGUP,    KC_HOME,    KC_UP,      KC_END,     KC_MINS,    KC_DLR,         /**/
-    /**/    __MOD__,    KC_LBRC_T,  KC_RBRC_T,  KC_LPRN_T,  KC_RPRN_T,  KC_HASH,    IIIIIII,    /**/    IIIIIII,    KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_EQL,     __MOD__,        /**/
+    /**/    __MOD__,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_HASH,    IIIIIII,    /**/    IIIIIII,    KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_EQL,     __MOD__,        /**/
     /**/    __MOD__,    KC_PLUS,    KC_ASTR,    KC_TILD,    KC_SLSH,    KC_BSLS,                /**/                KC_EXLM,    KC_QUES,    KC_SCLN,    KC_COLN,    KC_DQUO,    __MOD__,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    __MOD__,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
