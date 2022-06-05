@@ -497,13 +497,15 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
+
     if (one_handed_adjust) {
-        if (!layer_state_cmp(state, L_LOWER)) {
-            state = state & ~((layer_state_t)1 << L_RAISE);
-            one_handed_adjust = false; 
+        layer_state_t raise_mask = (layer_state_t)1 << L_RAISE;
+        if (layer_state_cmp(state, L_LOWER)) {
+            state |= raise_mask;
         }
         else {
-            state |= (layer_state_t)1 << L_RAISE;
+            state &= ~raise_mask;
+            one_handed_adjust = false;
         }
     }
 
