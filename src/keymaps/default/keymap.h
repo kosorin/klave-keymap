@@ -2,14 +2,11 @@
 
 #include QMK_KEYBOARD_H
 
-
-// typedef union {
-//     uint32_t raw;
-//     struct {
-//         bool foo_bar : 1;
-//     };
-// } user_config_t;
-
+#if defined(USER_CONFIG_ENABLE)
+typedef union {
+    uint32_t raw;
+} user_config_t;
+#endif
 
 #if defined(UNICODEMAP_ENABLE)
 enum unicode_names {

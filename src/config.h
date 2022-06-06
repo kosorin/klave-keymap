@@ -3,7 +3,7 @@
 #include "config_common.h"
 
 // Device
-#define VENDOR_ID 0xACDC
+#define VENDOR_ID 0x444B // DK
 #define PRODUCT_ID 0x0001
 #define DEVICE_VER 0x0001
 #define MANUFACTURER David Kosorin
@@ -28,8 +28,8 @@
 // Communication
 #define USE_I2C
 
-// Debounce
-#define DEBOUNCE 5
-
 // Handedness
 #define EE_HANDS
+
+// Debounce
+#define DEBOUNCE 5

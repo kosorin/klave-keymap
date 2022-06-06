@@ -1,4 +1,4 @@
-# AVR MCU options
+# MCU options
 MCU = atmega32u4
 BOOTLOADER = caterina
 

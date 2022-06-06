@@ -20,13 +20,9 @@ extern bool watching;
 
 bool one_handed_adjust = false;
 
-// user_config_t user_config;
-
-// void eeconfig_init_user(void) {
-//     user_config.raw = 0;
-//     user_config.foo_bar = false;
-//     eeconfig_update_user(user_config.raw);
-// }
+#if defined(USER_CONFIG_ENABLE)
+user_config_t user_config;
+#endif
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -460,8 +456,17 @@ bool caps_word_press_user(uint16_t keycode) {
 #endif
 
 
+void eeconfig_init_user(void) {
+#if defined(USER_CONFIG_ENABLE)
+    user_config.raw = 0;
+    eeconfig_update_user(user_config.raw);
+#endif
+}
+
 void keyboard_post_init_user(void) {
-    // user_config.raw = eeconfig_read_user();
+#if defined(USER_CONFIG_ENABLE)
+    user_config.raw = eeconfig_read_user();
+#endif
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
