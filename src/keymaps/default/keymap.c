@@ -479,9 +479,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
         case TT(L_LOWER):
-            return !record->event.pressed || !layer_state_is(L_LOWER);
         case TT(L_RAISE):
-            return !record->event.pressed || !layer_state_is(L_RAISE);
+            if (record->event.pressed) {
+                if (record->tap.count <= TAPPING_TOGGLE) {
+                    layer_on(keycode & 0xFF);
+                }
+            }
+            else {
+                if (record->tap.count < TAPPING_TOGGLE) {
+                    layer_off(keycode & 0xFF);
+                }
+            }
+            return false;
         case K_OH_ADJ:
             if (record->event.pressed) {
                 layer_on(L_RAISE);
@@ -521,14 +530,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     if (layer_state_cmp(state, L_LOWER) != layer_state_cmp(last_state, L_LOWER)) {
         if (layer_state_cmp(state, L_LOWER)) {
             writePinLow(B0);
-        } else {
+        }
+        else {
             writePinHigh(B0);
         }
     }
     if (layer_state_cmp(state, L_RAISE) != layer_state_cmp(last_state, L_RAISE)) {
         if (layer_state_cmp(state, L_RAISE)) {
             writePinLow(D5);
-        } else {
+        }
+        else {
             writePinHigh(D5);
         }
     }
@@ -568,7 +579,8 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             frame##_time += frame##_elapsed; \
             frame = (frame + 1) % frame_count; \
         } \
-    } else { \
+    } \
+    else { \
         frame = -1; \
         frame##_elapsed = 0; \
         frame##_time = 0; \
