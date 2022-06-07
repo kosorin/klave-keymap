@@ -21,4 +21,4 @@ UNICODEMAP_ENABLE = yes
 
 # Custom SW feature options
 CUSTOM_LEADER_ENABLE = yes # Simplified version of https://github.com/andrewjrae/kyria-keymap/blob/e3ad77dc4d48b8e6a842c9136c76c1021ab5976b/README.org#userspace-leader-sequences
-USER_CONFIG_ENABLE = yes
+USER_CONFIG_ENABLE = no
