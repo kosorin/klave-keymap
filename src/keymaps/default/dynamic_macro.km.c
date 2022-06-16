@@ -1,8 +1,12 @@
-#include <stdbool.h>
+#include "dynamic_macro.km.h"
 
 
-bool dynamic_macro_recording = false;
+static bool dynamic_macro_recording = false;
 
+
+bool is_dynamic_macro_recording(void) {
+    return dynamic_macro_recording;
+}
 
 void dynamic_macro_record_start_user(void) {
     dynamic_macro_recording = true;
