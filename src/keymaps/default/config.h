@@ -3,8 +3,8 @@
 // [custom] Compose
 #define COMPOSE_KEY KC_F19
 
-// [custom] Leader key
-#define LEADER_CANCEL_KEY KC_ESC
+// [custom] Key chain
+#define KEY_CHAIN_CANCEL_KEY KC_ESC
 
 // Console (debugging)
 #if defined(CONSOLE_ENABLE)
@@ -14,18 +14,18 @@
 
 // Layers
 #undef NO_ACTION_LAYER
-#define LAYER_STATE_8BIT
+#define LAYER_STATE_16BIT
 // #define STRICT_LAYER_RELEASE
 
 // Tapping
 #undef NO_ACTION_TAPPING
 // #define TAP_CODE_DELAY 100
 #define TAPPING_TOGGLE 2
-#define TAPPING_TERM 200
-#define PERMISSIVE_HOLD
+#define TAPPING_TERM 220
+// #define PERMISSIVE_HOLD
 // #define HOLD_ON_OTHER_KEY_PRESS
-// #define IGNORE_MOD_TAP_INTERRUPT
-// #define TAPPING_FORCE_HOLD
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_FORCE_HOLD
 // #define RETRO_TAPPING
 
 // One shot
@@ -34,7 +34,7 @@
 #define ONESHOT_TIMEOUT 0
 
 // Leader key
-#define LEADER_TIMEOUT 300
+#define LEADER_TIMEOUT 500
 #define LEADER_PER_KEY_TIMING
 #define LEADER_NO_TIMEOUT
 // #define LEADER_KEY_STRICT_KEY_PROCESSING
@@ -48,21 +48,27 @@
 // #define UNICODE_CYCLE_PERSIST false
 
 // Key overrides
-#define KEY_OVERRIDE_REPEAT_DELAY 500
+// #define KEY_OVERRIDE_REPEAT_DELAY 500
 
 // Caps word
 #define CAPS_WORD_IDLE_TIMEOUT 0
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+// #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 // #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
 // Mouse keys
 // #define MK_KINETIC_SPEED
 
 // Combos
-#define COMBO_TERM 50
-#define COMBO_MUST_HOLD_MODS
-#define COMBO_HOLD_TERM 50
-// #define COMBO_MUST_PRESS_IN_ORDER
-// #define COMBO_STRICT_TIMER
+#define COMBO_TERM (TAPPING_TERM / 4)
+// #define COMBO_TERM_PER_COMBO
+// #define COMBO_HOLD_TERM COMBO_TERM
+#define COMBO_STRICT_TIMER
 // #define COMBO_NO_TIMER
-// #define COMBO_ONLY_FROM_LAYER L_BASE
+// #define COMBO_ONLY_FROM_LAYER 0
+// #define COMBO_PROCESS_KEY_RELEASE
+// #define COMBO_SHOULD_TRIGGER
+// #define COMBO_MUST_PRESS_IN_ORDER
+// #define COMBO_MUST_PRESS_IN_ORDER_PER_COMBO
+// #define COMBO_MUST_HOLD_MODS
+// #define COMBO_MUST_HOLD_PER_COMBO
+#define COMBO_MUST_TAP_PER_COMBO
