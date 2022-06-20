@@ -2,10 +2,12 @@
 
 #include "gpio.h"
 #include "keyboard.h"
+#if defined(SWAP_HANDS_ENABLE)
+    #include "progmem.h"
+#endif
 
 
 #if defined(SWAP_HANDS_ENABLE)
-
 __attribute__((weak)) const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     // Left hand
     { {0, 6}, {1, 6}, {2, 6}, {3, 6}, {4, 6}, {5, 6}, },
@@ -22,7 +24,6 @@ __attribute__((weak)) const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] 
     { {0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 4}, {5, 4}, },
     { {0, 5}, {1, 5}, {2, 5}, {3, 5}, {4, 5}, {5, 5}, },
 };
-
 #endif
 
 
