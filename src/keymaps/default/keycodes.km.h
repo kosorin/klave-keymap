@@ -73,7 +73,7 @@ enum custom_keycodes {
 #define TRK_L3 LT(L_FUNCTION, KC_TAB)
 #define TRK_L2 LT(L_SYMBOL, KC_SPACE)
 #define TRK_L1 KC_ENTER
-#define TRK_R1 KEY_CHAIN
+#define TRK_R1 COMPOSE_KEY
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 LT(L_NAVIGATION, KC_DELETE)
-#define TRK_R4 LT(L_SYSTEM, COMPOSE_KEY)
+#define TRK_R4 LT(L_SYSTEM, KC_NO)

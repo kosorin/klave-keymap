@@ -5,7 +5,7 @@
 #include "action.h"
 
 
-bool process_key_chain(uint16_t start_keycode, uint16_t keycode, const keyrecord_t *record);
+bool process_key_chain(uint16_t keycode, const keyrecord_t *record);
 
 void *key_chain_start_user(uint8_t keycode);
 

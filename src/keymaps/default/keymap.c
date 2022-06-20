@@ -33,17 +33,17 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    ___V___,    X_Aa,       X_Rc,       X_Sc,       X_Tc,       _______,    _______,    /**/    _______,    X_Nc,       X_Ec,       X_Ea,       X_Ia,       X_Oa,       ___V___,        /**/
     /**/    _TO_DO_,    X_Zc,       _______,    X_Cc,       _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    _TO_DO_,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        ___T___,    ___T___,    ___T___,    ___T___,    /**/    ___T___,    ___T___,    ___T___,    ___T___,                                            /**/
+    /**/                                        ___T___,    ___T___,    ___T___,    ___T___,    /**/    XXXXXXX,    ___T___,    ___T___,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
 #endif
     [L_SYMBOL] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    KC_GRV,     KC_LABK,    KC_RABK,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_PERC,    KC_ASTR,    KC_AT,      KC_PLUS,    KC_MINS,    KC_UNDS,        /**/
-    /**/    _TO_DO_,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_SCLN,    KC_COLN,    KC_DQUO,    _TO_DO_,        /**/
-    /**/    _TO_DO_,    KC_PIPE,    KC_AMPR,    KC_BSLS,    KC_SLSH,    KC_TILD,                /**/                KC_EXLM,    KC_QUES,    KC_COMM,    KC_DOT,     KC_QUOT,    _TO_DO_,        /**/
+    /**/    KC_GRV,     KC_LBRC,    KC_RBRC,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_PERC,    KC_PLUS,    KC_QUES,    KC_EXLM,    KC_MINS,    KC_UNDS,        /**/
+    /**/    _TO_DO_,    KC_LABK,    KC_RABK,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_SCLN,    KC_COLN,    KC_DQUO,    _TO_DO_,        /**/
+    /**/    _TO_DO_,    KC_TILD,    KC_AMPR,    KC_PIPE,    KC_SLSH,    KC_BSLS,                /**/                KC_AT,      KC_ASTR,    KC_COMM,    KC_DOT,     KC_QUOT,    _TO_DO_,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    ___T___,    ___T___,    ___T___,    ___T___,                                            /**/
+    /**/                                        XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    XXXXXXX,    ___T___,    ___T___,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_NUMBER] = LAYOUT(
@@ -52,7 +52,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    KC_NUM,     _______,    /**/    _______,    KC_ASTR,    KC_4,       KC_5,       KC_6,       KC_0,       KC_PLUS,        /**/
     /**/    _TO_DO_,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_CALC,    KC_1,       KC_2,       KC_3,       CK_DECP,    _TO_DO_,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        ___T___,    ___T___,    ___T___,    ___T___,    /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_NAVIGATION] = LAYOUT(
@@ -61,7 +61,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    KC_SCRL,    _______,    /**/    _______,    XXXXXXX,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_PGDN,    XXXXXXX,        /**/
     /**/    _TO_DO_,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_APP,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    _TO_DO_,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        ___T___,    ___T___,    ___T___,    ___T___,    /**/    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,                                            /**/
+    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_FUNCTION] = LAYOUT(
@@ -70,7 +70,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    KC_INS,     KC_F5,      KC_F6,      KC_F7,      KC_F8,      DM_PLY1,    _______,    /**/    _______,    XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,    XXXXXXX,        /**/
     /**/    _TO_DO_,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY2,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    _TO_DO_,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    /**/    ___T___,    ___T___,    ___T___,    ___T___,                                            /**/
+    /**/                                        XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    KC_BSPC,    KC_DEL,     XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_MEDIA] = LAYOUT(
@@ -79,16 +79,16 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    XXXXXXX,    KC_MPRV,    KC_VOLD,    KC_MNXT,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,    XXXXXXX,        /**/
     /**/    _TO_DO_,    XXXXXXX,    KC_MSTP,    KC_MUTE,    KC_MPLY,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    _TO_DO_,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    ___T___,    ___T___,    ___T___,    ___T___,                                            /**/
+    /**/                                        ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_SYSTEM] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    QK_BOOT,    EE_CLR,     QK_RBT,     XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    DM_REC1,    _______,    /**/    _______,    XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    DM_REC1,    _______,    /**/    _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/    _TO_DO_,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    DM_REC2,                /**/                XXXXXXX,    CK_GON,     XXXXXXX,    XXXXXXX,    XXXXXXX,    _TO_DO_,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        ___T___,    ___T___,    ___T___,    ___T___,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    ___V___,                                            /**/
+    /**/                                        XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    ___V___,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_GAME] = LAYOUT(
@@ -130,14 +130,19 @@ void matrix_scan_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #if defined(KEY_CHAIN_ENABLE)
-    if (process_key_chain(KEY_CHAIN, keycode, record) == PROCESS_HANDLED) {
+    if (process_key_chain(keycode, record) == PROCESS_HANDLED) {
         return PROCESS_HANDLED;
     }
 #endif
     switch (keycode) {
-        default:
-            return PROCESS_NOT_HANDLED;
+        case TRK_R4:
+            if (record->tap.count && record->event.pressed) {
+                key_chain_start();
+                return PROCESS_HANDLED;
+            }
+            break;
     }
+    return PROCESS_NOT_HANDLED;
 }
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {

@@ -6,10 +6,9 @@
 static void *(*key_chain_next_func)(uint8_t) = NULL;
 
 
-bool process_key_chain(uint16_t start_keycode, uint16_t keycode, const keyrecord_t *record) {
-    if (record->event.pressed) {
-        if (key_chain_next_func) {
-
+bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
+    if (key_chain_next_func) {
+        if (record->event.pressed) {
 #if defined(KEY_CHAIN_CANCEL_KEY)
             if (keycode == KEY_CHAIN_CANCEL_KEY) {
                 key_chain_stop();
@@ -28,9 +27,6 @@ bool process_key_chain(uint16_t start_keycode, uint16_t keycode, const keyrecord
             key_chain_next_func = key_chain_next_func((uint8_t)keycode);
 
             return PROCESS_HANDLED;
-        }
-        else if (keycode == start_keycode) {
-            key_chain_start();
         }
     }
     return PROCESS_NOT_HANDLED;

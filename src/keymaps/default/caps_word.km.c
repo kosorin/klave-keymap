@@ -24,7 +24,7 @@ bool caps_word_press_user(uint16_t keycode) {
         case CK_UC:
             return true;
         case QK_UNICODEMAP_PAIR ... QK_UNICODEMAP_PAIR_MAX:
-            if ((((keycode - QK_UNICODEMAP_PAIR) & 0x7F)) < U__LETTER_PAIRS_END) {
+            if ((keycode & 0x7F) < U__LETTER_PAIRS_END && ((keycode >> 7) & 0x7F) < U__LETTER_PAIRS_END) {
                 add_weak_mods(MOD_BIT(KC_LSFT));
                 return true;
             }
