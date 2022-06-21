@@ -16,15 +16,30 @@ bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
             }
 #endif
 
-            if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) {
-                keycode &= 0xFF;
+            switch (keycode) {
+                case QK_MOMENTARY ... QK_MOMENTARY_MAX:
+                case QK_TO ... QK_TO_MAX:
+                case QK_TOGGLE_LAYER ... QK_TOGGLE_LAYER_MAX:
+                case QK_LAYER_TAP_TOGGLE ... QK_LAYER_TAP_TOGGLE_MAX:
+                case QK_ONE_SHOT_LAYER ... QK_ONE_SHOT_LAYER_MAX:
+                    return PROCESS_NOT_HANDLED;
+                case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+                case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+                    if (record->tap.count == 0) {
+                        return PROCESS_NOT_HANDLED;
+                    }
+                    else {
+                        keycode &= 0xFF;
+                        break;
+                    }
             }
 
             if (keycode > 0xFF) {
-                return PROCESS_NOT_HANDLED;
+                key_chain_stop();
             }
-
-            key_chain_next_func = key_chain_next_func((uint8_t)keycode);
+            else {
+                key_chain_next_func = key_chain_next_func((uint8_t)keycode);
+            }
 
             return PROCESS_HANDLED;
         }
