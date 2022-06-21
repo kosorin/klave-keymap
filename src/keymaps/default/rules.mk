@@ -54,6 +54,7 @@ endif
 
 USER_CONFIG_ENABLE ?= no
 ifeq ($(strip $(USER_CONFIG_ENABLE)), yes)
+    SRC += $(KEYMAP_PATH)/user_config.km.c
     OPT_DEFS += -DUSER_CONFIG_ENABLE
 endif
 

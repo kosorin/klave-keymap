@@ -115,6 +115,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
 void eeconfig_init_user(void) {
 #if defined(USER_CONFIG_ENABLE)
     user_config.raw = 0;
+    user_config_reset_user();
     eeconfig_update_user(user_config.raw);
 #endif
 }
