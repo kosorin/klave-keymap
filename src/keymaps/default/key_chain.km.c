@@ -6,44 +6,48 @@
 #include "quantum.h"
 
 
-static void send_string_random_number(uint8_t max_number_length) {
-    const uint8_t max_number_length_total = 3;
-    char buffer[max_number_length_total + 1];
-    char *buffer_start = buffer;
-
-    if (max_number_length < 1) {
-        max_number_length = 1;
-    }
-    else if (max_number_length > max_number_length_total) {
-        max_number_length = max_number_length_total;
-    }
-
-    uint16_t max_number = 1;
-    for (uint8_t i = 0; i < max_number_length; i++) {
-        max_number *= 10;
-    }
-
-    uint16_t number = rand() % max_number;
-
-    for (uint8_t i = 0; i < max_number_length; i++) {
-        uint8_t index = max_number_length_total - 1 - i;
-        buffer[index] = 0x30 + (number % 10);
-        number/= 10;
-        if (number == 0) {
-            buffer_start = buffer + index;
-            break;
+static void send_random_number(uint8_t digits) {
+    bool any = false;
+    for (uint8_t i = 0; i < digits; i++) {
+        uint8_t digit = rand() % 10;
+        if (digit == 0) {
+            if (any) {
+                digit += 10;
+            }
+            else {
+                continue;
+            }
         }
+        any = true;
+        tap_code(KC_1 + digit - 1);
     }
-    buffer[max_number_length_total] = 0;
+    if (!any) {
+        tap_code(KC_0);
+    }
+}
 
-    send_string(buffer_start);
+static void *key_chain_random_number(uint8_t keycode) {
+    static uint8_t digits = 3;
+    switch (keycode) {
+        case KC_1 ... KC_9:
+            digits = keycode - KC_1 + 1;
+        case KC_N:
+            send_random_number(digits);
+            return key_chain_random_number;
+        case KC_SPACE:
+        case KC_TAB:
+        case KC_ENTER:
+            tap_code(keycode);
+            return key_chain_random_number;
+        default:
+            return NULL;
+    }
 }
 
 static void *key_chain_random(uint8_t keycode) {
     switch (keycode) {
         case KC_N:
-            send_string_random_number(3);
-            return key_chain_random;
+            return key_chain_random_number;
         default:
             return NULL;
     }
