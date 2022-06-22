@@ -87,7 +87,7 @@ static void render_layers(void) {
         0, 0, 0, 0, 15, 15, 48, 48, 207, 207, 63, 63, 255, 255, 243, 243, 255, 255, 243, 243, 255, 255, 63, 63, 15, 15, 0, 0, 0, 0, 0, 0,
     };
 
-    uint8_t layer = get_highest_layer(layer_state);
+    uint8_t layer = get_highest_layer(layer_state | default_layer_state);
     for (uint8_t row = 0; row < sprite_height; row++) {
         oled_set_cursor(column_offset, line_offset + row);
         oled_write_raw_P(layer_sprites + (layer * sprite_width * sprite_height) + (sprite_width * row), sprite_width);
