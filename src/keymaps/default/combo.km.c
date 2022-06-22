@@ -34,11 +34,13 @@ combo_t key_combos[] = {
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
     switch(combo_index) {
+#if defined(CAPS_WORD_ENABLE)
         case C_CAPS_WORD:
             if (pressed) {
                 caps_word_toggle();
             }
             break;
+#endif
         default:
             break;
     }
