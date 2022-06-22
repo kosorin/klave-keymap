@@ -126,6 +126,12 @@ void keyboard_pre_init_user(void) {
 #endif
 }
 
+void keyboard_post_init_user(void) {
+#if defined(CONSOLE_ENABLE) && !defined(NO_DEBUG)
+    debug_enable = true;
+#endif
+}
+
 void matrix_scan_user(void) {
 }
 

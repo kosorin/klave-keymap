@@ -8,8 +8,11 @@
 
 // Console (debugging)
 #if defined(CONSOLE_ENABLE)
-    #define NO_DEBUG
-    #define USER_PRINT
+    // #define NO_DEBUG
+    // #define USER_PRINT
+    #if !defined(NO_DEBUG)
+        // #define DEBUG_ACTION
+    #endif
 #endif
 
 // Layers
