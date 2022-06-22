@@ -25,7 +25,6 @@ enum custom_keycodes {
 };
 
 
-#define _TO_DO_ KC_NO
 #define ___V___ KC_TRANSPARENT
 #define ___T___ KC_TRANSPARENT
 
@@ -57,8 +56,8 @@ enum custom_keycodes {
     #define CK_DECP KC_DOT
 #endif
 
-#define CK_GON TO(L_GAME)
-#define CK_GOFF TG(L_GAME)
+#define CK_GOFF DF(L_BASE)
+#define CK_GON DF(L_GAME)
 #define CK_GEXT LT(L_GAME_EXTENDED, KC_ENTER)
 
 #define HRK_L4 GUI_T(KC_A)

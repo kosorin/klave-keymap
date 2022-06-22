@@ -4,7 +4,7 @@
 #define COMPOSE_KEY KC_F19
 
 // [custom] Key chain
-#define KEY_CHAIN_CANCEL_KEY KC_ESC
+// #define KEY_CHAIN_CANCEL_KEY KC_ESC
 
 // Console (debugging)
 #if defined(CONSOLE_ENABLE)

@@ -6,9 +6,9 @@
 #include "quantum.h"
 
 
-static void send_random_number(uint8_t digits) {
+static void send_random_number(uint8_t digit_count) {
     bool any = false;
-    for (uint8_t i = 0; i < digits; i++) {
+    for (uint8_t i = 0; i < digit_count; i++) {
         uint8_t digit = rand() % 10;
         if (digit == 0) {
             if (any) {
@@ -27,16 +27,18 @@ static void send_random_number(uint8_t digits) {
 }
 
 static void *key_chain_random_number(uint8_t keycode) {
-    static uint8_t digits = 3;
+    static uint8_t digit_count = 3;
     switch (keycode) {
         case KC_1 ... KC_9:
-            digits = keycode - KC_1 + 1;
+            digit_count = keycode - KC_1 + 1;
         case KC_N:
-            send_random_number(digits);
+            send_random_number(digit_count);
             return key_chain_random_number;
         case KC_SPACE:
         case KC_TAB:
         case KC_ENTER:
+        case KC_DOT:
+        case KC_COMMA:
             tap_code(keycode);
             return key_chain_random_number;
         default:
@@ -53,16 +55,16 @@ static void *key_chain_random(uint8_t keycode) {
     }
 }
 
-static void *key_chain_boot(uint8_t keycode) {
+static void *key_chain_system(uint8_t keycode) {
     switch (keycode) {
         case KC_E:
             eeconfig_init();
             soft_reset_keyboard();
             break;
-        case KC_S:
+        case KC_R:
             soft_reset_keyboard();
             break;
-        case KC_R:
+        case KC_B:
             reset_keyboard();
             break;
         default:
@@ -97,8 +99,8 @@ void *key_chain_start_user(uint8_t keycode) {
             // Call `srand` once for each session
             srand(timer_read());
             return key_chain_random;
-        case KC_B:
-            return key_chain_boot;
+        case KC_ESC:
+            return key_chain_system;
         case KC_L:
             return key_chain_lock;
         default:
