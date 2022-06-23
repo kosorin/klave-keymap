@@ -23,7 +23,7 @@
 #define ENCODER_RESOLUTIONS { }
 #define ENCODERS_PAD_A_RIGHT { F5 }
 #define ENCODERS_PAD_B_RIGHT { F4 }
-#define ENCODER_RESOLUTIONS_RIGHT { 4 }
+#define ENCODER_RESOLUTIONS_RIGHT { 2 }
 
 // Communication
 #define USE_I2C
