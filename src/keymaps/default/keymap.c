@@ -20,8 +20,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_BASE] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    KC_GRV,     KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_MINS,    KC_UNDS,        /**/
-    /**/    CK_UC,      HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     CK_UC,          /**/
-    /**/    XXXXXXX,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_QUOT,    XXXXXXX,        /**/
+    /**/    KC_SLSH,    HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     KC_SCLN,        /**/
+    /**/    KC_BSLS,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_QUOT,    KC_DQUO,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                        TRK_L4,     TRK_L3,     TRK_L2,     TRK_L1,     /**/    TRK_R1,     TRK_R2,     TRK_R3,     TRK_R4,                                             /**/
     /*                                                                                                                                                                                            */
@@ -30,18 +30,18 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_UNICODE] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    _______,    _______,    _______,    _______,    X_Dc,       _______,                /**/                _______,    X_Ur,       X_Ua,       X_Ya,       _______,    _______,        /**/
-    /**/    ___V___,    X_Aa,       X_Rc,       X_Sc,       X_Tc,       _______,    _______,    /**/    _______,    X_Nc,       X_Ec,       X_Ea,       X_Ia,       X_Oa,       ___V___,        /**/
-    /**/    XXXXXXX,    X_Zc,       _______,    X_Cc,       _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    XXXXXXX,        /**/
+    /**/    _______,    X_Aa,       X_Rc,       X_Sc,       X_Tc,       _______,    _______,    /**/    _______,    X_Nc,       X_Ec,       X_Ea,       X_Ia,       X_Oa,       _______,        /**/
+    /**/    _______,    X_Zc,       _______,    X_Cc,       _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    _______,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        ___T___,    ___T___,    ___T___,    ___T___,    /**/    XXXXXXX,    ___T___,    ___T___,    XXXXXXX,                                            /**/
+    /**/                                        XXXXXXX,    XXXXXXX,    XXXXXXX,    ___V___,    /**/    ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
 #endif
     [L_SYMBOL] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    KC_GRV,     KC_LBRC,    KC_RBRC,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_PERC,    KC_PLUS,    KC_QUES,    KC_EXLM,    KC_MINS,    KC_UNDS,        /**/
-    /**/    XXXXXXX,    KC_LABK,    KC_RABK,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_SCLN,    KC_COLN,    KC_DQUO,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_TILD,    KC_AMPR,    KC_PIPE,    KC_SLSH,    KC_BSLS,                /**/                KC_AT,      KC_ASTR,    KC_COMM,    KC_DOT,     KC_QUOT,    XXXXXXX,        /**/
+    /**/    _______,    XXXXXXX,    XXXXXXX,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_PERC,    KC_PLUS,    KC_AMPR,    KC_PIPE,    _______,    _______,        /**/
+    /**/    _______,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    _______,        /**/
+    /**/    _______,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_AT,      KC_ASTR,    _______,    _______,    _______,    _______,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                        XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    XXXXXXX,    ___T___,    ___T___,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */

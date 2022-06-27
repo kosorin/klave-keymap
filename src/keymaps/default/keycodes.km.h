@@ -30,7 +30,6 @@ enum custom_keycodes {
 
 
 #if defined(UNICODEMAP_ENABLE)
-    #define CK_UC MO(L_UNICODE)
     #define X_Ua XP(U_Ual, U_Uau)
     #define X_Ea XP(U_Eal, U_Eau)
     #define X_Ia XP(U_Ial, U_Iau)
@@ -46,8 +45,6 @@ enum custom_keycodes {
     #define X_Cc XP(U_Ccl, U_Ccu)
     #define X_Nc XP(U_Ncl, U_Ncu)
     #define X_Ur XP(U_Url, U_Uru)
-#else
-    #define CK_UC KC_NO
 #endif
 
 #if defined(TAP_DANCE_ENABLE)
@@ -71,8 +68,13 @@ enum custom_keycodes {
 #define TRK_L4 LT(L_MEDIA, KC_ESCAPE)
 #define TRK_L3 LT(L_FUNCTION, KC_TAB)
 #define TRK_L2 LT(L_SYMBOL, KC_SPACE)
-#define TRK_L1 KC_ENTER
-#define TRK_R1 COMPOSE_KEY
+#if defined(UNICODEMAP_ENABLE)
+    #define TRK_L1 LT(L_UNICODE, KC_ENTER)
+    #define TRK_R1 LT(L_UNICODE, COMPOSE_KEY)
+#else
+    #define TRK_L1 KC_ENTER
+    #define TRK_R1 COMPOSE_KEY
+#endif
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 LT(L_NAVIGATION, KC_DELETE)
 #define TRK_R4 LT(L_SYSTEM, KC_NO)

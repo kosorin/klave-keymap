@@ -21,7 +21,8 @@ bool caps_word_press_user(uint16_t keycode) {
             return true;
 
 #if defined(UNICODEMAP_ENABLE)
-        case CK_UC:
+        case TRK_L1:
+        case TRK_R1:
             return true;
         case QK_UNICODEMAP_PAIR ... QK_UNICODEMAP_PAIR_MAX:
             if ((keycode & 0x7F) < U__LETTER_PAIRS_END && ((keycode >> 7) & 0x7F) < U__LETTER_PAIRS_END) {
