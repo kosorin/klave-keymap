@@ -7,9 +7,9 @@ enum layers {
     L_UNICODE,
 #endif
     L_SYMBOL,
-    L_NUMBER,
-    L_NAVIGATION,
     L_FUNCTION,
+    L_NAVIGATION,
+    L_NUMBER,
     L_MEDIA,
     L_SYSTEM,
     L_GAME,
