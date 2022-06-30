@@ -1,5 +1,8 @@
 #include "combo.km.h"
 #include "keycodes.km.h"
+#if defined(CAPS_WORD_ENABLE)
+    #include "caps_word.km.h"
+#endif
 
 #include "process_combo.h"
 #include "action.h"
@@ -17,6 +20,11 @@ const uint16_t combo_FIND[] PROGMEM = { KC_W, KC_F, COMBO_END };
 const uint16_t combo_CAPS_LOCK[] PROGMEM = { KC_P, KC_M, COMBO_END };
 #if defined(CAPS_WORD_ENABLE)
 const uint16_t combo_CAPS_WORD[] PROGMEM = { HRK_L1, HRK_R1, COMBO_END };
+const uint16_t combo_SPONGEBOB_CASE[] PROGMEM = { HRK_L1, HRK_R1, KC_F, KC_U, COMBO_END };
+const uint16_t combo_CAMEL_CASE[] PROGMEM = { HRK_L1, KC_L, COMBO_END };
+const uint16_t combo_PASCAL_CASE[] PROGMEM = { HRK_L1, KC_U, COMBO_END };
+const uint16_t combo_SNAKE_CASE[] PROGMEM = { HRK_L1, KC_UNDERSCORE, COMBO_END };
+const uint16_t combo_KEBAB_CASE[] PROGMEM = { HRK_L1, KC_MINUS, COMBO_END };
 #endif
 
 combo_t key_combos[] = {
@@ -29,15 +37,39 @@ combo_t key_combos[] = {
     [C_CAPS_LOCK] = COMBO(combo_CAPS_LOCK, KC_CAPS_LOCK),
 #if defined(CAPS_WORD_ENABLE)
     [C_CAPS_WORD] = COMBO_ACTION(combo_CAPS_WORD),
+    [C_SPONGEBOB_CASE] = COMBO_ACTION(combo_SPONGEBOB_CASE),
+    [C_CAMEL_CASE] = COMBO_ACTION(combo_CAMEL_CASE),
+    [C_PASCAL_CASE] = COMBO_ACTION(combo_PASCAL_CASE),
+    [C_SNAKE_CASE] = COMBO_ACTION(combo_SNAKE_CASE),
+    [C_KEBAB_CASE] = COMBO_ACTION(combo_KEBAB_CASE),
 #endif
 };
+
+#if defined(CAPS_WORD_ENABLE)
+static void caps_word_toggle_user(uint16_t combo_index) {
+    switch(combo_index) {
+        case C_SPONGEBOB_CASE:
+            smart_case = (smart_case_t){ .type = SC_SPONGEBOB, .spongebob = { .upper_case = false, }, };
+            break;
+        default:
+            smart_case = (smart_case_t){ .type = SC_CAPS_WORD, };
+            break;
+    }  
+    caps_word_toggle();
+}
+#endif
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
     switch(combo_index) {
 #if defined(CAPS_WORD_ENABLE)
         case C_CAPS_WORD:
+        case C_SPONGEBOB_CASE:
+        case C_CAMEL_CASE:
+        case C_PASCAL_CASE:
+        case C_SNAKE_CASE:
+        case C_KEBAB_CASE:
             if (pressed) {
-                caps_word_toggle();
+                caps_word_toggle_user(combo_index);
             }
             break;
 #endif
