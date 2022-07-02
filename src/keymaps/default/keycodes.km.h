@@ -65,16 +65,18 @@ enum custom_keycodes {
 #define HRK_R2 CTL_T(KC_E)
 #define HRK_R3 ALT_T(KC_I)
 #define HRK_R4 GUI_T(KC_O)
+#if defined(UNICODEMAP_ENABLE)
+    #define KT_Z LT(L_UNICODE, KC_Z)
+    #define KT_QUOT LT(L_UNICODE, KC_QUOT)
+#else
+    #define KT_Z KC_Z
+    #define KT_QUOT KC_QUOT
+#endif
 #define TRK_L4 LT(L_MEDIA, KC_ESCAPE)
 #define TRK_L3 LT(L_FUNCTION, KC_TAB)
 #define TRK_L2 LT(L_SYMBOL, KC_SPACE)
-#if defined(UNICODEMAP_ENABLE)
-    #define TRK_L1 LT(L_UNICODE, KC_ENTER)
-    #define TRK_R1 LT(L_UNICODE, COMPOSE_KEY)
-#else
-    #define TRK_L1 KC_ENTER
-    #define TRK_R1 COMPOSE_KEY
-#endif
+#define TRK_L1 KC_ENTER
+#define TRK_R1 COMPOSE_KEY
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 LT(L_NAVIGATION, KC_DELETE)
 #if defined(KEY_CHAIN_ENABLE)

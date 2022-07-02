@@ -21,7 +21,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /*                                                                                                                                                                                            */
     /**/    KC_GRV,     KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_MINS,    KC_UNDS,        /**/
     /**/    KC_SLSH,    HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     KC_SCLN,        /**/
-    /**/    KC_BSLS,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_QUOT,    KC_DQUO,        /**/
+    /**/    KC_BSLS,    KT_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KT_QUOT,    KC_DQUO,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                        TRK_L4,     TRK_L3,     TRK_L2,     TRK_L1,     /**/    TRK_R1,     TRK_R2,     TRK_R3,     TRK_R4,                                             /**/
     /*                                                                                                                                                                                            */
@@ -29,11 +29,11 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
 #if defined(UNICODEMAP_ENABLE)
     [L_UNICODE] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    _______,    _______,    _______,    _______,    X_Dc,       _______,                /**/                _______,    X_Ur,       X_Ua,       X_Ya,       _______,    _______,        /**/
-    /**/    _______,    X_Aa,       X_Rc,       X_Sc,       X_Tc,       _______,    _______,    /**/    _______,    X_Nc,       X_Ec,       X_Ea,       X_Ia,       X_Oa,       _______,        /**/
-    /**/    _______,    X_Zc,       _______,    X_Cc,       _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    _______,        /**/
+    /**/    _______,    _______,    _______,    _______,    X_Dc,       _______,                /**/                _______,    _______,    X_Ua,       X_Ya,       _______,    _______,        /**/
+    /**/    _______,    X_Aa,       X_Rc,       X_Sc,       X_Tc,       _______,    _______,    /**/    _______,    _______,    X_Ec,       X_Ea,       X_Ia,       X_Oa,       _______,        /**/
+    /**/    _______,    ___V___,    X_Zc,       X_Cc,       _______,    _______,                /**/                _______,    X_Nc,       X_Ur,       _______,    ___V___,    _______,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        XXXXXXX,    XXXXXXX,    XXXXXXX,    ___V___,    /**/    ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    KC_BSPC,    KC_DEL,     XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
 #endif
