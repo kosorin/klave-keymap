@@ -142,12 +142,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 #endif
     switch (keycode) {
+#if defined(KEY_CHAIN_ENABLE)
         case TRK_R4:
-            if (record->tap.count && record->event.pressed) {
-                key_chain_start();
+            if (record->tap.count) {
+                if (record->event.pressed) {
+                    key_chain_start();
+                }
                 return PROCESS_HANDLED;
             }
             break;
+#endif
     }
     return PROCESS_NOT_HANDLED;
 }
