@@ -97,7 +97,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    KC_TAB,     KC_A,       KC_R,       KC_S,       KC_T,       KC_P,       _______,    /**/    _______,    KC_M,       KC_N,       KC_E,       KC_I,       KC_O,       KC_LSFT,        /**/
     /**/    KC_F1,      KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_DQUO,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        KC_LALT,    KC_LCTL,    KC_SPC,     CK_GEXT,    /**/    XXXXXXX,    KC_BSPC,    KC_DEL,     CK_GOFF,                                            /**/
+    /**/                                        KC_LALT,    KC_LCTL,    KC_SPC,     XXXXXXX,    /**/    CK_GEXT,    KC_BSPC,    KC_DEL,     CK_GOFF,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_GAME_EXTENDED] = LAYOUT(
