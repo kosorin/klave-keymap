@@ -66,11 +66,11 @@ enum custom_keycodes {
 #define HRK_R3 ALT_T(KC_I)
 #define HRK_R4 GUI_T(KC_O)
 #if defined(UNICODEMAP_ENABLE)
-    #define KT_Z LT(L_UNICODE, KC_Z)
-    #define KT_QUOT LT(L_UNICODE, KC_QUOT)
+    #define KT_F LT(L_UNICODE, KC_F)
+    #define KT_U LT(L_UNICODE, KC_U)
 #else
-    #define KT_Z KC_Z
-    #define KT_QUOT KC_QUOT
+    #define KT_F KC_F
+    #define KT_U KC_U
 #endif
 #define TRK_L4 LT(L_MEDIA, KC_ESCAPE)
 #define TRK_L3 LT(L_FUNCTION, KC_TAB)
