@@ -66,9 +66,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     _),
     [L_NUMBER] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_SLSH,    KC_7,       KC_8,       KC_9,       KC_ENT,     KC_MINS,        /**/
-    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    KC_NUM,     _______,    /**/    _______,    KC_ASTR,    KC_4,       KC_5,       KC_6,       KC_0,       KC_PLUS,        /**/
-    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    KC_1,       KC_2,       KC_3,       CK_DECP,    KC_CALC,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_SLSH,    KC_7,       KC_8,       KC_9,       KC_MINS,    KC_PLUS,        /**/
+    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    KC_NUM,     _______,    /**/    _______,    KC_ASTR,    KC_4,       KC_5,       KC_6,       KC_0,       KC_EQL,         /**/
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_ENT,     KC_1,       KC_2,       KC_3,       CK_DECP,    KC_CALC,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
