@@ -8,7 +8,7 @@ OLED_ENABLE = yes
 # Base SW feature options
 CONSOLE_ENABLE = no
 EXTRAKEY_ENABLE = yes
-MOUSEKEY_ENABLE = no
+MOUSEKEY_ENABLE = yes
 
 # SW feature options
 CAPS_WORD_ENABLE = yes
@@ -25,6 +25,7 @@ UNICODEMAP_ENABLE = yes
 KEY_CHAIN_ENABLE = yes
 SECRETS_ENABLE = yes
 USER_CONFIG_ENABLE = no
+GAMING_ENABLE = no
 
 
 
@@ -56,6 +57,11 @@ USER_CONFIG_ENABLE ?= no
 ifeq ($(strip $(USER_CONFIG_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/user_config.km.c
     OPT_DEFS += -DUSER_CONFIG_ENABLE
+endif
+
+GAMING_ENABLE ?= no
+ifeq ($(strip $(GAMING_ENABLE)), yes)
+    OPT_DEFS += -DGAMING_ENABLE
 endif
 
 

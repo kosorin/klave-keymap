@@ -53,9 +53,13 @@ enum custom_keycodes {
     #define CK_DECP KC_DOT
 #endif
 
-#define CK_GOFF DF(L_BASE)
-#define CK_GON DF(L_GAME)
-#define CK_GEXT LT(L_GAME_EXTENDED, KC_ENTER)
+#if defined(GAMING_ENABLE)
+    #define CK_GON DF(L_GAME)
+    #define CK_GOFF DF(L_BASE)
+    #define CK_GEXT LT(L_GAME_EXTENDED, KC_ENTER)
+#else
+    #define CK_GON KC_NO
+#endif
 
 #define HRK_L4 GUI_T(KC_A)
 #define HRK_L3 ALT_T(KC_R)
@@ -84,3 +88,6 @@ enum custom_keycodes {
 #else
     #define TRK_R4 MO(L_SYSTEM)
 #endif
+
+
+#define CK_MPSE A(KC_MSTP)

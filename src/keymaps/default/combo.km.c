@@ -12,6 +12,9 @@
 uint16_t COMBO_LEN = COMBO_COUNT;
 
 const uint16_t combo_COPY[] PROGMEM = { KC_X, KC_C, COMBO_END };
+#if defined(MOUSEKEY_ENABLE)
+const uint16_t combo_PASTE_PRIMARY[] PROGMEM = { KC_C, KC_V, COMBO_END };
+#endif
 const uint16_t combo_SAVE[] PROGMEM = { HRK_L3, HRK_L2, COMBO_END };
 const uint16_t combo_FIND[] PROGMEM = { KC_W, KT_F, COMBO_END };
 const uint16_t combo_CAPS_LOCK[] PROGMEM = { KC_P, KC_M, COMBO_END };
@@ -26,6 +29,9 @@ const uint16_t combo_KEBAB_CASE[] PROGMEM = { HRK_L1, KC_MINUS, COMBO_END };
 
 combo_t key_combos[] = {
     [C_COPY] = COMBO(combo_COPY, C(KC_C)),
+#if defined(MOUSEKEY_ENABLE)
+    [C_PASTE_PRIMARY] = COMBO(combo_PASTE_PRIMARY, KC_MS_BTN3),
+#endif
     [C_SAVE] = COMBO(combo_SAVE, C(KC_S)),
     [C_FIND] = COMBO(combo_FIND, C(KC_F)),
     [C_CAPS_LOCK] = COMBO(combo_CAPS_LOCK, KC_CAPS_LOCK),

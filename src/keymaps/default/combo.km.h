@@ -3,6 +3,9 @@
 
 enum combo_events {
     C_COPY,
+#if defined(MOUSEKEY_ENABLE)
+    C_PASTE_PRIMARY,
+#endif
     C_SAVE,
     C_FIND,
     C_CAPS_LOCK,
