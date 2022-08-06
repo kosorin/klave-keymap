@@ -8,9 +8,10 @@ enum layers {
 #endif
     L_SYMBOL,
     L_FUNCTION,
-    L_NAVIGATION,
-    L_NUMBER,
     L_MEDIA,
+    L_NUMBER,
+    L_NAVIGATION,
+    L_VI,
     L_SYSTEM,
 #if defined(GAMING_ENABLE)
     L_GAME,

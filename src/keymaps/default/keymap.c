@@ -49,19 +49,19 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_FUNCTION] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    KC_F9,      KC_F10,     KC_F11,     KC_F12,     KC_PSCR,                /**/                XXXXXXX,    KC_F13,     KC_F14,     KC_F15,     KC_F16,     XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_F5,      KC_F6,      KC_F7,      KC_F8,      DM_PLY1,    _______,    /**/    _______,    XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY2,                /**/                XXXXXXX,    KC_F17,     KC_F18,     KC_F19,     KC_F20,     XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_F5,      KC_F6,      KC_F7,      KC_F8,      DM_PLY1,    _______,    /**/    _______,    DM_REC1,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY2,                /**/                DM_REC2,    KC_F17,     KC_F18,     KC_F19,     KC_F20,     XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                        XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    KC_BSPC,    KC_DEL,     XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
-    [L_NAVIGATION] = LAYOUT(
+    [L_MEDIA] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_PGUP,    KC_HOME,    KC_UP,      KC_END,     KC_WH_U,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    KC_SCRL,    _______,    /**/    _______,    KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_WH_D,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    KC_APP,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    KC_MRWD,    KC_VOLU,    KC_MFFD,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    KC_MPRV,    KC_VOLD,    KC_MNXT,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    KC_MSEL,    KC_MSTP,    CK_MPSE,    KC_MUTE,    KC_MPLY,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,                                            /**/
+    /**/                                        ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_NUMBER] = LAYOUT( // TODO: Add parentheses
@@ -73,22 +73,31 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
-    [L_MEDIA] = LAYOUT(
+    [L_NAVIGATION] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    XXXXXXX,    XXXXXXX,    KC_MRWD,    KC_VOLU,    KC_MFFD,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    XXXXXXX,    KC_MPRV,    KC_VOLD,    KC_MNXT,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,    XXXXXXX,        /**/
-    /**/    KC_MSEL,    KC_MSTP,    CK_MPSE,    KC_MUTE,    KC_MPLY,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_PGUP,    KC_HOME,    KC_UP,      KC_END,     KC_WH_U,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    KC_SCRL,    _______,    /**/    _______,    KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_WH_D,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_INS,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,                                            /**/
+    /*                                                                                                                                                                                            */
+    _),
+    [L_VI] = LAYOUT(
+    /*                                                                                                                                                                                            */
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    KC_K,       XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    KC_H,       KC_J,       KC_L,       XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/                                                                                        /**/                                                                                            /**/
+    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    ___V___,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_SYSTEM] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    KC_PAUS,    XXXXXXX,    XXXXXXX,    UC_M_LN,    UC_M_WC,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    KC_K,       XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    DM_REC1,    _______,    /**/    _______,    XXXXXXX,    KC_H,       KC_J,       KC_L,       XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    DM_REC2,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    UC_M_LN,    UC_M_WC,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_PAUS,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                        XXXXXXX,    XXXXXXX,    KC_INS,     XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    ___V___,                                            /**/
+    /**/                                        XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_APP,     /**/    ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
 #if defined(GAMING_ENABLE)
@@ -145,7 +154,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
     switch (keycode) {
 #if defined(KEY_CHAIN_ENABLE)
-        case TRK_R4:
+        case TRK_R1:
             if (record->tap.count) {
                 if (record->event.pressed) {
                     key_chain_start();

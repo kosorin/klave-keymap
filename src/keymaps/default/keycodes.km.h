@@ -65,10 +65,12 @@ enum custom_keycodes {
 #define HRK_L3 ALT_T(KC_R)
 #define HRK_L2 CTL_T(KC_S)
 #define HRK_L1 SFT_T(KC_T)
+
 #define HRK_R1 SFT_T(KC_N)
 #define HRK_R2 CTL_T(KC_E)
 #define HRK_R3 ALT_T(KC_I)
 #define HRK_R4 GUI_T(KC_O)
+
 #if defined(UNICODEMAP_ENABLE)
     #define KT_F LT(L_UNICODE, KC_F)
     #define KT_U LT(L_UNICODE, KC_U)
@@ -76,18 +78,20 @@ enum custom_keycodes {
     #define KT_F KC_F
     #define KT_U KC_U
 #endif
+
 #define TRK_L4 LT(L_MEDIA, KC_ESCAPE)
 #define TRK_L3 LT(L_FUNCTION, KC_TAB)
 #define TRK_L2 LT(L_SYMBOL, KC_SPACE)
 #define TRK_L1 KC_ENTER
-#define TRK_R1 COMPOSE_KEY
+
+#if defined(KEY_CHAIN_ENABLE)
+    #define TRK_R1 LT(L_SYSTEM, KC_NO)
+#else
+    #define TRK_R1 MO(L_SYSTEM)
+#endif
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 LT(L_NAVIGATION, KC_DELETE)
-#if defined(KEY_CHAIN_ENABLE)
-    #define TRK_R4 LT(L_SYSTEM, KC_NO)
-#else
-    #define TRK_R4 MO(L_SYSTEM)
-#endif
+#define TRK_R4 LT(L_VI, KC_NO)
 
 
 #define CK_MPSE A(KC_MSTP)
