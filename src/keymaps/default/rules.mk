@@ -2,8 +2,8 @@
 LTO_ENABLE = yes
 
 # HW feature options
-ENCODER_ENABLE = yes
-OLED_ENABLE = yes
+ENCODER_ENABLE = no
+OLED_ENABLE = no
 
 # Base SW feature options
 CONSOLE_ENABLE = no

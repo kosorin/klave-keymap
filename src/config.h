@@ -26,7 +26,8 @@
 #define ENCODER_RESOLUTIONS_RIGHT { 2 }
 
 // Communication
-#define USE_I2C
+// #define USE_I2C // SCL=D0 SDA=D1
+#define SOFT_SERIAL_PIN D0
 
 // Handedness
 #define EE_HANDS
