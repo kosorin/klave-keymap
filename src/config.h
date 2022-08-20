@@ -2,13 +2,6 @@
 
 #include "config_common.h"
 
-// Device
-#define VENDOR_ID 0x444B // DK
-#define PRODUCT_ID 0x0001
-#define DEVICE_VER 0x0001
-#define MANUFACTURER David Kosorin
-#define PRODUCT Klave
-
 // Matrix
 #define MATRIX_ROWS (6*2)
 #define MATRIX_COLS (6)

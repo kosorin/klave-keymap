@@ -1,0 +1,11 @@
+{
+    "keyboard_name": "Klave",
+    "manufacturer": "David Kosorin",
+    "url": "https://github.com/kosorin/klave",
+    "maintainer": "David Kosorin",
+    "usb": {
+        "vid": "0x444B",
+        "pid": "0x0001",
+        "device_version": "0.0.1"
+    }
+}
