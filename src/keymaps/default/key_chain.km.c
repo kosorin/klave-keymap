@@ -73,26 +73,6 @@ static void *key_chain_system(uint8_t keycode) {
     return NULL;
 }
 
-static void *key_chain_lock(uint8_t keycode) {
-    switch (keycode) {
-        case KC_L:
-            tap_code16(A(G(KC_L)));
-            break;
-        case KC_U:
-            tap_code(KC_SYSTEM_SLEEP);
-            break;
-        case KC_W:
-            tap_code(KC_SYSTEM_WAKE);
-            break;
-        case KC_S:
-            tap_code(KC_SYSTEM_POWER);
-            break;
-        default:
-            break;
-    }
-    return NULL;
-}
-
 void *key_chain_start_user(uint8_t keycode) {
 #if defined(SECRETS_ENABLE)
     void *secret_result = key_chain_start_secret(keycode);
@@ -107,8 +87,6 @@ void *key_chain_start_user(uint8_t keycode) {
             return key_chain_random;
         case KC_ESC:
             return key_chain_system;
-        case KC_L:
-            return key_chain_lock;
         default:
             return NULL;
     }

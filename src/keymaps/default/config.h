@@ -1,5 +1,7 @@
 #pragma once
 
+#define ENABLE_COMPILE_KEYCODE
+
 // [custom] Compose
 #define COMPOSE_KEY KC_F19
 

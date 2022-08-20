@@ -8,7 +8,7 @@ OLED_ENABLE = no
 # Base SW feature options
 CONSOLE_ENABLE = no
 EXTRAKEY_ENABLE = yes
-MOUSEKEY_ENABLE = yes
+MOUSEKEY_ENABLE = no
 
 # SW feature options
 CAPS_WORD_ENABLE = yes

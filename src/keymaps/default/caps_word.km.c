@@ -25,6 +25,12 @@ bool caps_word_press_user(uint16_t keycode) {
                     return true;
             }
             break;
+        case SC_CAMEL:
+        case SC_PASCAL:
+        case SC_SNAKE:
+        case SC_KEBAB:
+            // TODO
+            return false;
         default:
             switch (keycode) {
                 case KC_A ... KC_Z:

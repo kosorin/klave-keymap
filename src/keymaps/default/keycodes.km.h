@@ -15,6 +15,11 @@
 #include "quantum_keycodes.h"
 
 
+#define ___V___ KC_TRANSPARENT
+#define ___T___ KC_TRANSPARENT
+
+
+// Custom keycodes
 enum custom_keycodes {
     CK__SAFE_RANGE = SAFE_RANGE,
 #if defined(KEY_CHAIN_ENABLE)
@@ -24,11 +29,12 @@ enum custom_keycodes {
 #endif
 };
 
+// Zoom
+#define Z_PLUS C(KC_EQUAL)
+#define Z_MINUS C(KC_MINUS)
+#define Z_RESET C(KC_0)
 
-#define ___V___ KC_TRANSPARENT
-#define ___T___ KC_TRANSPARENT
-
-
+// Unicode
 #if defined(UNICODEMAP_ENABLE)
     #define X_Ua XP(U_Ual, U_Uau)
     #define X_Ea XP(U_Eal, U_Eau)
@@ -47,12 +53,14 @@ enum custom_keycodes {
     #define X_Ur XP(U_Url, U_Uru)
 #endif
 
+// Tap dance
 #if defined(TAP_DANCE_ENABLE)
     #define CK_DECP TD(TD_DECIMAL_POINT)
 #else
     #define CK_DECP KC_DOT
 #endif
 
+// Gaming
 #if defined(GAMING_ENABLE)
     #define CK_GON DF(L_GAME)
     #define CK_GOFF DF(L_BASE)
@@ -61,16 +69,7 @@ enum custom_keycodes {
     #define CK_GON KC_NO
 #endif
 
-#define HRK_L4 GUI_T(KC_A)
-#define HRK_L3 ALT_T(KC_R)
-#define HRK_L2 CTL_T(KC_S)
-#define HRK_L1 SFT_T(KC_T)
-
-#define HRK_R1 SFT_T(KC_N)
-#define HRK_R2 CTL_T(KC_E)
-#define HRK_R3 ALT_T(KC_I)
-#define HRK_R4 GUI_T(KC_O)
-
+// Top row keys
 #if defined(UNICODEMAP_ENABLE)
     #define KT_F LT(L_UNICODE, KC_F)
     #define KT_U LT(L_UNICODE, KC_U)
@@ -79,11 +78,25 @@ enum custom_keycodes {
     #define KT_U KC_U
 #endif
 
+// Home row keys - left
+#define HRK_L4 GUI_T(KC_A)
+#define HRK_L3 ALT_T(KC_R)
+#define HRK_L2 CTL_T(KC_S)
+#define HRK_L1 SFT_T(KC_T)
+
+// Home row keys - right
+#define HRK_R1 SFT_T(KC_N)
+#define HRK_R2 CTL_T(KC_E)
+#define HRK_R3 ALT_T(KC_I)
+#define HRK_R4 GUI_T(KC_O)
+
+// Thumb row keys - left
 #define TRK_L4 LT(L_MEDIA, KC_ESCAPE)
 #define TRK_L3 LT(L_FUNCTION, KC_TAB)
 #define TRK_L2 LT(L_SYMBOL, KC_SPACE)
 #define TRK_L1 KC_ENTER
 
+// Thumb row keys - right
 #if defined(KEY_CHAIN_ENABLE)
     #define TRK_R1 LT(L_SYSTEM, KC_NO)
 #else
@@ -91,7 +104,4 @@ enum custom_keycodes {
 #endif
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 LT(L_NAVIGATION, KC_DELETE)
-#define TRK_R4 LT(L_VI, KC_NO)
-
-
-#define CK_MPSE A(KC_MSTP)
+#define TRK_R4 LT(L_VI, KC_APP)
