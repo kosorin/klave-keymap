@@ -104,4 +104,4 @@ enum custom_keycodes {
 #endif
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 LT(L_NAVIGATION, KC_DELETE)
-#define TRK_R4 LT(L_VI, KC_APP)
+#define TRK_R4 LT(L_VI, COMPOSE_KEY)

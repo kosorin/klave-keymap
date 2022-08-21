@@ -3,7 +3,7 @@
 #define ENABLE_COMPILE_KEYCODE
 
 // [custom] Compose
-#define COMPOSE_KEY KC_F19
+#define COMPOSE_KEY KC_APP
 
 // [custom] Key chain
 // #define KEY_CHAIN_CANCEL_KEY KC_ESC
