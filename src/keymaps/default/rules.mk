@@ -29,6 +29,7 @@ GAMING_ENABLE = no
 
 
 
+# HW feature options
 ENCODER_ENABLE ?= no
 ifeq ($(strip $(ENCODER_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/encoder.km.c
@@ -40,6 +41,7 @@ ifeq ($(strip $(OLED_ENABLE)), yes)
 endif
 
 
+# Custom SW feature options
 KEY_CHAIN_ENABLE ?= no
 ifeq ($(strip $(KEY_CHAIN_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/features/key_chain.f.c
@@ -65,6 +67,7 @@ ifeq ($(strip $(GAMING_ENABLE)), yes)
 endif
 
 
+# SW feature options
 CAPS_WORD_ENABLE ?= no
 ifeq ($(strip $(CAPS_WORD_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/caps_word.km.c
@@ -94,3 +97,7 @@ UNICODEMAP_ENABLE ?= no
 ifeq ($(strip $(UNICODEMAP_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/unicode_map.km.c
 endif
+
+
+# Other definitions
+OPT_DEFS += -DPROCESS_HANDLED=false -DPROCESS_NOT_HANDLED=true
