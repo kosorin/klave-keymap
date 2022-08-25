@@ -29,11 +29,6 @@ enum custom_keycodes {
 #endif
 };
 
-// Zoom
-#define Z_PLUS C(KC_EQUAL)
-#define Z_MINUS C(KC_MINUS)
-#define Z_RESET C(KC_0)
-
 // Unicode
 #if defined(UNICODEMAP_ENABLE)
     #define X_Ua XP(U_Ual, U_Uau)
@@ -52,6 +47,11 @@ enum custom_keycodes {
     #define X_Nc XP(U_Ncl, U_Ncu)
     #define X_Ur XP(U_Url, U_Uru)
 #endif
+
+// Zoom
+#define Z_PLUS C(KC_EQUAL)
+#define Z_MINUS C(KC_MINUS)
+#define Z_RESET C(KC_0)
 
 // Tap dance
 #if defined(TAP_DANCE_ENABLE)
