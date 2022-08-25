@@ -4,6 +4,10 @@
 #if defined(KEY_CHAIN_ENABLE)
     #include "features/key_chain.f.h"
 #endif
+#if defined(COMPOSE_ENABLE)
+    #include "features/compose.f.h"
+    #include "compose.km.h"
+#endif
 #if defined(USER_CONFIG_ENABLE)
     #include "user_config.km.h"
 #endif
@@ -19,8 +23,8 @@ user_config_t user_config;
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_BASE] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
-    /**/    KC_GRV,     KC_Q,       KC_W,       KT_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KT_U,       KC_Y,       KC_QUOT,    KC_DQUO,        /**/
+    /**/    XXXXXXX,    OSL_DIA,                                                                /**/                                                                OSL_DIA,    XXXXXXX,        /**/
+    /**/    KC_GRV,     KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_QUOT,    KC_DQUO,        /**/
     /**/    KC_SLSH,    HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     KC_SCLN,        /**/
     /**/    KC_BSLS,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_MINS,    KC_UNDS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
@@ -28,13 +32,13 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/                                        TRK_L4,     TRK_L3,     TRK_L2,     TRK_L1,     /**/    TRK_R1,     TRK_R2,     TRK_R3,     TRK_R4,                                             /**/
     /*                                                                                                                                                                                            */
     _),
-#if defined(UNICODEMAP_ENABLE)
-    [L_UNICODE] = LAYOUT(
+#if defined(COMPOSE_ENABLE)
+    [L_DIACRITIC] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
-    /**/    _______,    _______,    _______,    ___V___,    X_Dc,       _______,                /**/                _______,    X_Nc,       ___V___,    X_Ya,       _______,    _______,        /**/
-    /**/    _______,    X_Aa,       X_Rc,       X_Sc,       X_Tc,       _______,    _______,    /**/    _______,    _______,    X_Ec,       X_Ea,       X_Ia,       X_Oa,       _______,        /**/
-    /**/    _______,    X_Zc,       _______,    X_Cc,       _______,    _______,                /**/                _______,    X_Ur,       X_Ua,       _______,    _______,    _______,        /**/
+    /**/    _______,    ___V___,                                                                /**/                                                                ___V___,    _______,        /**/
+    /**/    _______,    _______,    _______,    _______,    CK_Dc,      _______,                /**/                _______,    CK_Ur,      CK_Ua,      CK_Ya,      _______,    _______,        /**/
+    /**/    _______,    CK_Aa,      CK_Rc,      CK_Sc,      ___T___,    _______,    _______,    /**/    _______,    _______,    ___T___,    CK_Ea,      CK_Ia,      CK_Oa,      _______,        /**/
+    /**/    _______,    CK_Zc,      _______,    CK_Cc,      _______,    _______,                /**/                _______,    _______,    CK_Ec,      _______,    _______,    _______,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    KC_DEL,                                                                     /**/
     /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    KC_BSPC,    XXXXXXX,    XXXXXXX,                                            /**/
@@ -110,7 +114,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_SYSTEM] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    XXXXXXX,    UC_M_WC,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    UC_M_LN,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_PAUS,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_PAUS,        /**/
     /**/    XXXXXXX,    XXXXXXX,    QK_RBT,     XXXXXXX,    XXXXXXX,    XXXXXXX,    _______,    /**/    _______,    QK_MAKE,    XXXXXXX,    EE_CLR,     XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    QK_BOOT,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
@@ -169,12 +173,36 @@ void matrix_scan_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#if defined(COMPOSE_ENABLE)
+    if (process_compose(keycode, record) == PROCESS_HANDLED) {
+        return PROCESS_HANDLED;
+    }
+#endif
 #if defined(KEY_CHAIN_ENABLE)
     if (process_key_chain(keycode, record) == PROCESS_HANDLED) {
         return PROCESS_HANDLED;
     }
 #endif
     switch (keycode) {
+#if defined(COMPOSE_ENABLE)
+        case HRK_L1:
+        case HRK_R1:
+            if (layer_state_is(L_DIACRITIC)) {
+                if (record->tap.count) {
+                    if (record->event.pressed) {
+                        uint8_t compose_index;
+                        switch (keycode & 0xFF) {
+                            case KC_T: compose_index = XC_Tc; break;
+                            case KC_N: compose_index = XC_Nc; break;
+                            default: return PROCESS_HANDLED;
+                        }
+                        process_compose_direct(compose_index);
+                    }
+                    return PROCESS_HANDLED;
+                }
+            }
+            break;
+#endif
 #if defined(KEY_CHAIN_ENABLE)
         case TRK_R1:
             if (record->tap.count) {
@@ -207,6 +235,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #if defined(TAPPING_FORCE_HOLD_PER_KEY)
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+#if defined(COMPOSE_ENABLE)
+        case OSL_DIA:
+            return false;
+#endif
         default:
             return true;
     }

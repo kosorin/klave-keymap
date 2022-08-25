@@ -13,13 +13,13 @@ uint16_t COMBO_LEN = C__COUNT;
 
 const uint16_t combo_COPY[] PROGMEM = { KC_X, KC_C, COMBO_END };
 const uint16_t combo_SAVE[] PROGMEM = { HRK_L3, HRK_L2, COMBO_END };
-const uint16_t combo_FIND[] PROGMEM = { KC_W, KT_F, COMBO_END };
+const uint16_t combo_FIND[] PROGMEM = { KC_W, KC_F, COMBO_END };
 const uint16_t combo_CAPS_LOCK[] PROGMEM = { KC_P, KC_M, COMBO_END };
 #if defined(CAPS_WORD_ENABLE)
 const uint16_t combo_CAPS_WORD[] PROGMEM = { HRK_L1, HRK_R1, COMBO_END };
-const uint16_t combo_SPONGEBOB_CASE[] PROGMEM = { HRK_L1, HRK_R1, KT_F, KT_U, COMBO_END };
+const uint16_t combo_SPONGEBOB_CASE[] PROGMEM = { HRK_L1, HRK_R1, KC_F, KC_U, COMBO_END };
 const uint16_t combo_CAMEL_CASE[] PROGMEM = { HRK_L1, KC_L, COMBO_END };
-const uint16_t combo_PASCAL_CASE[] PROGMEM = { HRK_L1, KT_U, COMBO_END };
+const uint16_t combo_PASCAL_CASE[] PROGMEM = { HRK_L1, KC_U, COMBO_END };
 const uint16_t combo_SNAKE_CASE[] PROGMEM = { HRK_L1, KC_UNDERSCORE, COMBO_END };
 const uint16_t combo_KEBAB_CASE[] PROGMEM = { HRK_L1, KC_MINUS, COMBO_END };
 #endif

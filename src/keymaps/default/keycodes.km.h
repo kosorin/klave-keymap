@@ -1,8 +1,8 @@
 #pragma once
 
 #include "layers.km.h"
-#if defined(UNICODEMAP_ENABLE)
-    #include "unicode_map.km.h"
+#if defined(COMPOSE_ENABLE)
+    #include "compose.km.h"
 #endif
 #if defined(COMBO_ENABLE)
     #include "combo.km.h"
@@ -31,33 +31,44 @@ enum custom_keycodes {
 
     CK__SAFE_RANGE_MAX,
     
+    CK_COMPOSE     = 0x5E00,
+    CK_COMPOSE_MAX = 0x5EFF,
+    
     // Maximum possible custom keycode is 0x5FFF
 };
 _Static_assert(CK__SAFE_RANGE_MAX <= 0x5E00, "too many custom keycodes");
 
-// Unicode
-#if defined(UNICODEMAP_ENABLE)
-    #define X_Ua XP(U_Ual, U_Uau)
-    #define X_Ea XP(U_Eal, U_Eau)
-    #define X_Ia XP(U_Ial, U_Iau)
-    #define X_Oa XP(U_Oal, U_Oau)
-    #define X_Aa XP(U_Aal, U_Aau)
-    #define X_Ya XP(U_Yal, U_Yau)
-    #define X_Ec XP(U_Ecl, U_Ecu)
-    #define X_Rc XP(U_Rcl, U_Rcu)
-    #define X_Tc XP(U_Tcl, U_Tcu)
-    #define X_Zc XP(U_Zcl, U_Zcu)
-    #define X_Sc XP(U_Scl, U_Scu)
-    #define X_Dc XP(U_Dcl, U_Dcu)
-    #define X_Cc XP(U_Ccl, U_Ccu)
-    #define X_Nc XP(U_Ncl, U_Ncu)
-    #define X_Ur XP(U_Url, U_Uru)
+#define COMPOSE(index) (CK_COMPOSE | ((index) & 0xFF))
+
+#if defined(COMPOSE_ENABLE)
+    #define CK_Ua COMPOSE(XC_Ua)
+    #define CK_Ea COMPOSE(XC_Ea)
+    #define CK_Ia COMPOSE(XC_Ia)
+    #define CK_Oa COMPOSE(XC_Oa)
+    #define CK_Aa COMPOSE(XC_Aa)
+    #define CK_Ya COMPOSE(XC_Ya)
+    #define CK_Ec COMPOSE(XC_Ec)
+    #define CK_Rc COMPOSE(XC_Rc)
+    #define CK_Tc COMPOSE(XC_Tc)
+    #define CK_Zc COMPOSE(XC_Zc)
+    #define CK_Sc COMPOSE(XC_Sc)
+    #define CK_Dc COMPOSE(XC_Dc)
+    #define CK_Cc COMPOSE(XC_Cc)
+    #define CK_Nc COMPOSE(XC_Nc)
+    #define CK_Ur COMPOSE(XC_Ur)
 #endif
 
 // Zoom
 #define Z_PLUS C(KC_EQUAL)
 #define Z_MINUS C(KC_MINUS)
 #define Z_RESET C(KC_0)
+
+// Diacritic
+#if defined(COMPOSE_ENABLE)
+    #define OSL_DIA OSL(L_DIACRITIC)
+#else
+    #define OSL_DIA KC_NO
+#endif
 
 // Tap dance
 #if defined(TAP_DANCE_ENABLE)
@@ -73,15 +84,6 @@ _Static_assert(CK__SAFE_RANGE_MAX <= 0x5E00, "too many custom keycodes");
     #define CK_GEXT LT(L_GAME_EXTENDED, KC_ENTER)
 #else
     #define CK_GON KC_NO
-#endif
-
-// Top row keys
-#if defined(UNICODEMAP_ENABLE)
-    #define KT_F LT(L_UNICODE, KC_F)
-    #define KT_U LT(L_UNICODE, KC_U)
-#else
-    #define KT_F KC_F
-    #define KT_U KC_U
 #endif
 
 // Home row keys - left
@@ -104,7 +106,7 @@ _Static_assert(CK__SAFE_RANGE_MAX <= 0x5E00, "too many custom keycodes");
 
 // Thumb row keys - right
 #if defined(KEY_CHAIN_ENABLE)
-    #define TRK_R1 LT(L_SYSTEM, KC_NO) // In process_record(): KC_NO => key_chain_start()
+    #define TRK_R1 LT(L_SYSTEM, KC_NO) // Must be handled in process_record() : KC_NO => key_chain_start()
 #else
     #define TRK_R1 MO(L_SYSTEM)
 #endif

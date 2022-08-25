@@ -1,8 +1,5 @@
 #include "caps_word.km.h"
 #include "keycodes.km.h"
-#if defined(UNICODEMAP_ENABLE)
-    #include "unicode_map.km.h"
-#endif
 
 #include "action_util.h"
 #include "keycode.h"
@@ -41,18 +38,10 @@ bool caps_word_press_user(uint16_t keycode) {
                 case KC_UNDERSCORE:
                 case KC_BACKSPACE:
                     return true;
-#if defined(UNICODEMAP_ENABLE)
-                case TRK_L1:
-                case TRK_R1:
+#if defined(COMPOSE_ENABLE)
+                case COMPOSE(XC__LETTER) ... COMPOSE(XC__LETTER_MAX):
+                    add_weak_mods(MOD_BIT(KC_LSFT));
                     return true;
-                case QK_UNICODEMAP_PAIR ... QK_UNICODEMAP_PAIR_MAX:
-                    if ((keycode & 0x7F) < U__LETTER_PAIRS_END && ((keycode >> 7) & 0x7F) < U__LETTER_PAIRS_END) {
-                        add_weak_mods(MOD_BIT(KC_LSFT));
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
 #endif
                 default:
                     return false;

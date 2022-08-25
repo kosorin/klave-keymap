@@ -3,8 +3,8 @@
 
 enum layers {
     L_BASE,
-#if defined(UNICODEMAP_ENABLE)
-    L_UNICODE,
+#if defined(COMPOSE_ENABLE)
+    L_DIACRITIC,
 #endif
     L_SYMBOL,
     L_FUNCTION,

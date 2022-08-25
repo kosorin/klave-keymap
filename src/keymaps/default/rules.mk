@@ -19,9 +19,10 @@ KEY_OVERRIDE_ENABLE = no
 LEADER_ENABLE = no
 SWAP_HANDS_ENABLE = no
 TAP_DANCE_ENABLE = yes
-UNICODEMAP_ENABLE = yes
+UNICODEMAP_ENABLE = no
 
 # Custom SW feature options
+COMPOSE_ENABLE = yes
 KEY_CHAIN_ENABLE = yes
 SECRETS_ENABLE = yes
 USER_CONFIG_ENABLE = no
@@ -42,6 +43,13 @@ endif
 
 
 # Custom SW feature options
+COMPOSE_ENABLE ?= no
+ifeq ($(strip $(COMPOSE_ENABLE)), yes)
+    SRC += $(KEYMAP_PATH)/features/compose.f.c
+    SRC += $(KEYMAP_PATH)/compose.km.c
+    OPT_DEFS += -DCOMPOSE_ENABLE
+endif
+
 KEY_CHAIN_ENABLE ?= no
 ifeq ($(strip $(KEY_CHAIN_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/features/key_chain.f.c
