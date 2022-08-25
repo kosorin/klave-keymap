@@ -14,5 +14,5 @@ enum combo_events {
     C_SNAKE_CASE,
     C_KEBAB_CASE,
 #endif
-    COMBO_COUNT,
+    C__COUNT,
 };

@@ -98,7 +98,7 @@ enum custom_keycodes {
 
 // Thumb row keys - right
 #if defined(KEY_CHAIN_ENABLE)
-    #define TRK_R1 LT(L_SYSTEM, KC_NO)
+    #define TRK_R1 LT(L_SYSTEM, KC_NO) // In process_record(): KC_NO => key_chain_start()
 #else
     #define TRK_R1 MO(L_SYSTEM)
 #endif

@@ -9,7 +9,7 @@
 #include "progmem.h"
 
 
-uint16_t COMBO_LEN = COMBO_COUNT;
+uint16_t COMBO_LEN = C__COUNT;
 
 const uint16_t combo_COPY[] PROGMEM = { KC_X, KC_C, COMBO_END };
 const uint16_t combo_SAVE[] PROGMEM = { HRK_L3, HRK_L2, COMBO_END };
