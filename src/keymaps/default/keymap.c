@@ -203,3 +203,12 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
+
+#if defined(TAPPING_FORCE_HOLD_PER_KEY)
+bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        default:
+            return true;
+    }
+}
+#endif
