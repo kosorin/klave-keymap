@@ -21,13 +21,19 @@
 
 // Custom keycodes
 enum custom_keycodes {
-    CK__SAFE_RANGE = SAFE_RANGE,
+    CK__SAFE_RANGE = SAFE_RANGE, // ~0x5D00
+
 #if defined(KEY_CHAIN_ENABLE)
     KEY_CHAIN,
 #else
     #define KEY_CHAIN KC_NO
 #endif
+
+    CK__SAFE_RANGE_MAX,
+    
+    // Maximum possible custom keycode is 0x5FFF
 };
+_Static_assert(CK__SAFE_RANGE_MAX <= 0x5E00, "too many custom keycodes");
 
 // Unicode
 #if defined(UNICODEMAP_ENABLE)
