@@ -17,6 +17,7 @@
 
 #define ___V___ KC_TRANSPARENT
 #define ___T___ KC_TRANSPARENT
+#define _XXXXX_ KC_TRANSPARENT
 
 
 // Custom keycodes
@@ -30,17 +31,19 @@ enum custom_keycodes {
 #endif
 
     CK__SAFE_RANGE_MAX,
-    
+
     CK_COMPOSE     = 0x5E00,
     CK_COMPOSE_MAX = 0x5EFF,
-    
+
     // Maximum possible custom keycode is 0x5FFF
 };
 _Static_assert(CK__SAFE_RANGE_MAX <= 0x5E00, "too many custom keycodes");
 
 #define COMPOSE(index) (CK_COMPOSE | ((index) & 0xFF))
 
+// Diacritic
 #if defined(COMPOSE_ENABLE)
+    #define OSL_DIA OSL(L_DIACRITIC)
     #define CK_Ua COMPOSE(XC_Ua)
     #define CK_Ea COMPOSE(XC_Ea)
     #define CK_Ia COMPOSE(XC_Ia)
@@ -56,19 +59,14 @@ _Static_assert(CK__SAFE_RANGE_MAX <= 0x5E00, "too many custom keycodes");
     #define CK_Cc COMPOSE(XC_Cc)
     #define CK_Nc COMPOSE(XC_Nc)
     #define CK_Ur COMPOSE(XC_Ur)
+#else
+    #define OSL_DIA KC_NO
 #endif
 
 // Zoom
 #define Z_PLUS C(KC_EQUAL)
 #define Z_MINUS C(KC_MINUS)
 #define Z_RESET C(KC_0)
-
-// Diacritic
-#if defined(COMPOSE_ENABLE)
-    #define OSL_DIA OSL(L_DIACRITIC)
-#else
-    #define OSL_DIA KC_NO
-#endif
 
 // Tap dance
 #if defined(TAP_DANCE_ENABLE)
@@ -106,7 +104,8 @@ _Static_assert(CK__SAFE_RANGE_MAX <= 0x5E00, "too many custom keycodes");
 
 // Thumb row keys - right
 #if defined(KEY_CHAIN_ENABLE)
-    #define TRK_R1 LT(L_SYSTEM, KC_NO) // Must be handled in process_record() : KC_NO => key_chain_start()
+    // In process_record() : KC_NO => key_chain_start()
+    #define TRK_R1 LT(L_SYSTEM, KC_NO)
 #else
     #define TRK_R1 MO(L_SYSTEM)
 #endif
