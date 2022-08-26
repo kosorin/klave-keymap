@@ -45,14 +45,14 @@ endif
 # Custom SW feature options
 COMPOSE_ENABLE ?= no
 ifeq ($(strip $(COMPOSE_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/features/compose.f.c
+    SRC += $(KEYMAP_PATH)/compose.f.c
     SRC += $(KEYMAP_PATH)/compose.km.c
     OPT_DEFS += -DCOMPOSE_ENABLE
 endif
 
 KEY_CHAIN_ENABLE ?= no
 ifeq ($(strip $(KEY_CHAIN_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/features/key_chain.f.c
+    SRC += $(KEYMAP_PATH)/key_chain.f.c
     SRC += $(KEYMAP_PATH)/key_chain.km.c
     OPT_DEFS += -DKEY_CHAIN_ENABLE
 endif

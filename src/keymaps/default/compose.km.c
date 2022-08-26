@@ -1,4 +1,4 @@
-#include "features/compose.f.h"
+#include "compose.f.h"
 #include "compose.km.h"
 
 #include <stddef.h>

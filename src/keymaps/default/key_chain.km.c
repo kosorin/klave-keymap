@@ -1,4 +1,4 @@
-#include "features/key_chain.f.h"
+#include "key_chain.f.h"
 #if defined(SECRETS_ENABLE)
     #include "secrets.km.h"
 #endif

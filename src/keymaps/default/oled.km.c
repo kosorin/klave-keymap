@@ -3,7 +3,7 @@
     #include "dynamic_macro.km.h"
 #endif
 #if defined(KEY_CHAIN_ENABLE)
-    #include "features/key_chain.f.h"
+    #include "key_chain.f.h"
 #endif
 
 #include "quantum.h"

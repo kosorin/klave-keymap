@@ -2,10 +2,10 @@
 #include "layers.km.h"
 #include "keycodes.km.h"
 #if defined(KEY_CHAIN_ENABLE)
-    #include "features/key_chain.f.h"
+    #include "key_chain.f.h"
 #endif
 #if defined(COMPOSE_ENABLE)
-    #include "features/compose.f.h"
+    #include "compose.f.h"
     #include "compose.km.h"
 #endif
 #if defined(USER_CONFIG_ENABLE)
