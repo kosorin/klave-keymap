@@ -21,6 +21,8 @@ static uint8_t get_and_clear_all_mods(uint8_t compose_index) {
     clear_weak_mods();
 
 #if defined(CAPS_WORD_ENABLE)
+    // This is not so nice workaround.
+    // We must handle CapsWord here because `process_record_user()` is called before `process_caps_word()`.
     if (is_caps_word_on()) {
         if (caps_word_press_user(COMPOSE(compose_index))) {
             mods |= get_weak_mods();
@@ -40,8 +42,8 @@ void process_compose_direct(uint8_t compose_index) {
         return;
     }
 
-    const char **compose_data = compose_map[compose_index];
-    if (compose_data == NULL || compose_data[0] == NULL) {
+    compose_data_t *compose_data = &compose_map[compose_index];
+    if (compose_data == NULL || compose_data->lowercase == NULL) {
         return;
     }
 
@@ -54,8 +56,8 @@ void process_compose_direct(uint8_t compose_index) {
 
     const uint8_t mods = get_and_clear_all_mods(compose_index);
     const bool shifted = (mods & MOD_MASK_SHIFT) ? 1 : 0;
-    const bool uppercase = compose_data[1] != NULL && (shifted ^ saved_caps_lock);
-    const char *compose_string = compose_data[uppercase ? 1 : 0];
+    const bool uppercase = compose_data->uppercase != NULL && (shifted ^ saved_caps_lock);
+    const char *compose_string = uppercase ? compose_data->uppercase : compose_data->lowercase;
 
     tap_code(COMPOSE_KEY);
     send_string(compose_string);

@@ -3,7 +3,13 @@
 #include "action.h"
 
 
-extern const char *compose_map[][2];
+typedef struct {
+    const char *lowercase;
+    const char *uppercase;
+} compose_data_t;
+
+
+extern compose_data_t compose_map[];
 
 
 bool process_compose(uint16_t keycode, const keyrecord_t *record);
