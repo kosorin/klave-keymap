@@ -71,7 +71,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
     /**/    Z_PLUS,     XXXXXXX,    KC_MRWD,    KC_VOLU,    KC_MFFD,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
-    /**/    Z_MINUS,    KC_MSEL,    KC_MPRV,    KC_VOLD,    KC_MNXT,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    Z_MINUS,    XXXXXXX,    KC_MPRV,    KC_VOLD,    KC_MNXT,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/    Z_RESET,    XXXXXXX,    KC_MSTP,    KC_MUTE,    KC_MPLY,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                _XXXXX_,    _XXXXX_,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
