@@ -112,3 +112,6 @@ _Static_assert(CK__SAFE_RANGE_MAX <= 0x5E00, "too many custom keycodes");
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 MO(L_NAVIGATION)
 #define TRK_R4 LT(L_VI, COMPOSE_KEY)
+
+// Other
+#define NUM_SPC LT(L_NUMBER_SYMBOL, KC_SPACE)

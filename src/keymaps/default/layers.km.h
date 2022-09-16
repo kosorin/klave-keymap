@@ -10,6 +10,7 @@ enum layers {
     L_FUNCTION,
     L_MEDIA,
     L_NUMBER,
+    L_NUMBER_SYMBOL,
     L_NAVIGATION,
     L_VI,
     L_SYSTEM,

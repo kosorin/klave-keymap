@@ -48,9 +48,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_SYMBOL] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
-    /**/    _______,    XXXXXXX,    XXXXXXX,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_PERC,    KC_ASTR,    KC_AMPR,    KC_PIPE,    _______,    _______,        /**/
-    /**/    _______,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    _______,        /**/
-    /**/    _______,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_AT,      KC_PLUS,    _______,    _______,    _______,    _______,        /**/
+    /**/    KC_GRV,     XXXXXXX,    XXXXXXX,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_ASTR,    KC_AMPR,    KC_PERC,    KC_AT,      KC_QUOT,    KC_DQUO,        /**/
+    /**/    KC_SLSH,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN,        /**/
+    /**/    KC_BSLS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_MINS,    KC_UNDS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                _XXXXX_,    _XXXXX_,    /**/    XXXXXXX,    ___T___,                                                                    /**/
     /**/                                        _XXXXX_,    _XXXXX_,    ___V___,    _XXXXX_,    /**/    XXXXXXX,    ___T___,    XXXXXXX,    XXXXXXX,                                            /**/
@@ -78,15 +78,26 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/                                        ___V___,    _XXXXX_,    _XXXXX_,    _XXXXX_,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
-    [L_NUMBER] = LAYOUT( // TODO: Add parentheses
+    [L_NUMBER] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
-    /**/    KC_A,       KC_B,       KC_C,       KC_D,       KC_E,       KC_F,                   /**/                KC_ASTR,    KC_7,       KC_8,       KC_9,       KC_SLSH,    KC_PERC,        /**/
-    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    KC_NUM,     _______,    /**/    _______,    KC_EQL,     KC_4,       KC_5,       KC_6,       KC_0,       CK_DECP,        /**/
-    /**/    XXXXXXX,    KC_Y,       KC_X,       XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_PLUS,    KC_1,       KC_2,       KC_3,       KC_MINS,    KC_CALC,        /**/
+    /**/    XXXXXXX,    KC_A,       KC_B,       KC_C,       KC_D,       XXXXXXX,                /**/                KC_ASTR,    KC_7,       KC_8,       KC_9,       KC_SLSH,    KC_PERC,        /**/
+    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    KC_NUM,     _______,    /**/    _______,    CK_DECP,    KC_4,       KC_5,       KC_6,       KC_0,       KC_EQL,         /**/
+    /**/    XXXXXXX,    KC_Y,       KC_X,       KC_E,       KC_F,       XXXXXXX,                /**/                KC_PLUS,    KC_1,       KC_2,       KC_3,       KC_MINS,    KC_ENT,         /**/
+    /**/                                                                                        /**/                                                                                            /**/
+    /**/                                                                XXXXXXX,    XXXXXXX,    /**/    _XXXXX_,    KC_CALC,                                                                    /**/
+    /**/                                        KC_ESC,     KC_TAB,     NUM_SPC,    KC_ENT,     /**/    _XXXXX_,    ___V___,    _XXXXX_,    _XXXXX_,                                            /**/
+    /*                                                                                                                                                                                            */
+    _),
+    [L_NUMBER_SYMBOL] = LAYOUT(
+    /*                                                                                                                                                                                            */
+    /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
+    /**/    KC_GRV,     XXXXXXX,    XXXXXXX,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_ASTR,    KC_AMPR,    KC_PERC,    KC_AT,      KC_QUOT,    KC_DQUO,        /**/
+    /**/    KC_SLSH,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN,        /**/
+    /**/    KC_BSLS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_MINS,    KC_UNDS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    XXXXXXX,    /**/    _XXXXX_,    _XXXXX_,                                                                    /**/
-    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    _XXXXX_,    ___V___,    _XXXXX_,    _XXXXX_,                                            /**/
+    /**/                                        _XXXXX_,    _XXXXX_,    ___V___,    _XXXXX_,    /**/    _XXXXX_,    ___V___,    _XXXXX_,    _XXXXX_,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_NAVIGATION] = LAYOUT(
