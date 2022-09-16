@@ -80,9 +80,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     _),
     [L_NUMBER] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                KC_NUM,     XXXXXXX,        /**/
     /**/    XXXXXXX,    KC_A,       KC_B,       KC_C,       KC_D,       XXXXXXX,                /**/                KC_ASTR,    KC_7,       KC_8,       KC_9,       KC_SLSH,    KC_PERC,        /**/
-    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    KC_NUM,     _______,    /**/    _______,    CK_DECP,    KC_4,       KC_5,       KC_6,       KC_0,       KC_EQL,         /**/
+    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    _______,    /**/    _______,    CK_DECP,    KC_4,       KC_5,       KC_6,       KC_0,       KC_EQL,         /**/
     /**/    XXXXXXX,    KC_Y,       KC_X,       KC_E,       KC_F,       XXXXXXX,                /**/                KC_PLUS,    KC_1,       KC_2,       KC_3,       KC_MINS,    KC_ENT,         /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    XXXXXXX,    /**/    _XXXXX_,    KC_CALC,                                                                    /**/
@@ -102,9 +102,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     _),
     [L_NAVIGATION] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                KC_SCRL,    XXXXXXX,        /**/
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_PGUP,    KC_HOME,    KC_UP,      KC_END,     XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    KC_SCRL,    _______,    /**/    _______,    KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RGHT,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    _______,    /**/    _______,    KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RGHT,    XXXXXXX,    XXXXXXX,        /**/
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_INS,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    XXXXXXX,    /**/    _XXXXX_,    _XXXXX_,                                                                    /**/
