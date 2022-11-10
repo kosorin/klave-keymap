@@ -2,6 +2,9 @@
 
 #define ENABLE_COMPILE_KEYCODE
 
+// [custom] Switcher
+#define SWITCH_MOD_KEY KC_LALT
+
 // [custom] Compose
 #define COMPOSE_KEY KC_APP
 

@@ -19,6 +19,7 @@
 user_config_t user_config;
 #endif
 
+bool is_switching = false;
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_BASE] = LAYOUT(
@@ -59,7 +60,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_FUNCTION] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_F9,      KC_F10,     KC_F11,     KC_F12,     KC_PSCR,                /**/                DM_RSTP,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    SWITCH,     KC_F9,      KC_F10,     KC_F11,     KC_F12,     KC_PSCR,                /**/                DM_RSTP,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/    XXXXXXX,    KC_F5,      KC_F6,      KC_F7,      KC_F8,      DM_PLY1,    _______,    /**/    _______,    DM_REC1,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,    XXXXXXX,        /**/
     /**/    XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY2,                /**/                DM_REC2,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
@@ -67,6 +68,19 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/                                        _XXXXX_,    ___V___,    _XXXXX_,    _XXXXX_,    /**/    XXXXXXX,    KC_BSPC,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
+#if defined(SWITCHER_ENABLE)
+    [L_SWITCH] = LAYOUT(
+    /*                                                                                                                                                                                            */
+    /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
+    /**/    KC_TAB,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/                                                                                        /**/                                                                                            /**/
+    /**/                                                                _XXXXX_,    _XXXXX_,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
+    /**/                                        _XXXXX_,    ___V___,    _XXXXX_,    _XXXXX_,    /**/    XXXXXXX,    MO_NUM,     MO_NAV,     XXXXXXX,                                            /**/
+    /*                                                                                                                                                                                            */
+    _),
+#endif
     [L_MEDIA] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
@@ -195,6 +209,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 #endif
     switch (keycode) {
+#if defined(SWITCHER_ENABLE)
+        case SWITCH:
+            if (record->event.pressed) {
+                is_switching = true;
+                register_mods(MOD_BIT(SWITCH_MOD_KEY));
+                register_code(KC_TAB);
+                layer_on(L_SWITCH);
+            }
+            else {
+                unregister_code(KC_TAB);
+            }
+            return PROCESS_HANDLED;
+#endif
 #if defined(COMPOSE_ENABLE)
         case HRK_L1:
         case HRK_R1:
@@ -240,6 +267,13 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
+#if defined(SWITCHER_ENABLE)
+    if (is_switching && !layer_state_cmp(state, L_FUNCTION)) {
+        is_switching = false;
+        state &= ~(1 << L_SWITCH);
+        unregister_mods(MOD_BIT(SWITCH_MOD_KEY));
+    }
+#endif
     return state;
 }
 

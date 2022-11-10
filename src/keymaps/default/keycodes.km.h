@@ -30,6 +30,12 @@ enum custom_keycodes {
     #define KEY_CHAIN KC_NO
 #endif
 
+#if defined(SWITCHER_ENABLE)
+    SWITCH,
+#else
+    #define SWITCH KC_NO
+#endif
+
     CK__SAFE_RANGE_MAX,
 
     CK_COMPOSE     = 0x5E00,
@@ -62,6 +68,10 @@ _Static_assert(CK__SAFE_RANGE_MAX <= 0x5E00, "too many custom keycodes");
 #else
     #define OSL_DIA KC_NO
 #endif
+
+// Layers
+#define MO_NUM MO(L_NUMBER)
+#define MO_NAV MO(L_NAVIGATION)
 
 // Zoom
 #define Z_PLUS C(KC_EQUAL)

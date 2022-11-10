@@ -22,6 +22,7 @@ TAP_DANCE_ENABLE = yes
 UNICODEMAP_ENABLE = no
 
 # Custom SW feature options
+SWITCHER_ENABLE = yes
 COMPOSE_ENABLE = yes
 KEY_CHAIN_ENABLE = yes
 SECRETS_ENABLE = yes
@@ -43,6 +44,11 @@ endif
 
 
 # Custom SW feature options
+SWITCHER_ENABLE ?= no
+ifeq ($(strip $(SWITCHER_ENABLE)), yes)
+    OPT_DEFS += -DSWITCHER_ENABLE
+endif
+
 COMPOSE_ENABLE ?= no
 ifeq ($(strip $(COMPOSE_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/compose.f.c
