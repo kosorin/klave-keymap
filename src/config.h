@@ -8,6 +8,12 @@
 // - D2
 // - D3
 
+// LEDs
+// - B0 Left
+// - D5 Right
+// writePinHigh(D5) - turn off
+// writePinLow(D5) - turn on
+
 // Matrix
 #define MATRIX_ROWS (6*2)
 #define MATRIX_COLS (6)
