@@ -22,7 +22,7 @@
 
 // Custom keycodes
 enum custom_keycodes {
-    CK__SAFE_RANGE = SAFE_RANGE, // ~0x5D00
+    CK__SAFE_RANGE = QK_KB,
 
 #if defined(KEY_CHAIN_ENABLE)
     KEY_CHAIN,
@@ -38,12 +38,11 @@ enum custom_keycodes {
 
     CK__SAFE_RANGE_MAX,
 
-    CK_COMPOSE     = 0x5E00,
-    CK_COMPOSE_MAX = 0x5EFF,
-
-    // Maximum possible custom keycode is 0x5FFF
+    CK_COMPOSE     = QK_USER,
+    CK_COMPOSE_MAX = QK_USER_MAX,
 };
-_Static_assert(CK__SAFE_RANGE_MAX <= 0x5E00, "too many custom keycodes");
+_Static_assert((int)CK__SAFE_RANGE_MAX <= (int)QK_KB_MAX, "too many custom keycodes");
+_Static_assert((QK_USER_MAX - QK_USER) == 255, "unexpected QK_USER range size");
 
 #define COMPOSE(index) (CK_COMPOSE | ((index) & 0xFF))
 
