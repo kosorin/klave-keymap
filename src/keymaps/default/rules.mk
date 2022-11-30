@@ -20,6 +20,7 @@ LEADER_ENABLE = no
 SWAP_HANDS_ENABLE = no
 TAP_DANCE_ENABLE = yes
 UNICODEMAP_ENABLE = no
+SECURE_ENABLE = yes
 
 # Custom SW feature options
 SWITCHER_ENABLE = yes

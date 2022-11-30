@@ -24,7 +24,7 @@ bool is_switching = false;
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_BASE] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    XXXXXXX,    OSL_DIA,                                                                /**/                                                                OSL_DIA,    XXXXXXX,        /**/
+    /**/    SE_LOCK,    OSL_DIA,                                                                /**/                                                                OSL_DIA,    XXXXXXX,        /**/
     /**/    KC_GRV,     KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_QUOT,    KC_DQUO,        /**/
     /**/    KC_SLSH,    HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     KC_SCLN,        /**/
     /**/    KC_BSLS,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_MINS,    KC_UNDS,        /**/
@@ -194,10 +194,65 @@ void keyboard_post_init_user(void) {
 #endif
 }
 
+static bool led_left = false;
+static bool led_right = false;
+
+#if defined(SECURE_ENABLE)
+bool secure_hook_user(secure_status_t secure_status) {
+    if (secure_status == SECURE_LOCKED) {
+
+    }
+    return PROCESS_HANDLED;
+}
+#endif
+
 void matrix_scan_user(void) {
+    bool _led_left = led_left;
+    bool _led_right = led_right;
+
+#if defined(SECURE_ENABLE)
+    if (secure_is_unlocking()) {
+        led_right = (timer_read() / 333 / 2) % 2;
+    }
+    else {
+        led_right = false;
+    }
+#endif
+
+    if (_led_left ^ led_left) {
+        if (led_left) {
+            writePinLow(B0);
+        }
+        else {
+            writePinHigh(B0);
+        }
+    }
+
+    if (_led_right ^ led_right) {
+        if (led_right) {
+            writePinLow(D5);
+        }
+        else {
+            writePinHigh(D5);
+        }
+    }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#if defined(SECURE_ENABLE)
+    if (record->event.pressed) {
+        if (secure_is_unlocking()) {
+            return PROCESS_NOT_HANDLED;
+        }
+        else if (secure_is_locked()) {
+            secure_request_unlock();
+            return PROCESS_HANDLED;
+        }
+    }
+    if (secure_is_unlocked()) {
+        secure_activity_event();
+    }
+#endif
 #if defined(COMPOSE_ENABLE)
     if (process_compose(keycode, record) == PROCESS_HANDLED) {
         return PROCESS_HANDLED;

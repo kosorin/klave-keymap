@@ -64,6 +64,11 @@
 // #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 // #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
+// Secure
+#define SECURE_UNLOCK_TIMEOUT (5000)
+#define SECURE_IDLE_TIMEOUT (60000)
+#define SECURE_UNLOCK_SEQUENCE { {0,0} }
+
 // Mouse keys
 // #define MK_KINETIC_SPEED
 
