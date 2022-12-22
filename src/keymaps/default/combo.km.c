@@ -40,7 +40,7 @@ combo_t key_combos[] = {
 };
 
 #if defined(CAPS_WORD_ENABLE)
-static void caps_word_toggle_user(uint16_t combo_index) {
+static void caps_word_toggle_combo(uint16_t combo_index) {
     switch(combo_index) {
         case C_SPONGEBOB_CASE:
             smart_case = (smart_case_t){ .type = SC_SPONGEBOB, .spongebob = { .upper_case = false, }, };
@@ -63,7 +63,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         case C_SNAKE_CASE:
         case C_KEBAB_CASE:
             if (pressed) {
-                caps_word_toggle_user(combo_index);
+                caps_word_toggle_combo(combo_index);
             }
             break;
 #endif

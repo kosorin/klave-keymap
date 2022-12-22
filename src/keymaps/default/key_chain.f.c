@@ -24,12 +24,19 @@ bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
                 case QK_ONE_SHOT_LAYER ... QK_ONE_SHOT_LAYER_MAX:
                     return PROCESS_NOT_HANDLED;
                 case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+                    if (record->tap.count == 0) {
+                        return PROCESS_NOT_HANDLED;
+                    }
+                    else {
+                        keycode = QK_MOD_TAP_GET_TAP_KEYCODE(keycode);
+                        break;
+                    }
                 case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
                     if (record->tap.count == 0) {
                         return PROCESS_NOT_HANDLED;
                     }
                     else {
-                        keycode &= 0xFF;
+                        keycode = QK_LAYER_TAP_GET_TAP_KEYCODE(keycode);
                         break;
                     }
             }

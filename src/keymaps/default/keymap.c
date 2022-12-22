@@ -229,7 +229,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (record->tap.count) {
                     if (record->event.pressed) {
                         uint8_t compose_index;
-                        switch (keycode & 0xFF) {
+                        switch (QK_MOD_TAP_GET_TAP_KEYCODE(keycode)) {
                             case KC_T: compose_index = XC_Tc; break;
                             case KC_N: compose_index = XC_Nc; break;
                             default: return PROCESS_HANDLED;
