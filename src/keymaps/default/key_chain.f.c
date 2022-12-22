@@ -9,13 +9,6 @@ static void *(*key_chain_next_func)(uint8_t) = NULL;
 bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
     if (key_chain_next_func) {
         if (record->event.pressed) {
-#if defined(KEY_CHAIN_CANCEL_KEY)
-            if (keycode == KEY_CHAIN_CANCEL_KEY) {
-                key_chain_stop();
-                return PROCESS_HANDLED;
-            }
-#endif
-
             switch (keycode) {
                 case QK_MOMENTARY ... QK_MOMENTARY_MAX:
                 case QK_TO ... QK_TO_MAX:
@@ -41,7 +34,11 @@ bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
                     }
             }
 
-            if (keycode > 0xFF) {
+            if (keycode > 0xFF
+#if defined(KEY_CHAIN_CANCEL_KEY)
+                || keycode == KEY_CHAIN_CANCEL_KEY
+#endif
+            ) {
                 key_chain_stop();
             }
             else {
@@ -55,7 +52,15 @@ bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
 }
 
 __attribute__((weak)) void *key_chain_start_user(uint8_t keycode) {
+    return key_chain_cancel_user;
+}
+
+__attribute__((weak)) void *key_chain_cancel_user(uint8_t keycode) {
+#if defined(KEY_CHAIN_CANCEL_KEY)
+    return key_chain_cancel_user;
+#else
     return NULL;
+#endif
 }
 
 void key_chain_start(void) {

@@ -42,7 +42,7 @@ static void *key_chain_random_number(uint8_t keycode) {
             tap_code(keycode);
             return key_chain_random_number;
         default:
-            return NULL;
+            return key_chain_cancel_user;
     }
 }
 
@@ -51,7 +51,7 @@ static void *key_chain_random(uint8_t keycode) {
         case KC_N:
             return key_chain_random_number;
         default:
-            return NULL;
+            return key_chain_cancel_user;
     }
 }
 
@@ -70,13 +70,13 @@ static void *key_chain_system(uint8_t keycode) {
         default:
             break;
     }
-    return NULL;
+    return key_chain_cancel_user;
 }
 
 void *key_chain_start_user(uint8_t keycode) {
 #if defined(SECRETS_ENABLE)
     void *secret_result = key_chain_start_secret(keycode);
-    if (secret_result != NULL) {
+    if (secret_result != NULL && secret_result != key_chain_cancel_user) {
         return secret_result;
     }
 #endif
@@ -85,9 +85,9 @@ void *key_chain_start_user(uint8_t keycode) {
             // Call `srand` once for each session
             srand(timer_read());
             return key_chain_random;
-        case KC_ESC:
+        case KC_DELETE:
             return key_chain_system;
         default:
-            return NULL;
+            return key_chain_cancel_user;
     }
 }

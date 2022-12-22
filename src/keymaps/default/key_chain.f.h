@@ -9,6 +9,8 @@ bool process_key_chain(uint16_t keycode, const keyrecord_t *record);
 
 void *key_chain_start_user(uint8_t keycode);
 
+void *key_chain_cancel_user(uint8_t keycode);
+
 void key_chain_start(void);
 
 void key_chain_stop(void);
