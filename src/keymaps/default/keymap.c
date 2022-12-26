@@ -125,17 +125,6 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    _XXXXX_,    _XXXXX_,    ___V___,    _XXXXX_,                                            /**/
     /*                                                                                                                                                                                            */
     _),
-    [L_VI] = LAYOUT(
-    /*                                                                                                                                                                                            */
-    /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    KC_K,       XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    KC_H,       KC_J,       KC_L,       XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
-    /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                XXXXXXX,    _______,    /**/    _______,    _XXXXX_,                                                                    /**/
-    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    _XXXXX_,    _XXXXX_,    _XXXXX_,    ___V___,                                            /**/
-    /*                                                                                                                                                                                            */
-    _),
     [L_SYSTEM] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                KC_PAUS,    XXXXXXX,        /**/

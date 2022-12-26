@@ -15,7 +15,6 @@ enum layers {
     L_NUMBER,
     L_NUMBER_SYMBOL,
     L_NAVIGATION,
-    L_VI,
     L_SYSTEM,
 #if defined(GAMING_ENABLE)
     L_GAME,
