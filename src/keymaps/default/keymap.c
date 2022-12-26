@@ -24,7 +24,7 @@ bool is_switching = false;
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_BASE] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    XXXXXXX,    OSL_DIA,                                                                /**/                                                                OSL_DIA,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
     /**/    KC_GRV,     KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_QUOT,    KC_DQUO,        /**/
     /**/    KC_SLSH,    HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     KC_SCLN,        /**/
     /**/    KC_BSLS,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_MINS,    KC_UNDS,        /**/
@@ -36,7 +36,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
 #if defined(COMPOSE_ENABLE)
     [L_DIACRITIC] = LAYOUT(
     /*                                                                                                                                                                                            */
-    /**/    _______,    ___V___,                                                                /**/                                                                ___V___,    _______,        /**/
+    /**/    _______,    _______,                                                                /**/                                                                _______,    _______,        /**/
     /**/    _______,    _______,    _______,    _______,    CK_Dc,      _______,                /**/                _______,    CK_Ua,      CK_Ur,      CK_Ya,      _______,    _______,        /**/
     /**/    _______,    CK_Aa,      CK_Rc,      CK_Sc,      ___T___,    _______,    _______,    /**/    _______,    _______,    ___T___,    CK_Ec,      CK_Ia,      CK_Oa,      _______,        /**/
     /**/    _______,    CK_Zc,      _______,    CK_Cc,      _______,    _______,                /**/                _______,    _______,    CK_Ea,      _______,    _______,    _______,        /**/
@@ -280,10 +280,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #if defined(TAPPING_FORCE_HOLD_PER_KEY)
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-#if defined(COMPOSE_ENABLE)
-        case OSL_DIA:
-            return false;
-#endif
         default:
             return true;
     }

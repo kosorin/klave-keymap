@@ -48,7 +48,6 @@ _Static_assert((QK_USER_MAX - QK_USER) == 255, "unexpected QK_USER range size");
 
 // Diacritic
 #if defined(COMPOSE_ENABLE)
-    #define OSL_DIA OSL(L_DIACRITIC)
     #define CK_Ua COMPOSE(XC_Ua)
     #define CK_Ea COMPOSE(XC_Ea)
     #define CK_Ia COMPOSE(XC_Ia)
@@ -64,8 +63,6 @@ _Static_assert((QK_USER_MAX - QK_USER) == 255, "unexpected QK_USER range size");
     #define CK_Cc COMPOSE(XC_Cc)
     #define CK_Nc COMPOSE(XC_Nc)
     #define CK_Ur COMPOSE(XC_Ur)
-#else
-    #define OSL_DIA KC_NO
 #endif
 
 // Layers
@@ -120,7 +117,11 @@ _Static_assert((QK_USER_MAX - QK_USER) == 255, "unexpected QK_USER range size");
 #endif
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 MO(L_NAVIGATION)
-#define TRK_R4 LT(L_VI, COMPOSE_KEY)
+#if defined(COMPOSE_ENABLE)
+    #define TRK_R4 LT(L_DIACRITIC, COMPOSE_KEY)
+#else
+    #define TRK_R4 COMPOSE_KEY
+#endif
 
 // Other
 #define NUM_SPC LT(L_NUMBER_SYMBOL, KC_SPACE)
