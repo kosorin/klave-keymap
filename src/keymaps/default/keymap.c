@@ -21,6 +21,15 @@ user_config_t user_config;
 
 bool is_switching = false;
 
+
+#define __L1_SYMBOL_________________________    KC_GRV,     XXXXXXX,    XXXXXXX,    KC_LCBR,    KC_RCBR,    KC_CIRC
+#define __L2_SYMBOL_________________________    KC_MINS,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR
+#define __L3_SYMBOL_________________________    KC_UNDS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD
+
+#define __R1_SYMBOL_________________________    KC_ASTR,    KC_AMPR,    KC_PERC,    KC_AT,      KC_QUOT,    KC_DQUO
+#define __R2_SYMBOL_________________________    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN
+#define __R3_SYMBOL_________________________    KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS
+
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_BASE] = LAYOUT(
     /*                                                                                                                                                                                            */
@@ -46,12 +55,12 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /*                                                                                                                                                                                            */
     _),
 #endif
-    [L_SYMBOL] = LAYOUT(
+    [L_SYMBOL] = LAYOUT_wrapper(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
-    /**/    KC_GRV,     XXXXXXX,    XXXXXXX,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_ASTR,    KC_AMPR,    KC_PERC,    KC_AT,      KC_QUOT,    KC_DQUO,        /**/
-    /**/    KC_MINS,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN,        /**/
-    /**/    KC_UNDS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
+    /**/    __L1_SYMBOL_________________________,                                               /**/                __R1_SYMBOL_________________________,                                       /**/
+    /**/    __L2_SYMBOL_________________________,                                   _______,    /**/    _______,    __R2_SYMBOL_________________________,                                       /**/
+    /**/    __L3_SYMBOL_________________________,                                               /**/                __R3_SYMBOL_________________________,                                       /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    ___T___,                                                                    /**/
     /**/                                        XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    XXXXXXX,    ___T___,    XXXXXXX,    XXXXXXX,                                            /**/
@@ -103,12 +112,12 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/                                        KC_ESC,     KC_TAB,     NUM_SPC,    KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
-    [L_NUMBER_SYMBOL] = LAYOUT(
+    [L_NUMBER_SYMBOL] = LAYOUT_wrapper(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
-    /**/    KC_GRV,     XXXXXXX,    XXXXXXX,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_ASTR,    KC_AMPR,    KC_PERC,    KC_AT,      KC_QUOT,    KC_DQUO,        /**/
-    /**/    KC_MINS,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN,        /**/
-    /**/    KC_UNDS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
+    /**/    __L1_SYMBOL_________________________,                                               /**/                __R1_SYMBOL_________________________,                                       /**/
+    /**/    __L2_SYMBOL_________________________,                                   _______,    /**/    _______,    __R2_SYMBOL_________________________,                                       /**/
+    /**/    __L3_SYMBOL_________________________,                                               /**/                __R3_SYMBOL_________________________,                                       /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
     /**/                                        XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/

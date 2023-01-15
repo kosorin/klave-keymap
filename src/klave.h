@@ -27,3 +27,5 @@
         { _X_,_U_,R42,R43,R44,R45 }, \
         { R50,_X_,_X_,_X_,R54,R55 }, \
     }
+
+#define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
