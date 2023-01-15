@@ -53,8 +53,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    KC_MINS,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN,        /**/
     /**/    KC_UNDS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                _XXXXX_,    _______,    /**/    _______,    ___T___,                                                                    /**/
-    /**/                                        _XXXXX_,    _XXXXX_,    ___V___,    _XXXXX_,    /**/    XXXXXXX,    ___T___,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                                                                XXXXXXX,    _______,    /**/    _______,    ___T___,                                                                    /**/
+    /**/                                        XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    XXXXXXX,    ___T___,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_FUNCTION] = LAYOUT(
@@ -64,8 +64,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    KC_F5,      KC_F6,      KC_F7,      KC_F8,      DM_PLY1,    _______,    /**/    _______,    DM_REC1,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,    XXXXXXX,        /**/
     /**/    XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY2,                /**/                DM_REC2,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                _XXXXX_,    _______,    /**/    _______,    KC_DEL,                                                                     /**/
-    /**/                                        _XXXXX_,    ___V___,    _XXXXX_,    _XXXXX_,    /**/    XXXXXXX,    KC_BSPC,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                                                                XXXXXXX,    _______,    /**/    _______,    KC_DEL,                                                                     /**/
+    /**/                                        XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    KC_BSPC,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
 #if defined(SWITCHER_ENABLE)
@@ -76,8 +76,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                _XXXXX_,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
-    /**/                                        _XXXXX_,    ___V___,    _XXXXX_,    _XXXXX_,    /**/    XXXXXXX,    MO_NUM,     MO_NAV,     XXXXXXX,                                            /**/
+    /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
+    /**/                                        XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    MO_NUM,     MO_NAV,     XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
 #endif
@@ -88,8 +88,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    Z_MINUS,    XXXXXXX,    KC_MPRV,    KC_VOLD,    KC_MNXT,    XXXXXXX,    _______,    /**/    _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/    Z_RESET,    G(KC_MSTP), KC_MSTP,    KC_MUTE,    KC_MPLY,    G(KC_MPLY),             /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                _XXXXX_,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
-    /**/                                        ___V___,    _XXXXX_,    _XXXXX_,    _XXXXX_,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
+    /**/                                        ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_NUMBER] = LAYOUT(
@@ -100,7 +100,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    KC_Y,       KC_X,       KC_E,       KC_F,       XXXXXXX,                /**/                KC_PLUS,    KC_1,       KC_2,       KC_3,       KC_MINS,    KC_ENT,         /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    KC_CALC,                                                                    /**/
-    /**/                                        KC_ESC,     KC_TAB,     NUM_SPC,    KC_ENT,     /**/    _XXXXX_,    ___V___,    _XXXXX_,    _XXXXX_,                                            /**/
+    /**/                                        KC_ESC,     KC_TAB,     NUM_SPC,    KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_NUMBER_SYMBOL] = LAYOUT(
@@ -110,8 +110,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    KC_MINS,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN,        /**/
     /**/    KC_UNDS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                XXXXXXX,    _______,    /**/    _______,    _XXXXX_,                                                                    /**/
-    /**/                                        _XXXXX_,    _XXXXX_,    ___V___,    _XXXXX_,    /**/    _XXXXX_,    ___V___,    _XXXXX_,    _XXXXX_,                                            /**/
+    /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
+    /**/                                        XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_NAVIGATION] = LAYOUT(
@@ -121,8 +121,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    _______,    /**/    _______,    KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RGHT,    XXXXXXX,    XXXXXXX,        /**/
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_INS,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                XXXXXXX,    _______,    /**/    _______,    _XXXXX_,                                                                    /**/
-    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    _XXXXX_,    _XXXXX_,    ___V___,    _XXXXX_,                                            /**/
+    /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
+    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
     [L_SYSTEM] = LAYOUT(
@@ -132,8 +132,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    XXXXXXX,    QK_RBT,     XXXXXXX,    XXXXXXX,    XXXXXXX,    _______,    /**/    _______,    QK_MAKE,    XXXXXXX,    EE_CLR,     XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    QK_BOOT,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                XXXXXXX,    _______,    /**/    _______,    _XXXXX_,                                                                    /**/
-    /**/                                        XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    ___V___,    _XXXXX_,    _XXXXX_,    _XXXXX_,                                            /**/
+    /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
+    /**/                                        XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
     /*                                                                                                                                                                                            */
     _),
 #if defined(GAMING_ENABLE)

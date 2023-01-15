@@ -17,7 +17,6 @@
 
 #define ___V___ KC_TRANSPARENT
 #define ___T___ KC_TRANSPARENT
-#define _XXXXX_ KC_TRANSPARENT
 
 
 // Custom keycodes
