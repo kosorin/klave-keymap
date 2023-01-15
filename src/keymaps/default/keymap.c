@@ -26,8 +26,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
     /**/    KC_GRV,     KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_QUOT,    KC_DQUO,        /**/
-    /**/    KC_SLSH,    HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     KC_SCLN,        /**/
-    /**/    KC_BSLS,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_MINS,    KC_UNDS,        /**/
+    /**/    KC_MINS,    HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     KC_SCLN,        /**/
+    /**/    KC_UNDS,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                G(KC_A),    SH_TG,      /**/    SH_TG,      KC_DEL,                                                                     /**/
     /**/                                        TRK_L4,     TRK_L3,     TRK_L2,     TRK_L1,     /**/    TRK_R1,     TRK_R2,     TRK_R3,     TRK_R4,                                             /**/
@@ -50,8 +50,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
     /**/    KC_GRV,     XXXXXXX,    XXXXXXX,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_ASTR,    KC_AMPR,    KC_PERC,    KC_AT,      KC_QUOT,    KC_DQUO,        /**/
-    /**/    KC_SLSH,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN,        /**/
-    /**/    KC_BSLS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_MINS,    KC_UNDS,        /**/
+    /**/    KC_MINS,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN,        /**/
+    /**/    KC_UNDS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                _XXXXX_,    _______,    /**/    _______,    ___T___,                                                                    /**/
     /**/                                        _XXXXX_,    _XXXXX_,    ___V___,    _XXXXX_,    /**/    XXXXXXX,    ___T___,    XXXXXXX,    XXXXXXX,                                            /**/
@@ -107,8 +107,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
     /**/    KC_GRV,     XXXXXXX,    XXXXXXX,    KC_LCBR,    KC_RCBR,    KC_CIRC,                /**/                KC_ASTR,    KC_AMPR,    KC_PERC,    KC_AT,      KC_QUOT,    KC_DQUO,        /**/
-    /**/    KC_SLSH,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN,        /**/
-    /**/    KC_BSLS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_MINS,    KC_UNDS,        /**/
+    /**/    KC_MINS,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    KC_DLR,     _______,    /**/    _______,    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN,        /**/
+    /**/    KC_UNDS,    XXXXXXX,    XXXXXXX,    KC_LABK,    KC_RABK,    KC_TILD,                /**/                KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    _XXXXX_,                                                                    /**/
     /**/                                        _XXXXX_,    _XXXXX_,    ___V___,    _XXXXX_,    /**/    _XXXXX_,    ___V___,    _XXXXX_,    _XXXXX_,                                            /**/
