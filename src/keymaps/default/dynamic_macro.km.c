@@ -1,4 +1,5 @@
 #include "dynamic_macro.km.h"
+#include <stdint.h>
 
 
 static bool dynamic_macro_recording = false;

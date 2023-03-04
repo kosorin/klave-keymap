@@ -1,7 +1,5 @@
 #pragma once
 
-#include "config_common.h"
-
 // Unused pins:
 // - D0 (SCL) - used for SOFT_SERIAL_PIN
 // - D1 (SDA)

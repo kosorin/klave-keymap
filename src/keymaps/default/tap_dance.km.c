@@ -9,7 +9,7 @@
 
 static td_tap_t tap_dance;
 
-td_state_t tap_dance_state(qk_tap_dance_state_t *state) {
+td_state_t tap_dance_state(tap_dance_state_t *state) {
     if (state->count == 1) {
         return state->interrupted || !state->pressed
             ? TD_SINGLE_TAP
@@ -30,6 +30,6 @@ td_state_t tap_dance_state(qk_tap_dance_state_t *state) {
 
 #endif
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [TD_DECIMAL_POINT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COMMA),
 };

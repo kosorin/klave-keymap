@@ -37,11 +37,12 @@ enum custom_keycodes {
 
     CK__SAFE_RANGE_MAX,
 
-    CK_COMPOSE     = QK_USER,
-    CK_COMPOSE_MAX = QK_USER_MAX,
+    CK_COMPOSE     = 0x7F00,
+    CK_COMPOSE_MAX = 0x7FFF,
 };
 _Static_assert((int)CK__SAFE_RANGE_MAX <= (int)QK_KB_MAX, "too many custom keycodes");
-_Static_assert((QK_USER_MAX - QK_USER) == 255, "unexpected QK_USER range size");
+_Static_assert((int)CK_COMPOSE >= (int)QK_USER, "unexpected QK_USER range size (CK_COMPOSE)");
+_Static_assert((int)CK_COMPOSE_MAX <= (int)QK_USER_MAX, "unexpected QK_USER range size (CK_COMPOSE_MAX)");
 
 #define COMPOSE(index) (CK_COMPOSE | ((index) & 0xFF))
 
