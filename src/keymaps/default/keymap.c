@@ -22,20 +22,20 @@ user_config_t user_config;
 bool is_switching = false;
 
 
-#define __L1_SYMBOL_________________________    KC_UNDS,    KC_CIRC,    KC_DLR,     KC_LCBR,    KC_RCBR,    XXXXXXX
-#define __L2_SYMBOL_________________________    KC_MINS,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    XXXXXXX
+#define __L1_SYMBOL_________________________    KC_DQUO,    KC_CIRC,    KC_DLR,     KC_LCBR,    KC_RCBR,    XXXXXXX
+#define __L2_SYMBOL_________________________    KC_QUOT,    KC_LBRC,    KC_RBRC,    KC_LPRN,    KC_RPRN,    XXXXXXX
 #define __L3_SYMBOL_________________________    KC_GRV,     KC_TILD,    XXXXXXX,    KC_LABK,    KC_RABK,    XXXXXXX
 
-#define __R1_SYMBOL_________________________    KC_ASTR,    KC_AMPR,    KC_PERC,    KC_AT,      KC_QUOT,    KC_DQUO
+#define __R1_SYMBOL_________________________    KC_PLUS,    KC_PIPE,    KC_PERC,    KC_AT,      KC_MINS,    KC_UNDS
 #define __R2_SYMBOL_________________________    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN
-#define __R3_SYMBOL_________________________    KC_PLUS,    KC_PIPE,    KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS
+#define __R3_SYMBOL_________________________    KC_ASTR,    KC_AMPR,    KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_BASE] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
-    /**/    KC_UNDS,    KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_QUOT,    KC_DQUO,        /**/
-    /**/    KC_MINS,    HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     KC_SCLN,        /**/
+    /**/    KC_DQUO,    KC_Q,       KC_W,       KC_F,       KC_D,       KC_G,                   /**/                KC_J,       KC_L,       KC_U,       KC_Y,       KC_MINS,    KC_UNDS,        /**/
+    /**/    KC_QUOT,    HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,       KC_MPLY,    /**/    KC_MUTE,    KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     KC_SCLN,        /**/
     /**/    KC_GRV,     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                G(KC_A),    SH_TG,      /**/    SH_TG,      KC_DEL,                                                                     /**/
@@ -104,9 +104,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_NUMBER] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                KC_NUM,     XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_SLSH,    KC_ASTR,    KC_MINS,    KC_PLUS,    XXXXXXX,                /**/                KC_ASTR,    KC_7,       KC_8,       KC_9,       KC_MINS,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_SLSH,    KC_ASTR,    KC_MINS,    KC_PLUS,    XXXXXXX,                /**/                KC_PLUS,    KC_7,       KC_8,       KC_9,       KC_MINS,    COMPOSE(XC_DEG),/**/
     /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,    _______,    /**/    _______,    CK_DECP,    KC_4,       KC_5,       KC_6,       KC_0,       KC_ENT,         /**/
-    /**/    XXXXXXX,    KC_Y,       KC_X,       XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_PLUS,    KC_1,       KC_2,       KC_3,       KC_SLSH,    KC_PERC,        /**/
+    /**/    XXXXXXX,    KC_Y,       KC_X,       XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_SLSH,    KC_PERC,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    KC_CALC,                                                                    /**/
     /**/                                        KC_ESC,     KC_TAB,     NUM_SPC,    KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
