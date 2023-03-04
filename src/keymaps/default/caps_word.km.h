@@ -6,10 +6,6 @@
 typedef enum {
     SC_CAPS_WORD,
     SC_SPONGEBOB,
-    SC_CAMEL,
-    SC_PASCAL,
-    SC_SNAKE,
-    SC_KEBAB,
 } smart_case_type_t;
 
 typedef struct {
