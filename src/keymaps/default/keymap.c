@@ -46,9 +46,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_DIACRITIC] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    _______,    _______,                                                                /**/                                                                _______,    _______,        /**/
-    /**/    _______,    _______,    _______,    _______,    CK_Dc,      _______,                /**/                _______,    CK_Ua,      CK_Ur,      CK_Ya,      _______,    _______,        /**/
+    /**/    _______,    _______,    _______,    _______,    CK_Dc,      _______,                /**/                _______,    CK_Ua,      CK_Ur,      CK_Ya,      CK_NDASH,   CK_MDASH,       /**/
     /**/    _______,    CK_Aa,      CK_Rc,      CK_Sc,      ___T___,    _______,                /**/                _______,    ___T___,    CK_Ec,      CK_Ia,      CK_Oa,      _______,        /**/
-    /**/    _______,    CK_Zc,      _______,    CK_Cc,      _______,    _______,                /**/                _______,    _______,    CK_Ea,      _______,    _______,    _______,        /**/
+    /**/    _______,    CK_Zc,      _______,    CK_Cc,      _______,    _______,                /**/                _______,    _______,    CK_Ea,      CK_MIDDOT,  _______,    _______,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
     /**/                                        XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    ___V___,                                            /**/
@@ -104,7 +104,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_NUMBER] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                KC_NUM,     XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_SLSH,    KC_ASTR,    KC_MINS,    KC_PLUS,    XXXXXXX,                /**/                KC_PLUS,    KC_7,       KC_8,       KC_9,       KC_MINS,    COMPOSE(XC_DEG),/**/
+    /**/    XXXXXXX,    KC_SLSH,    KC_ASTR,    KC_MINS,    KC_PLUS,    XXXXXXX,                /**/                KC_PLUS,    KC_7,       KC_8,       KC_9,       KC_MINS,    CK_DEG,         /**/
     /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,                /**/                CK_DECP,    KC_4,       KC_5,       KC_6,       KC_0,       KC_ENT,         /**/
     /**/    XXXXXXX,    KC_Y,       KC_X,       XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_SLSH,    KC_PERC,        /**/
     /**/                                                                                        /**/                                                                                            /**/

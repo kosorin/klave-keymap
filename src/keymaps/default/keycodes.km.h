@@ -63,6 +63,14 @@ _Static_assert((int)CK_COMPOSE_MAX <= (int)QK_USER_MAX, "unexpected QK_USER rang
     #define CK_Cc COMPOSE(XC_Cc)
     #define CK_Nc COMPOSE(XC_Nc)
     #define CK_Ur COMPOSE(XC_Ur)
+    #define CK_DEG COMPOSE(XC_DEG)
+    #define CK_NDASH COMPOSE(XC_NDASH)
+    #define CK_MDASH COMPOSE(XC_MDASH)
+    #define CK_NBSP COMPOSE(XC_NBSP)
+    #define CK_ELLIP COMPOSE(XC_ELLIP)
+    #define CK_MIDDOT COMPOSE(XC_MIDDOT)
+#else
+    #define CK_DEG KC_NO
 #endif
 
 // Layers
