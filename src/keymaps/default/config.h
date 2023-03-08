@@ -70,7 +70,7 @@
 // #define MK_KINETIC_SPEED
 
 // Combos
-#define COMBO_TERM (TAPPING_TERM / 4)
+#define COMBO_TERM 50
 // #define COMBO_TERM_PER_COMBO
 // #define COMBO_HOLD_TERM COMBO_TERM
 #define COMBO_STRICT_TIMER

@@ -1,6 +1,3 @@
-# Build options
-LTO_ENABLE = yes
-
 # HW feature options
 ENCODER_ENABLE = no
 OLED_ENABLE = no
