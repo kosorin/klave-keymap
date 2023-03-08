@@ -1,19 +1,18 @@
 #pragma once
 
-#include "layers.km.h"
-#if defined(COMPOSE_ENABLE)
-    #include "compose.km.h"
+#include "layers.h"
+#if defined(CUSTOM_UNICODE_ENABLE)
+    #include "uc.h"
 #endif
 #if defined(COMBO_ENABLE)
-    #include "combo.km.h"
+    #include "combos.h"
 #endif
 #if defined(TAP_DANCE_ENABLE)
-    #include "tap_dance.km.h"
+    #include "tap_dance.h"
 #endif
 
 #include "keycode.h"
 #include "quantum_keycodes.h"
-
 
 #define ___V___ KC_TRANSPARENT
 #define ___T___ KC_TRANSPARENT
@@ -22,6 +21,13 @@
 // Custom keycodes
 enum custom_keycodes {
     CK__SAFE_RANGE = QK_KB,
+
+#if defined(CUSTOM_UNICODE_ENABLE)
+    KC_UCTM_NONE,
+    KC_UCTM_CZECH,
+    KC_UCTM_SCRIPT,
+    KC_UCTM_ZALGO,
+#endif
 
 #if defined(KEY_CHAIN_ENABLE)
     KEY_CHAIN,
@@ -34,44 +40,7 @@ enum custom_keycodes {
 #else
     #define SWITCH KC_NO
 #endif
-
-    CK__SAFE_RANGE_MAX,
-
-    CK_COMPOSE     = 0x7F00,
-    CK_COMPOSE_MAX = 0x7FFF,
 };
-_Static_assert((int)CK__SAFE_RANGE_MAX <= (int)QK_KB_MAX, "too many custom keycodes");
-_Static_assert((int)CK_COMPOSE >= (int)QK_USER, "unexpected QK_USER range size (CK_COMPOSE)");
-_Static_assert((int)CK_COMPOSE_MAX <= (int)QK_USER_MAX, "unexpected QK_USER range size (CK_COMPOSE_MAX)");
-
-#define COMPOSE(index) (CK_COMPOSE | ((index) & 0xFF))
-
-// Diacritic
-#if defined(COMPOSE_ENABLE)
-    #define CK_Ua COMPOSE(XC_Ua)
-    #define CK_Ea COMPOSE(XC_Ea)
-    #define CK_Ia COMPOSE(XC_Ia)
-    #define CK_Oa COMPOSE(XC_Oa)
-    #define CK_Aa COMPOSE(XC_Aa)
-    #define CK_Ya COMPOSE(XC_Ya)
-    #define CK_Ec COMPOSE(XC_Ec)
-    #define CK_Rc COMPOSE(XC_Rc)
-    #define CK_Tc COMPOSE(XC_Tc)
-    #define CK_Zc COMPOSE(XC_Zc)
-    #define CK_Sc COMPOSE(XC_Sc)
-    #define CK_Dc COMPOSE(XC_Dc)
-    #define CK_Cc COMPOSE(XC_Cc)
-    #define CK_Nc COMPOSE(XC_Nc)
-    #define CK_Ur COMPOSE(XC_Ur)
-    #define CK_DEG COMPOSE(XC_DEG)
-    #define CK_NDASH COMPOSE(XC_NDASH)
-    #define CK_MDASH COMPOSE(XC_MDASH)
-    #define CK_NBSP COMPOSE(XC_NBSP)
-    #define CK_ELLIP COMPOSE(XC_ELLIP)
-    #define CK_MIDDOT COMPOSE(XC_MIDDOT)
-#else
-    #define CK_DEG KC_NO
-#endif
 
 // Layers
 #define MO_NUM MO(L_NUMBER)
@@ -117,16 +86,15 @@ _Static_assert((int)CK_COMPOSE_MAX <= (int)QK_USER_MAX, "unexpected QK_USER rang
 #define TRK_L1 KC_ENTER
 
 // Thumb row keys - right
-#if defined(KEY_CHAIN_ENABLE)
-    // In process_record() : KC_NO => key_chain_start()
-    #define TRK_R1 LT(L_SYSTEM, KC_NO)
+#if defined(KEY_CHAIN_ENABLE) && defined(TAP_DANCE_ENABLE)
+    #define TRK_R1 TD(TD_SYSTEM_KEY_CHAIN)
 #else
     #define TRK_R1 MO(L_SYSTEM)
 #endif
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 MO(L_NAVIGATION)
-#if defined(COMPOSE_ENABLE)
-    #define TRK_R4 LT(L_DIACRITIC, COMPOSE_KEY)
+#if defined(CUSTOM_UNICODE_ENABLE) && defined(TAP_DANCE_ENABLE)
+    #define TRK_R4 TD(TD_UNICODE_TYPING_MODE)
 #else
     #define TRK_R4 COMPOSE_KEY
 #endif

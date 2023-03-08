@@ -1,15 +1,14 @@
 #include QMK_KEYBOARD_H
-#include "layers.km.h"
-#include "keycodes.km.h"
+#include "layers.h"
+#include "kc.h"
 #if defined(KEY_CHAIN_ENABLE)
-    #include "key_chain.f.h"
+    #include "features/key_chain.h"
 #endif
-#if defined(COMPOSE_ENABLE)
-    #include "compose.f.h"
-    #include "compose.km.h"
+#if defined(CUSTOM_UNICODE_ENABLE)
+    #include "uc.h"
 #endif
 #if defined(USER_CONFIG_ENABLE)
-    #include "user_config.km.h"
+    #include "user_config.h"
 #endif
 
 #include "quantum.h"
@@ -30,6 +29,7 @@ bool is_switching = false;
 #define __R2_SYMBOL_________________________    KC_HASH,    KC_EQL,     KC_QUES,    KC_EXLM,    KC_COLN,    KC_SCLN
 #define __R3_SYMBOL_________________________    KC_ASTR,    KC_AMPR,    KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS
 
+
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_BASE] = LAYOUT(
     /*                                                                                                                                                                                            */
@@ -42,19 +42,6 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/                                        TRK_L4,     TRK_L3,     TRK_L2,     TRK_L1,     /**/    TRK_R1,     TRK_R2,     TRK_R3,     TRK_R4,                                             /**/
     /*                                                                                                                                                                                            */
     _),
-#if defined(COMPOSE_ENABLE)
-    [L_DIACRITIC] = LAYOUT(
-    /*                                                                                                                                                                                            */
-    /**/    _______,    _______,                                                                /**/                                                                _______,    _______,        /**/
-    /**/    _______,    _______,    _______,    _______,    CK_Dc,      _______,                /**/                _______,    CK_Ua,      CK_Ur,      CK_Ya,      CK_NDASH,   CK_MDASH,       /**/
-    /**/    _______,    CK_Aa,      CK_Rc,      CK_Sc,      ___T___,    _______,                /**/                _______,    ___T___,    CK_Ec,      CK_Ia,      CK_Oa,      _______,        /**/
-    /**/    _______,    CK_Zc,      _______,    CK_Cc,      _______,    _______,                /**/                _______,    _______,    CK_Ea,      CK_MIDDOT,  _______,    _______,        /**/
-    /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
-    /**/                                        XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    ___V___,                                            /**/
-    /*                                                                                                                                                                                            */
-    _),
-#endif
     [L_SYMBOL] = LAYOUT_wrapper(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
@@ -104,9 +91,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_NUMBER] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                KC_NUM,     XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_SLSH,    KC_ASTR,    KC_MINS,    KC_PLUS,    XXXXXXX,                /**/                KC_PLUS,    KC_7,       KC_8,       KC_9,       KC_MINS,    CK_DEG,         /**/
+    /**/    XXXXXXX,    KC_SLSH,    KC_ASTR,    KC_MINS,    KC_PLUS,    XXXXXXX,                /**/                KC_PLUS,    KC_7,       KC_8,       KC_9,       KC_MINS,    XXXXXXX,        /**/
     /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,                /**/                CK_DECP,    KC_4,       KC_5,       KC_6,       KC_0,       KC_ENT,         /**/
-    /**/    XXXXXXX,    KC_Y,       KC_X,       XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_SLSH,    KC_PERC,        /**/
+    /**/    XXXXXXX,    KC_Y,       KC_X,       XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_SLSH,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    KC_CALC,                                                                    /**/
     /**/                                        KC_ESC,     KC_TAB,     NUM_SPC,    KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
@@ -196,11 +183,6 @@ void matrix_scan_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-#if defined(COMPOSE_ENABLE)
-    if (process_compose(keycode, record) == PROCESS_HANDLED) {
-        return PROCESS_HANDLED;
-    }
-#endif
 #if defined(KEY_CHAIN_ENABLE)
     if (process_key_chain(keycode, record) == PROCESS_HANDLED) {
         return PROCESS_HANDLED;
@@ -220,36 +202,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return PROCESS_HANDLED;
 #endif
-#if defined(COMPOSE_ENABLE)
-        case HRK_L1:
-        case HRK_R1:
-            if (layer_state_is(L_DIACRITIC)) {
-                if (record->tap.count) {
-                    if (record->event.pressed) {
-                        uint8_t compose_index;
-                        switch (QK_MOD_TAP_GET_TAP_KEYCODE(keycode)) {
-                            case KC_T: compose_index = XC_Tc; break;
-                            case KC_N: compose_index = XC_Nc; break;
-                            default: return PROCESS_HANDLED;
-                        }
-                        process_compose_direct(compose_index);
-                    }
-                    return PROCESS_HANDLED;
-                }
-            }
-            break;
-#endif
-#if defined(KEY_CHAIN_ENABLE)
-        case TRK_R1:
-            if (record->tap.count) {
-                if (record->event.pressed) {
-                    key_chain_start();
-                }
-                return PROCESS_HANDLED;
-            }
-            break;
-#endif
     }
+#if defined(CUSTOM_UNICODE_ENABLE)
+    if (process_record_unicode(keycode, record) == PROCESS_HANDLED) {
+        return PROCESS_HANDLED;
+    }
+#endif
     return PROCESS_NOT_HANDLED;
 }
 

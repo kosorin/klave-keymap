@@ -1,6 +1,6 @@
-#include "key_chain.f.h"
-#if defined(SECRETS_ENABLE)
-    #include "secrets.km.h"
+#include "features/key_chain.h"
+#if defined(CUSTOM_UNICODE_ENABLE)
+    #include "uc.h"
 #endif
 
 #include "quantum.h"
@@ -19,7 +19,7 @@ static void send_random_number(uint8_t digit_count) {
             }
         }
         any = true;
-        tap_code(KC_1 + digit - 1);
+        tap_code((KC_1 - 1) + digit);
     }
     if (!any) {
         tap_code(KC_0);
@@ -42,7 +42,7 @@ static void *key_chain_random_number(uint8_t keycode) {
             tap_code(keycode);
             return key_chain_random_number;
         default:
-            return key_chain_cancel_user;
+            return key_chain_bad_key;
     }
 }
 
@@ -51,8 +51,23 @@ static void *key_chain_random(uint8_t keycode) {
         case KC_N:
             return key_chain_random_number;
         default:
-            return key_chain_cancel_user;
+            return key_chain_bad_key;
     }
+}
+
+static void *key_chain_unicode_typing_mode(uint8_t keycode) {
+    switch (keycode) {
+        case KC_S:
+            unicode_typing_mode = UCTM_SCRIPT;
+            break;
+        case KC_Z:
+            unicode_typing_mode = UCTM_ZALGO;
+            break;
+        default:
+            unicode_typing_mode = UCTM_NONE;
+            break;
+    }
+    return NULL;
 }
 
 static void *key_chain_system(uint8_t keycode) {
@@ -70,24 +85,19 @@ static void *key_chain_system(uint8_t keycode) {
         default:
             break;
     }
-    return key_chain_cancel_user;
+    return key_chain_bad_key;
 }
 
-void *key_chain_start_user(uint8_t keycode) {
-#if defined(SECRETS_ENABLE)
-    void *secret_result = key_chain_start_secret(keycode);
-    if (secret_result != NULL && secret_result != key_chain_cancel_user) {
-        return secret_result;
-    }
-#endif
+void *key_chain_user(uint8_t keycode) {
     switch (keycode) {
         case KC_R:
-            // Call `srand` once for each session
             srand(timer_read());
             return key_chain_random;
+        case KC_F:
+            return key_chain_unicode_typing_mode;
         case KC_DELETE:
             return key_chain_system;
         default:
-            return key_chain_cancel_user;
+            return key_chain_bad_key;
     }
 }

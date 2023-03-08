@@ -9,10 +9,6 @@ enum combo_events {
 #if defined(CAPS_WORD_ENABLE)
     C_CAPS_WORD,
     C_SPONGEBOB_CASE,
-    C_CAMEL_CASE,
-    C_PASCAL_CASE,
-    C_SNAKE_CASE,
-    C_KEBAB_CASE,
 #endif
     C__COUNT,
 };

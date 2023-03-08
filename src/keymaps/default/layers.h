@@ -3,9 +3,6 @@
 
 enum layers {
     L_BASE,
-#if defined(COMPOSE_ENABLE)
-    L_DIACRITIC,
-#endif
     L_SYMBOL,
     L_FUNCTION,
 #if defined(SWITCHER_ENABLE)
