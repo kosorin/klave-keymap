@@ -27,16 +27,12 @@
 
 // Tapping
 #undef NO_ACTION_TAPPING
-// #define TAP_CODE_DELAY 100
 #define TAPPING_TOGGLE 2
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
-// #define PERMISSIVE_HOLD
-// #define HOLD_ON_OTHER_KEY_PRESS
 #define IGNORE_MOD_TAP_INTERRUPT
-// #define QUICK_TAP_TERM
+#define QUICK_TAP_TERM TAPPING_TERM
 #define QUICK_TAP_TERM_PER_KEY
-// #define RETRO_TAPPING
 
 // One shot
 #undef NO_ACTION_ONESHOT
@@ -47,12 +43,10 @@
 #define LEADER_TIMEOUT 500
 #define LEADER_PER_KEY_TIMING
 #define LEADER_NO_TIMEOUT
-// #define LEADER_KEY_STRICT_KEY_PROCESSING
 
 // Dynamic macros
 #define DYNAMIC_MACRO_NO_NESTING
 #define DYNAMIC_MACRO_DELAY 33
-// #define DYNAMIC_MACRO_SIZE 128
 
 // Unicode
 #define UNICODE_CYCLE_PERSIST false
@@ -62,11 +56,6 @@
 
 // Caps word
 #define CAPS_WORD_IDLE_TIMEOUT 0
-// #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
-// #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
-
-// Mouse keys
-// #define MK_KINETIC_SPEED
 
 // Combos
 #define COMBO_TERM 50
