@@ -150,6 +150,20 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
 #endif
 };
 
+uint16_t keycode_config(uint16_t keycode) {
+    switch (keycode) {
+        case KC_LEFT:
+            return is_swap_hands_on() ? KC_RIGHT : KC_LEFT;
+        case KC_RIGHT:
+            return is_swap_hands_on() ? KC_LEFT : KC_RIGHT;
+        case KC_HOME:
+            return is_swap_hands_on() ? KC_END : KC_HOME;
+        case KC_END:
+            return is_swap_hands_on() ? KC_HOME : KC_END;
+    }
+    return keycode;
+}
+
 
 void eeconfig_init_user(void) {
 }
