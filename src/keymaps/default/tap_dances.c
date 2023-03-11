@@ -58,7 +58,7 @@ static void finished_system_key_chain(tap_dance_state_t *state, void *user_data)
             break;
 #if defined(SECRETS_ENABLE)
         case TDS_DOUBLE_TAP:
-            key_chain_start(secret_key_chain_start_user);
+            key_chain_start(secret_key_chain_start);
             break;
 #endif
         case TDS_SINGLE_HOLD:
