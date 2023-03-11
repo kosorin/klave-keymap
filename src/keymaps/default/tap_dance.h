@@ -30,4 +30,4 @@ typedef struct {
     td_state_t state;
 } td_context_t;
 
-td_state_t tap_dance_state(tap_dance_state_t *state);
+td_state_t tap_dance_state(tap_dance_state_t *state, bool interrupt_tap);

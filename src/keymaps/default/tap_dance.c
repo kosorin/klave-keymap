@@ -21,7 +21,7 @@ static td_context_t context = {
 #if defined(CUSTOM_UNICODE_ENABLE)
 
 static void finished_unicode_typing_mode(tap_dance_state_t *state, void *user_data) {
-    context.state = tap_dance_state(state);
+    context.state = tap_dance_state(state, false);
     switch (context.state) {
         case TDS_SINGLE_TAP:
             tap_code(COMPOSE_KEY);
@@ -51,7 +51,7 @@ static void reset_unicode_typing_mode(tap_dance_state_t *state, void *user_data)
 #if defined(KEY_CHAIN_ENABLE)
 
 static void finished_system_key_chain(tap_dance_state_t *state, void *user_data) {
-    context.state = tap_dance_state(state);
+    context.state = tap_dance_state(state, false);
     switch (context.state) {
         case TDS_SINGLE_TAP:
             key_chain_start(NULL);
@@ -94,19 +94,19 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 
 
-td_state_t tap_dance_state(tap_dance_state_t *state) {
+td_state_t tap_dance_state(tap_dance_state_t *state, bool interrupt_tap) {
     if (state->count == 1) {
-        return state->pressed && !state->interrupted
+        return state->pressed && (!interrupt_tap || !state->interrupted)
             ? TDS_SINGLE_HOLD
             : TDS_SINGLE_TAP;
     }
     else if (state->count == 2) {
-        return state->pressed && !state->interrupted
+        return state->pressed && (!interrupt_tap || !state->interrupted)
             ? TDS_DOUBLE_HOLD
             : TDS_DOUBLE_TAP;
     }
     else if (state->count == 3) {
-        return state->pressed && !state->interrupted
+        return state->pressed && (!interrupt_tap || !state->interrupted)
             ? TDS_TRIPLE_HOLD
             : TDS_TRIPLE_TAP;
     }
