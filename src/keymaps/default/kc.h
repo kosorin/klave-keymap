@@ -8,7 +8,7 @@
     #include "combos.h"
 #endif
 #if defined(TAP_DANCE_ENABLE)
-    #include "tap_dance.h"
+    #include "tap_dances.h"
 #endif
 
 #include "keycode.h"

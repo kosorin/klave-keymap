@@ -1,4 +1,4 @@
-#include "tap_dance.h"
+#include "tap_dances.h"
 #if defined(KEY_CHAIN_ENABLE)
     #include "features/key_chain.h"
 #endif

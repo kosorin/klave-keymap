@@ -85,7 +85,7 @@ endif
 
 TAP_DANCE_ENABLE ?= no
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/tap_dance.c
+    SRC += $(KEYMAP_PATH)/tap_dances.c
 endif
 
 
