@@ -233,6 +233,19 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
+#if defined(TAPPING_TERM_PER_KEY)
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+#if defined(KEY_CHAIN_ENABLE) && defined(TAP_DANCE_ENABLE)
+        case TD(TD_SYSTEM_KEY_CHAIN):
+            return 500;
+#endif
+        default:
+            return TAPPING_TERM;
+    }
+}
+#endif
+
 #if defined(QUICK_TAP_TERM_PER_KEY)
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
