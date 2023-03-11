@@ -7,16 +7,9 @@
 #if defined(CUSTOM_UNICODE_ENABLE)
     #include "uc.h"
 #endif
-#if defined(USER_CONFIG_ENABLE)
-    #include "user_config.h"
-#endif
 
 #include "quantum.h"
 
-
-#if defined(USER_CONFIG_ENABLE)
-user_config_t user_config;
-#endif
 
 bool is_switching = false;
 
@@ -160,17 +153,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
 
 
 void eeconfig_init_user(void) {
-#if defined(USER_CONFIG_ENABLE)
-    user_config.raw = 0;
-    user_config_reset_user();
-    eeconfig_update_user(user_config.raw);
-#endif
 }
 
 void keyboard_pre_init_user(void) {
-#if defined(USER_CONFIG_ENABLE)
-    user_config.raw = eeconfig_read_user();
-#endif
 }
 
 void keyboard_post_init_user(void) {

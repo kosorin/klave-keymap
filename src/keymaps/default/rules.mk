@@ -21,7 +21,6 @@ SWITCHER_ENABLE = yes
 CUSTOM_UNICODE_ENABLE = yes
 KEY_CHAIN_ENABLE = yes
 SECRETS_ENABLE = yes
-USER_CONFIG_ENABLE = no
 GAMING_ENABLE = no
 
 
@@ -53,12 +52,6 @@ SECRETS_ENABLE ?= no
 ifeq ($(strip $(SECRETS_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/secrets.c
     OPT_DEFS += -DSECRETS_ENABLE
-endif
-
-USER_CONFIG_ENABLE ?= no
-ifeq ($(strip $(USER_CONFIG_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/user_config.c
-    OPT_DEFS += -DUSER_CONFIG_ENABLE
 endif
 
 GAMING_ENABLE ?= no
