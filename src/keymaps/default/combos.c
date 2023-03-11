@@ -1,5 +1,5 @@
 #include "combos.h"
-#include "kc.h"
+#include "def.h"
 #if defined(CAPS_WORD_ENABLE)
     #include "smart_case.h"
 #endif

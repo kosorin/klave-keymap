@@ -1,5 +1,5 @@
 #include "smart_case.h"
-#include "kc.h"
+#include "def.h"
 
 #include "action_util.h"
 #include "keycode.h"

@@ -1,5 +1,5 @@
 #include "uc.h"
-#include "kc.h"
+#include "def.h"
 
 #include "quantum.h"
 #include "process_unicode_common.h"

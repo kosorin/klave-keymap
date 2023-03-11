@@ -8,7 +8,7 @@
 #if defined(CUSTOM_UNICODE_ENABLE)
     #include "uc.h"
 #endif
-#include "kc.h"
+#include "def.h"
 #include "action.h"
 #include "process_tap_dance.h"
 
