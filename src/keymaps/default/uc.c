@@ -50,13 +50,13 @@ DEFINE_UNICODE_ALPHABET_TRANSLATOR(unicode_translator_czech,
     0x011b, // e ě
     0, // f
     0, // g
-    0x00e9, // h é
+    0, // h
     0x00ed, // i í
     0, // j
     0, // k
     0x00fa, // l ú
-    0, // m
-    0x0148, // n ň
+    0x0148, // m ň
+    0x00e9, // n é
     0x00f3, // o ó
     0, // p
     0, // q
@@ -77,13 +77,13 @@ DEFINE_UNICODE_ALPHABET_TRANSLATOR(unicode_translator_czech,
     0x011a, // E Ě
     0, // F
     0, // G
-    0x00c9, // H É
+    0, // H
     0x00cd, // I Í
     0, // J
     0, // K
     0x016e, // L Ů
-    0, // M
-    0x0147, // N Ň
+    0x0147, // M Ň
+    0x00c9, // N É
     0x00d3, // O Ó
     0, // P
     0, // Q
