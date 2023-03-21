@@ -78,6 +78,13 @@ enum custom_keycodes {
     #define CK_DECP KC_DOT
 #endif
 
+// System
+#if defined(KEY_CHAIN_ENABLE) && defined(TAP_DANCE_ENABLE)
+    #define CK_SYST TD(TD_SYSTEM_KEY_CHAIN)
+#else
+    #define CK_SYST MO(L_SYSTEM)
+#endif
+
 // Gaming
 #if defined(GAMING_ENABLE)
     #define CK_GON DF(L_GAME)
@@ -106,11 +113,7 @@ enum custom_keycodes {
 #define TRK_L1 KC_ENTER
 
 // Thumb row keys - right
-#if defined(KEY_CHAIN_ENABLE) && defined(TAP_DANCE_ENABLE)
-    #define TRK_R1 TD(TD_SYSTEM_KEY_CHAIN)
-#else
-    #define TRK_R1 MO(L_SYSTEM)
-#endif
+#define TRK_R1 KC_DEL
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 MO(L_NAVIGATION)
 #if defined(CUSTOM_UNICODE_ENABLE) && defined(TAP_DANCE_ENABLE)
