@@ -3,14 +3,14 @@
 #if defined(KEY_CHAIN_ENABLE)
     #include "features/key_chain.h"
 #endif
+#if defined(SWITCHER_ENABLE)
+    #include "switcher.h"
+#endif
 #if defined(CUSTOM_UNICODE_ENABLE)
     #include "uc.h"
 #endif
 
 #include "quantum.h"
-
-
-bool is_switching = false;
 
 
 #define __L1_SYMBOL_________________________    KC_DQUO,    KC_CIRC,    KC_DLR,     KC_LCBR,    KC_RCBR,    XXXXXXX
@@ -199,21 +199,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return PROCESS_HANDLED;
     }
 #endif
-    switch (keycode) {
 #if defined(SWITCHER_ENABLE)
-        case SWITCH:
-            if (record->event.pressed) {
-                is_switching = true;
-                register_mods(MOD_BIT(SWITCH_MOD_KEY));
-                register_code(KC_TAB);
-                layer_on(L_SWITCH);
-            }
-            else {
-                unregister_code(KC_TAB);
-            }
-            return PROCESS_HANDLED;
-#endif
+    if (process_record_switcher(keycode, record) == PROCESS_HANDLED) {
+        return PROCESS_HANDLED;
     }
+#endif
 #if defined(CUSTOM_UNICODE_ENABLE)
     if (process_record_unicode(keycode, record) == PROCESS_HANDLED) {
         return PROCESS_HANDLED;

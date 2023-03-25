@@ -28,6 +28,7 @@ GAMING_ENABLE = no
 # Custom SW feature options
 SWITCHER_ENABLE ?= no
 ifeq ($(strip $(SWITCHER_ENABLE)), yes)
+    SRC += $(KEYMAP_PATH)/switcher.c
     OPT_DEFS += -DSWITCHER_ENABLE
 endif
 
