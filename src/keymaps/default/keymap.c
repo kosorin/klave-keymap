@@ -239,7 +239,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 #if defined(KEY_CHAIN_ENABLE) && defined(TAP_DANCE_ENABLE)
         case TD(TD_SYSTEM_KEY_CHAIN):
-            return 500;
+            return KEY_CHAIN_TAPPING_TERM;
 #endif
         default:
             return TAPPING_TERM;
