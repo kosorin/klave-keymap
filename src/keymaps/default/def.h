@@ -69,6 +69,8 @@ enum custom_keycodes {
 #else
     #define OSL_CZE KC_NO
 #endif
+
+#define KC_CMPS COMPOSE_KEY
 };
 
 // Layers

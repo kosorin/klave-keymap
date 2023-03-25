@@ -31,7 +31,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    KC_GRV,     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                G(KC_A),    SH_TG,      /**/    SH_TG,      CK_SYST,                                                                    /**/
-    /**/                            XXXXXXX,    TRK_L4,     TRK_L3,     TRK_L2,     TRK_L1,     /**/    TRK_R1,     TRK_R2,     TRK_R3,     TRK_R4,     XXXXXXX,                                /**/
+    /**/                            XXXXXXX,    TRK_L4,     TRK_L3,     TRK_L2,     TRK_L1,     /**/    TRK_R1,     TRK_R2,     TRK_R3,     TRK_R4,     KC_CMPS,                                /**/
     /*                                                                                                                                                                                            */
     _),
 #if defined(CUSTOM_UNICODE_ENABLE)
