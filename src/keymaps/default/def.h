@@ -20,6 +20,9 @@
 // Layers
 enum layers {
     L_BASE,
+#if defined(CUSTOM_UNICODE_ENABLE)
+    L_CZECH,
+#endif
     L_SYMBOL,
     L_FUNCTION,
 #if defined(SWITCHER_ENABLE)
@@ -59,6 +62,12 @@ enum custom_keycodes {
     SWITCH,
 #else
     #define SWITCH KC_NO
+#endif
+
+#if defined(CUSTOM_UNICODE_ENABLE)
+    #define OSL_CZE OSL(L_CZECH)
+#else
+    #define OSL_CZE KC_NO
 #endif
 };
 
@@ -116,11 +125,7 @@ enum custom_keycodes {
 #define TRK_R1 KC_DEL
 #define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
 #define TRK_R3 MO(L_NAVIGATION)
-#if defined(CUSTOM_UNICODE_ENABLE) && defined(TAP_DANCE_ENABLE)
-    #define TRK_R4 TD(TD_UNICODE_TYPING_MODE)
-#else
-    #define TRK_R4 COMPOSE_KEY
-#endif
+#define TRK_R4 OSL_CZE
 
 // Other
 #define NUM_SPC LT(L_NUMBER_SYMBOL, KC_SPACE)

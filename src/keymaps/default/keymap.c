@@ -34,6 +34,19 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/                                        TRK_L4,     TRK_L3,     TRK_L2,     TRK_L1,     /**/    TRK_R1,     TRK_R2,     TRK_R3,     TRK_R4,                                             /**/
     /*                                                                                                                                                                                            */
     _),
+#if defined(CUSTOM_UNICODE_ENABLE)
+    [L_CZECH] = LAYOUT(
+    /*                                                                                                                                                                                            */
+    /**/    _______,    _______,                                                                /**/                                                                _______,    _______,        /**/
+    /**/    _______,    _______,    _______,    _______,    _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    _______,        /**/
+    /**/    _______,    _______,    _______,    _______,    _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    _______,        /**/
+    /**/    _______,    _______,    _______,    _______,    _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    _______,        /**/
+    /**/                                                                                        /**/                                                                                            /**/
+    /**/                                                                _______,    _______,    /**/    _______,    _______,                                                                    /**/
+    /**/                                        _______,    _______,    _______,    _______,    /**/    _______,    _______,    _______,    _______,                                            /**/
+    /*                                                                                                                                                                                            */
+    _),
+#endif
     [L_SYMBOL] = LAYOUT_wrapper(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,                                                                /**/                                                                XXXXXXX,    XXXXXXX,        /**/
@@ -252,3 +265,14 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 #endif
+
+void oneshot_layer_changed_user(uint8_t layer) {
+#if defined(CUSTOM_UNICODE_ENABLE)
+    if (layer == L_CZECH) {
+        unicode_typing_mode = UCTM_CZECH;
+    }
+    else {
+        unicode_typing_mode = UCTM_NONE;
+    }
+#endif
+}

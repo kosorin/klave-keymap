@@ -8,9 +8,6 @@ enum tap_dances {
 #if defined(KEY_CHAIN_ENABLE)
     TD_SYSTEM_KEY_CHAIN,
 #endif
-#if defined(CUSTOM_UNICODE_ENABLE)
-    TD_UNICODE_TYPING_MODE,
-#endif
     TD_DECIMAL_POINT,
 };
 

@@ -14,8 +14,8 @@ smart_case_t smart_case = {
 
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
-#if defined(CUSTOM_UNICODE_ENABLE) && defined(TAP_DANCE_ENABLE)
-        case TD(TD_UNICODE_TYPING_MODE):
+#if defined(CUSTOM_UNICODE_ENABLE)
+        case OSL_CZE:
             return true;
 #endif
     }
