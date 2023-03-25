@@ -31,7 +31,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    KC_GRV,     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                G(KC_A),    SH_TG,      /**/    SH_TG,      CK_SYST,                                                                    /**/
-    /**/                                        TRK_L4,     TRK_L3,     TRK_L2,     TRK_L1,     /**/    TRK_R1,     TRK_R2,     TRK_R3,     TRK_R4,                                             /**/
+    /**/                            XXXXXXX,    TRK_L4,     TRK_L3,     TRK_L2,     TRK_L1,     /**/    TRK_R1,     TRK_R2,     TRK_R3,     TRK_R4,     XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
 #if defined(CUSTOM_UNICODE_ENABLE)
@@ -43,7 +43,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    _______,    _______,    _______,    _______,    _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    _______,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                _______,    _______,    /**/    _______,    _______,                                                                    /**/
-    /**/                                        _______,    _______,    _______,    _______,    /**/    _______,    _______,    _______,    _______,                                            /**/
+    /**/                            XXXXXXX,    _______,    _______,    _______,    _______,    /**/    _______,    _______,    _______,    _______,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
 #endif
@@ -55,7 +55,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    __L3_SYMBOL_________________________,                                               /**/                __R3_SYMBOL_________________________,                                       /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
-    /**/                                        XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    KC_DEL,     ___T___,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                            XXXXXXX,    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    KC_DEL,     ___T___,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
     [L_FUNCTION] = LAYOUT(
@@ -66,7 +66,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      DM_PLY2,                /**/                DM_REC2,    KC_F13,     KC_F14,     KC_F15,     KC_F16,     XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
-    /**/                                        XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    /**/    KC_DEL,     KC_BSPC,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                            XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    /**/    KC_DEL,     KC_BSPC,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
 #if defined(SWITCHER_ENABLE)
@@ -78,7 +78,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
-    /**/                                        XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    MO_NUM,     MO_NAV,     XXXXXXX,                                            /**/
+    /**/                            XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    MO_NUM,     MO_NAV,     XXXXXXX,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
 #endif
@@ -90,7 +90,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    Z_RESET,    G(KC_MSTP), KC_MSTP,    KC_MUTE,    KC_MPLY,    G(KC_MPLY),             /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
-    /**/                                        ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                            XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
     [L_NUMBER] = LAYOUT(
@@ -101,7 +101,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    KC_Y,       KC_X,       XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    KC_CALC,                                                                    /**/
-    /**/                                        KC_ESC,     KC_TAB,     NUM_SPC,    KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                            XXXXXXX,    KC_ESC,     KC_TAB,     NUM_SPC,    KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
     [L_NUMBER_SYMBOL] = LAYOUT_wrapper(
@@ -112,7 +112,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    __L3_SYMBOL_________________________,                                               /**/                __R3_SYMBOL_________________________,                                       /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
-    /**/                                        XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                            XXXXXXX,    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
     [L_NAVIGATION] = LAYOUT(
@@ -123,7 +123,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    KC_PGDN,    KC_PGUP,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    XXXXXXX,                                                                    /**/
-    /**/                                        KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,                                            /**/
+    /**/                            XXXXXXX,    KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
     [L_SYSTEM] = LAYOUT(
@@ -134,7 +134,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    QK_BOOT,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    _______,    /**/    _______,    ___V___,                                                                    /**/
-    /**/                                        XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                            XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
 #if defined(GAMING_ENABLE)
@@ -146,7 +146,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    KC_F1,      KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_DQUO,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
-    /**/                                        KC_LALT,    KC_LCTL,    KC_SPC,     XXXXXXX,    /**/    CK_GEXT,    KC_BSPC,    KC_DEL,     CK_GOFF,                                            /**/
+    /**/                            XXXXXXX,    KC_LALT,    KC_LCTL,    KC_SPC,     XXXXXXX,    /**/    CK_GEXT,    KC_BSPC,    KC_DEL,     CK_GOFF,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
     [L_GAME_EXTENDED] = LAYOUT(
@@ -157,7 +157,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    C(KC_F1),   C(KC_F2),   C(KC_F3),   C(KC_F4),   C(KC_F5),   C(KC_F6),               /**/                KC_EXLM,    KC_QUES,    KC_COMM,    KC_DOT,     KC_QUOT,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
-    /**/                                        XXXXXXX,    XXXXXXX,    S(KC_ENT),  ___V___,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                            /**/
+    /**/                            XXXXXXX,    XXXXXXX,    XXXXXXX,    S(KC_ENT),  ___V___,    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                                /**/
     /*                                                                                                                                                                                            */
     _),
 #endif
