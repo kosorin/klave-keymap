@@ -63,24 +63,28 @@ enum custom_keycodes {
 #else
     #define SWITCH KC_NO
 #endif
-
-#if defined(CUSTOM_UNICODE_ENABLE)
-    #define OSL_CZE OSL(L_CZECH)
-#else
-    #define OSL_CZE KC_NO
-#endif
-
-#define KC_CMPS COMPOSE_KEY
 };
 
 // Layers
 #define MO_NUM MO(L_NUMBER)
 #define MO_NAV MO(L_NAVIGATION)
+#define ESC_MED LT(L_MEDIA, KC_ESCAPE)
+#define TAB_FUN LT(L_FUNCTION, KC_TAB)
+#define SPC_SYM LT(L_SYMBOL, KC_SPACE)
+#define SPC_NSY LT(L_NUMBER_SYMBOL, KC_SPACE)
+#define BSP_NUM LT(L_NUMBER, KC_BACKSPACE)
 
 // Zoom
 #define Z_PLUS C(KC_EQUAL)
 #define Z_MINUS C(KC_MINUS)
 #define Z_RESET C(KC_0)
+
+// Czech
+#if defined(CUSTOM_UNICODE_ENABLE)
+    #define OSL_CZE OSL(L_CZECH)
+#else
+    #define OSL_CZE KC_NO
+#endif
 
 // Tap dance
 #if defined(TAP_DANCE_ENABLE)
@@ -117,17 +121,5 @@ enum custom_keycodes {
 #define HRK_R3 ALT_T(KC_I)
 #define HRK_R4 GUI_T(KC_O)
 
-// Thumb row keys - left
-#define TRK_L4 LT(L_MEDIA, KC_ESCAPE)
-#define TRK_L3 LT(L_FUNCTION, KC_TAB)
-#define TRK_L2 LT(L_SYMBOL, KC_SPACE)
-#define TRK_L1 KC_ENTER
-
-// Thumb row keys - right
-#define TRK_R1 KC_DEL
-#define TRK_R2 LT(L_NUMBER, KC_BACKSPACE)
-#define TRK_R3 MO(L_NAVIGATION)
-#define TRK_R4 OSL_CZE
-
-// Other
-#define NUM_SPC LT(L_NUMBER_SYMBOL, KC_SPACE)
+// Shortcuts
+#define KC_CMPS COMPOSE_KEY
