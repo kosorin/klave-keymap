@@ -12,7 +12,7 @@ bool is_dynamic_macro_recording(void) {
     return dynamic_macro_recording;
 }
 
-void dynamic_macro_record_start_user(void) {
+void dynamic_macro_record_start_user(int8_t direction) {
     dynamic_macro_recording = true;
 
     writePinLow(B0);

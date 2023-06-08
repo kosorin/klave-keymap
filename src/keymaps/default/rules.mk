@@ -69,7 +69,7 @@ endif
 
 COMBO_ENABLE ?= no
 ifeq ($(strip $(COMBO_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/combos.c
+	INTROSPECTION_KEYMAP_C = $(KEYMAP_PATH)/combos.c
 endif
 
 DYNAMIC_MACRO_ENABLE ?= no
