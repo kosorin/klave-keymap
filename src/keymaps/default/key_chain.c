@@ -55,20 +55,52 @@ static void *key_chain_random(uint8_t keycode) {
     }
 }
 
+#if defined(CUSTOM_UNICODE_ENABLE)
+
+static void *key_chain_unicode_mode(uint8_t keycode) {
+    switch (keycode) {
+        case KC_W:
+            set_unicode_input_mode(UNICODE_MODE_WINDOWS);
+            return NULL;
+        case KC_C:
+            set_unicode_input_mode(UNICODE_MODE_WINCOMPOSE);
+            return NULL;
+        case KC_L:
+            set_unicode_input_mode(UNICODE_MODE_LINUX);
+            return NULL;
+        default:
+            return key_chain_bad_key;
+    }
+}
+
 static void *key_chain_unicode_typing_mode(uint8_t keycode) {
     switch (keycode) {
         case KC_S:
             unicode_typing_mode = UCTM_SCRIPT;
-            break;
+            return NULL;
         case KC_Z:
             unicode_typing_mode = UCTM_ZALGO;
-            break;
-        default:
+            return NULL;
+        case KC_F:
             unicode_typing_mode = UCTM_NONE;
-            break;
+            return NULL;
+        default:
+            return key_chain_bad_key;
     }
-    return NULL;
 }
+
+void *key_chain_unicode(uint8_t keycode) {
+    switch (keycode) {
+        case KC_M:
+            return key_chain_unicode_mode;
+        case KC_F:
+            return key_chain_unicode_typing_mode;
+        default:
+            return key_chain_bad_key;
+    }
+}
+
+#endif
 
 static void *key_chain_system(uint8_t keycode) {
     switch (keycode) {
@@ -93,8 +125,10 @@ void *key_chain_user(uint8_t keycode) {
         case KC_R:
             srand(timer_read());
             return key_chain_random;
-        case KC_F:
-            return key_chain_unicode_typing_mode;
+#if defined(CUSTOM_UNICODE_ENABLE)
+        case KC_U:
+            return key_chain_unicode;
+#endif
         case KC_DELETE:
             return key_chain_system;
         default:
