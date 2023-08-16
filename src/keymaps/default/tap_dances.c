@@ -1,4 +1,5 @@
 #include "tap_dances.h"
+#include <stddef.h>
 #if defined(KEY_CHAIN_ENABLE)
     #include "features/key_chain.h"
 #endif
@@ -8,6 +9,7 @@
 #include "def.h"
 #include "action.h"
 #include "process_tap_dance.h"
+#include "action_layer.h"
 
 
 static td_context_t context = {
