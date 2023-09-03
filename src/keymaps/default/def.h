@@ -93,6 +93,34 @@ enum custom_keycodes {
     #define CK_DECP KC_DOT
 #endif
 
+#if defined(TAP_DANCE_ENABLE) && defined(SECRETS_ENABLE)
+    #define TD_S1 TD(TD_SECRET1)
+    #define TD_S2 TD(TD_SECRET2)
+    #define TD_S3 TD(TD_SECRET3)
+    #define TD_S4 TD(TD_SECRET4)
+    #define TD_S5 TD(TD_SECRET5)
+    #define TD_S6 TD(TD_SECRET6)
+    #define TD_S7 TD(TD_SECRET7)
+    #define TD_S8 TD(TD_SECRET8)
+    #define TD_S9 TD(TD_SECRET9)
+    #define TD_S10 TD(TD_SECRET10)
+    #define TD_S11 TD(TD_SECRET11)
+    #define TD_S12 TD(TD_SECRET12)
+#else
+    #define TD_S1 KC_NO
+    #define TD_S2 KC_NO
+    #define TD_S3 KC_NO
+    #define TD_S4 KC_NO
+    #define TD_S5 KC_NO
+    #define TD_S6 KC_NO
+    #define TD_S7 KC_NO
+    #define TD_S8 KC_NO
+    #define TD_S9 KC_NO
+    #define TD_S10 KC_NO
+    #define TD_S11 KC_NO
+    #define TD_S12 KC_NO
+#endif
+
 // System
 #if defined(KEY_CHAIN_ENABLE) && defined(TAP_DANCE_ENABLE)
     #define CK_SYST TD(TD_SYSTEM_KEY_CHAIN)

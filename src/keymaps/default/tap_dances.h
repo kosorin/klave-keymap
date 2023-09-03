@@ -5,6 +5,20 @@
 
 
 enum tap_dances {
+#if defined(SECRETS_ENABLE)
+    TD_SECRET1,
+    TD_SECRET2,
+    TD_SECRET3,
+    TD_SECRET4,
+    TD_SECRET5,
+    TD_SECRET6,
+    TD_SECRET7,
+    TD_SECRET8,
+    TD_SECRET9,
+    TD_SECRET10,
+    TD_SECRET11,
+    TD_SECRET12,
+#endif
 #if defined(KEY_CHAIN_ENABLE)
     TD_SYSTEM_KEY_CHAIN,
 #endif
