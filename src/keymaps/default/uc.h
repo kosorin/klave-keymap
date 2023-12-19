@@ -6,7 +6,12 @@
 enum unicode_typing_modes {
     UCTM_NONE,
     UCTM_CZECH,
-    UCTM_SCRIPT,
+    UCTM_MATH_SCRIPT,
+    UCTM_MATH_FRAKTUR,
+    UCTM_CIRCLE,
+    UCTM_SQUARE,
+    UCTM_SQUARE_OUTLINE,
+    UCTM_REGIONAL,
     UCTM_ZALGO,
     UCTM__COUNT,
 };
