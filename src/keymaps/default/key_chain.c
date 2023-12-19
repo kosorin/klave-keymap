@@ -77,8 +77,23 @@ static void *key_chain_unicode_mode(uint8_t keycode) {
 
 static void *key_chain_unicode_typing_mode(uint8_t keycode) {
     switch (keycode) {
+        case KC_M:
+            unicode_typing_mode = UCTM_MATH_SCRIPT;
+            return NULL;
+        case KC_N:
+            unicode_typing_mode = UCTM_MATH_FRAKTUR;
+            return NULL;
+        case KC_C:
+            unicode_typing_mode = UCTM_CIRCLE;
+            return NULL;
         case KC_S:
-            unicode_typing_mode = UCTM_SCRIPT;
+            unicode_typing_mode = UCTM_SQUARE;
+            return NULL;
+        case KC_T:
+            unicode_typing_mode = UCTM_SQUARE_OUTLINE;
+            return NULL;
+        case KC_R:
+            unicode_typing_mode = UCTM_REGIONAL;
             return NULL;
         case KC_Z:
             unicode_typing_mode = UCTM_ZALGO;

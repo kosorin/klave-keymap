@@ -98,7 +98,12 @@ DEFINE_UNICODE_ALPHABET_TRANSLATOR(unicode_translator_czech,
     0x017d, // Z Ž
 );
 
-DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_script, 0x1D4EA, 0x1D4D0, 0x1D7CE, 0x1D7CF, 0x2002);
+DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_math_script, 0x1d4ea, 0x1d4d0, 0x1d7ce, 0x1d7cf, 0x2002);
+DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_math_fraktur, 0x1d586, 0x1d56c, 0x1d7ce, 0x1d7cf, 0x2002);
+DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_circle, 0x1f150, 0x1f150, '0', '1', 0x2002);
+DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_square, 0x1f170, 0x1f170, '0', '1', 0x2002);
+DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_square_outline, 0x1f130, 0x1f130, '0', '1', 0x2002);
+DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_regional, 0x1f1e6, 0x1f1e6, '0', '1', 0x2002);
 
 static bool process_record_zalgo(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
@@ -185,20 +190,55 @@ bool process_record_unicode(uint16_t keycode, keyrecord_t *record) {
         return PROCESS_NOT_HANDLED;
     }
 
-    if (unicode_typing_mode == UCTM_CZECH) {
-        if ((KC_A <= keycode) && (keycode <= KC_Z)) {
-            return process_record_unicode_replacement(keycode, record, unicode_translator_czech);
-        }
+    switch (unicode_typing_mode) {
+        case UCTM_CZECH:
+            if ((KC_A <= keycode) && (keycode <= KC_Z)) {
+                return process_record_unicode_replacement(keycode, record, unicode_translator_czech);
+            }
+            break;
+        case UCTM_MATH_SCRIPT:
+            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
+                return process_record_unicode_replacement(keycode, record, unicode_translator_math_script);
+            }
+            break;
+        case UCTM_MATH_FRAKTUR:
+            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
+                return process_record_unicode_replacement(keycode, record, unicode_translator_math_fraktur);
+            }
+            break;
+        case UCTM_CIRCLE:
+            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
+                return process_record_unicode_replacement(keycode, record, unicode_translator_circle);
+            }
+            break;
+        case UCTM_SQUARE:
+            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
+                return process_record_unicode_replacement(keycode, record, unicode_translator_square);
+            }
+            break;
+        case UCTM_SQUARE_OUTLINE:
+            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
+                return process_record_unicode_replacement(keycode, record, unicode_translator_square_outline);
+            }
+            break;
+        case UCTM_REGIONAL:
+            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
+                if (process_record_unicode_replacement(keycode, record, unicode_translator_regional) == PROCESS_HANDLED) {
+                    wait_ms(1);
+                    register_unicode(0x200c);
+                    return PROCESS_HANDLED;
+                }
+                else {
+                    return PROCESS_NOT_HANDLED;
+                }
+            }
+            break;
+        case UCTM_ZALGO:
+            if ((KC_A <= keycode) && (keycode <= KC_0)) {
+                return process_record_zalgo(keycode, record);
+            }
+            break;
     }
-    else if (unicode_typing_mode == UCTM_SCRIPT) {
-        if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
-            return process_record_unicode_replacement(keycode, record, unicode_translator_script);
-        }
-    }
-    else if (unicode_typing_mode == UCTM_ZALGO) {
-        if ((KC_A <= keycode) && (keycode <= KC_0)) {
-            return process_record_zalgo(keycode, record);
-        }
-    }
+
     return PROCESS_NOT_HANDLED;
 }

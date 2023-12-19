@@ -10,8 +10,6 @@ smart_case_t smart_case = {
     .type = SC_CAPS_WORD,
 };
 
-#define SHIFT() add_weak_mods(MOD_BIT(KC_LSFT))
-
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
 #if defined(CUSTOM_UNICODE_ENABLE)
@@ -24,7 +22,7 @@ bool caps_word_press_user(uint16_t keycode) {
         case SC_CAPS_WORD:
             switch (keycode) {
                 case KC_A ... KC_Z:
-                    SHIFT();
+                    add_weak_mods(MOD_BIT(KC_LSFT));
                     return true;
                 case KC_1 ... KC_0:
                 case KC_MINUS:
@@ -37,7 +35,7 @@ bool caps_word_press_user(uint16_t keycode) {
             switch (keycode) {
                 case KC_A ... KC_Z:
                     if (smart_case.spongebob.upper_case) {
-                        SHIFT();
+                        add_weak_mods(MOD_BIT(KC_LSFT));
                     }
                     smart_case.spongebob.upper_case ^= true;
                     return true;
@@ -47,5 +45,3 @@ bool caps_word_press_user(uint16_t keycode) {
             return false;
     }
 }
-
-#undef SHIFT
