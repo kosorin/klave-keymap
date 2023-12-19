@@ -35,6 +35,8 @@ static void *key_chain_random_number(uint8_t keycode) {
             send_random_number(digit_count);
             return key_chain_random_number;
         case KC_SPACE:
+        case KC_BACKSPACE:
+        case KC_DELETE:
         case KC_TAB:
         case KC_ENTER:
         case KC_DOT:

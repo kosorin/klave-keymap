@@ -62,6 +62,14 @@ void key_chain_stop(void) {
 }
 
 void *key_chain_bad_key(uint8_t keycode) {
+    writePinLow(B0);
+    wait_ms(100);
+    writePinHigh(B0);
+    wait_ms(100);
+    writePinLow(B0);
+    wait_ms(100);
+    writePinHigh(B0);
+
 #if defined(KEY_CHAIN_CANCEL_KEY)
     return key_chain_bad_key;
 #else
