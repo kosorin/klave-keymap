@@ -31,13 +31,13 @@ bool caps_word_press_user(uint16_t keycode) {
                     return true;
             }
             return false;
-        case SC_SPONGEBOB:
+        case SC_MOCKING:
             switch (keycode) {
                 case KC_A ... KC_Z:
-                    if (smart_case.spongebob.upper_case) {
+                    if (smart_case.mocking.upper_case) {
                         add_weak_mods(MOD_BIT(KC_LSFT));
                     }
-                    smart_case.spongebob.upper_case ^= true;
+                    smart_case.mocking.upper_case ^= true;
                     return true;
             }
             return true;
