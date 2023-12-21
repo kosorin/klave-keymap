@@ -5,7 +5,7 @@
 
 typedef enum {
     SC_CAPS_WORD,
-    SC_SPONGEBOB,
+    SC_MOCKING,
 } smart_case_type_t;
 
 typedef struct {
@@ -13,7 +13,7 @@ typedef struct {
     union {
         struct {
             bool upper_case;
-        } spongebob;
+        } mocking;
     };
 } smart_case_t;
 

@@ -17,7 +17,7 @@ const uint16_t combo_FIND[] PROGMEM = { KC_W, KC_F, COMBO_END };
 const uint16_t combo_CAPS_LOCK[] PROGMEM = { KC_P, KC_M, COMBO_END };
 #if defined(CAPS_WORD_ENABLE)
 const uint16_t combo_CAPS_WORD[] PROGMEM = { HRK_L1, HRK_R1, COMBO_END };
-const uint16_t combo_SPONGEBOB_CASE[] PROGMEM = { HRK_L1, HRK_R1, KC_F, KC_U, COMBO_END };
+const uint16_t combo_MOCKING_CASE[] PROGMEM = { HRK_L1, HRK_R1, KC_F, KC_U, COMBO_END };
 #endif
 
 combo_t key_combos[] = {
@@ -27,15 +27,15 @@ combo_t key_combos[] = {
     [C_CAPS_LOCK] = COMBO(combo_CAPS_LOCK, KC_CAPS_LOCK),
 #if defined(CAPS_WORD_ENABLE)
     [C_CAPS_WORD] = COMBO_ACTION(combo_CAPS_WORD),
-    [C_SPONGEBOB_CASE] = COMBO_ACTION(combo_SPONGEBOB_CASE),
+    [C_MOCKING_CASE] = COMBO_ACTION(combo_MOCKING_CASE),
 #endif
 };
 
 #if defined(CAPS_WORD_ENABLE)
 static void caps_word_toggle_combo(uint16_t combo_index) {
     switch(combo_index) {
-        case C_SPONGEBOB_CASE:
-            smart_case = (smart_case_t){ .type = SC_SPONGEBOB, .spongebob = { .upper_case = false, }, };
+        case C_MOCKING_CASE:
+            smart_case = (smart_case_t){ .type = SC_MOCKING, .mocking = { .upper_case = false, }, };
             break;
         case C_CAPS_WORD:
         default:
@@ -50,7 +50,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     switch(combo_index) {
 #if defined(CAPS_WORD_ENABLE)
         case C_CAPS_WORD:
-        case C_SPONGEBOB_CASE:
+        case C_MOCKING_CASE:
             if (pressed) {
                 caps_word_toggle_combo(combo_index);
             }
