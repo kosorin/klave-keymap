@@ -43,59 +43,59 @@ typedef uint32_t (*translator_function_t)(uint32_t keycode, bool is_shifted);
 
 DEFINE_UNICODE_ALPHABET_TRANSLATOR(unicode_translator_czech,
     // Lower
-    0x00e1, // a á
-    0, // b
-    0x010d, // c č
-    0x010f, // d ď
-    0x011b, // e ě
-    0, // f
-    0, // g
-    0, // h
-    0x00ed, // i í
-    0, // j
-    0, // k
-    0x00fa, // l ú
-    0x0148, // m ň
-    0x00e9, // n é
-    0x00f3, // o ó
-    0, // p
-    0, // q
-    0x0159, // r ř
-    0x0161, // s š
-    0x0165, // t ť
-    0x016f, // u ů
-    0, // v
-    0, // w
-    0, // x
-    0x00fd, // y ý
-    0x017e, // z ž
+    0x00e1, // a -> á
+    0x0000, // b
+    0x010d, // c -> č
+    0x010f, // d -> ď
+    0x011b, // e -> ě
+    0x0000, // f
+    0x0000, // g
+    0x0000, // h
+    0x00ed, // i -> í
+    0x0000, // j
+    0x0000, // k
+    0x00fa, // l -> ú
+    0x0148, // m -> ň
+    0x00e9, // n -> é
+    0x00f3, // o -> ó
+    0x0000, // p
+    0x0000, // q
+    0x0159, // r -> ř
+    0x0161, // s -> š
+    0x0165, // t -> ť
+    0x016f, // u -> ů
+    0x0000, // v
+    0x0000, // w
+    0x0000, // x
+    0x00fd, // y -> ý
+    0x017e, // z -> ž
 
-    0x00c1, // A Á
-    0, // B
-    0x010c, // C Č
-    0x010e, // D Ď
-    0x011a, // E Ě
-    0, // F
-    0, // G
-    0, // H
-    0x00cd, // I Í
-    0, // J
-    0, // K
-    0x016e, // L Ů
-    0x0147, // M Ň
-    0x00c9, // N É
-    0x00d3, // O Ó
-    0, // P
-    0, // Q
-    0x0158, // R Ř
-    0x0160, // S Š
-    0x0164, // T Ť
-    0x00da, // U Ú
-    0, // V
-    0, // W
-    0, // X
-    0x00dd, // Y Ý
-    0x017d, // Z Ž
+    0x00c1, // A -> Á
+    0x0000, // B
+    0x010c, // C -> Č
+    0x010e, // D -> Ď
+    0x011a, // E -> Ě
+    0x0000, // F
+    0x0000, // G
+    0x0000, // H
+    0x00cd, // I -> Í
+    0x0000, // J
+    0x0000, // K
+    0x016e, // L -> Ů
+    0x0147, // M -> Ň
+    0x00c9, // N -> É
+    0x00d3, // O -> Ó
+    0x0000, // P
+    0x0000, // Q
+    0x0158, // R -> Ř
+    0x0160, // S -> Š
+    0x0164, // T -> Ť
+    0x00da, // U -> Ú
+    0x0000, // V
+    0x0000, // W
+    0x0000, // X
+    0x00dd, // Y -> Ý
+    0x017d, // Z -> Ž
 );
 
 DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_math_script, 0x1d4ea, 0x1d4d0, 0x1d7ce, 0x1d7cf, 0x2002);
