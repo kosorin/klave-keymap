@@ -37,7 +37,7 @@ enum layers {
     L_GAME,
     L_GAME_EXTENDED,
 #endif
-    LAYER_COUNT,
+    layers_COUNT,
 };
 
 

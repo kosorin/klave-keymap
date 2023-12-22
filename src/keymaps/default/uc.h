@@ -13,7 +13,7 @@ enum unicode_typing_modes {
     UCTM_SQUARE_OUTLINE,
     UCTM_REGIONAL,
     UCTM_ZALGO,
-    UCTM__COUNT,
+    unicode_typing_modes_COUNT,
 };
 
 extern uint8_t unicode_typing_mode;

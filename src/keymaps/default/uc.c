@@ -155,7 +155,7 @@ static bool process_record_unicode_replacement(uint16_t keycode, keyrecord_t *re
 
 bool process_record_unicode(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_UCTM_NONE ... KC_UCTM_NONE + (UCTM__COUNT - 1):
+        case KC_UCTM_NONE ... KC_UCTM_NONE + (unicode_typing_modes_COUNT - 1):
             if (record->event.pressed) {
                 if (unicode_typing_mode != keycode - KC_UCTM_NONE) {
                     unicode_typing_mode = keycode - KC_UCTM_NONE;
