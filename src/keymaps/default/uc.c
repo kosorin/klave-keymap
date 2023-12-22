@@ -5,6 +5,7 @@
 
 #include "quantum.h"
 #include "process_unicode_common.h"
+#include "process_caps_word.h"
 #include "unicode.h"
 #include "progmem.h"
 
@@ -12,13 +13,21 @@
 uint8_t unicode_typing_mode = UCTM_NONE;
 
 
-typedef uint32_t (*translator_function_t)(uint32_t keycode, bool is_shifted);
+static uint8_t is_shifted(void) {
+    uint8_t mods = get_mods() | get_weak_mods();
+#ifndef NO_ACTION_ONESHOT
+    mods |= get_oneshot_mods();
+#endif
+    return (mods & MOD_MASK_SHIFT) ^ host_keyboard_led_state().caps_lock;
+}
+
+typedef uint32_t (*translator_function_t)(uint32_t keycode);
 
 #define DEFINE_UNICODE_RANGE_TRANSLATOR(translator_name, alpha_lower, alpha_upper, number_zero, number_one, space)  \
-    static inline uint32_t translator_name(uint32_t keycode, bool is_shifted) {                                     \
+    static inline uint32_t translator_name(uint32_t keycode) {                                                      \
         switch (keycode) {                                                                                          \
             case KC_A ... KC_Z:                                                                                     \
-                return (is_shifted ? alpha_upper : alpha_lower) + (keycode - KC_A);                                 \
+                return (is_shifted() ? alpha_upper : alpha_lower) + (keycode - KC_A);                               \
             case KC_0:                                                                                              \
                 return number_zero;                                                                                 \
             case KC_1 ... KC_9:                                                                                     \
@@ -27,18 +36,19 @@ typedef uint32_t (*translator_function_t)(uint32_t keycode, bool is_shifted);
                 return space;                                                                                       \
         }                                                                                                           \
         return keycode;                                                                                             \
-    }
+                                                                                                                    }
 
-#define DEFINE_UNICODE_ALPHABET_TRANSLATOR(translator_name, ...)                    \
-    static inline uint32_t translator_name(uint32_t keycode, bool is_shifted) {     \
-        static const uint32_t map[] = {__VA_ARGS__};                                \
-        _Static_assert(ARRAY_SIZE(map) == ((KC_Z - KC_A) + 1) * 2, "");             \
-        switch (keycode) {                                                          \
-            case KC_A ... KC_Z:                                                     \
-                return map[keycode - KC_A + (is_shifted ? (KC_Z - KC_A) + 1 : 0)];  \
-        }                                                                           \
-        return keycode;                                                             \
-    }
+#define DEFINE_UNICODE_ALPHABET_TRANSLATOR(translator_name, ...)                        \
+    static inline uint32_t translator_name(uint32_t keycode) {                          \
+        static const uint32_t map[] = {__VA_ARGS__};                                    \
+        _Static_assert(ARRAY_SIZE(map) == ((KC_Z - KC_A) + 1) * 2, "");                 \
+        switch (keycode) {                                                              \
+            case KC_A ... KC_Z:                                                         \
+                return map[keycode - KC_A + (is_shifted() ? (KC_Z - KC_A) + 1 : 0)];    \
+        }                                                                               \
+        return keycode;                                                                 \
+                                                                                        }
+
 
 
 DEFINE_UNICODE_ALPHABET_TRANSLATOR(unicode_translator_czech,
@@ -105,69 +115,45 @@ DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_square, 0x1f170, 0x1f170, '0'
 DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_square_outline, 0x1f130, 0x1f130, '0', '1', 0x2002);
 DEFINE_UNICODE_RANGE_TRANSLATOR(unicode_translator_regional, 0x1f1e6, 0x1f1e6, '0', '1', 0x2002);
 
-static bool process_record_zalgo(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
+static bool process_record_unicode_replacement(uint16_t keycode, translator_function_t translator) {
+    uint32_t code_point = translator(keycode);
+    if (code_point) {
+        register_unicode(code_point);
+        return true;
+    }
+    else {
         tap_code16(keycode);
+        return false;
+    }
+}
 
+static bool process_record_zalgo(uint16_t keycode) {
+    tap_code16(keycode);
+
+    if (KC_A <= keycode && keycode <= KC_0) {
         int number = (rand() % (8 + 1 - 2)) + 2;
         for (int index = 0; index < number; index++) {
             uint16_t hex = (rand() % (0x036F + 1 - 0x0300)) + 0x0300;
             register_unicode(hex);
         }
-
-        return PROCESS_HANDLED;
     }
-    return PROCESS_NOT_HANDLED;
-}
 
-
-static uint8_t check_shift(uint16_t keycode) {
-    uint8_t mods = get_mods() | get_oneshot_mods() | get_weak_mods();
-
-#if defined(CAPS_WORD_ENABLE)
-    // This is not so nice workaround.
-    // We must handle CapsWord here because `process_record_user()` is called before `process_caps_word()`.
-    if (is_caps_word_on()) {
-        if (caps_word_press_user(keycode)) {
-            mods |= get_weak_mods();
-            clear_weak_mods();
-        }
-        else {
-            caps_word_off();
-        }
-    }
-#endif
-
-    return mods & MOD_MASK_SHIFT;
-}
-
-static bool process_record_unicode_replacement(uint16_t keycode, keyrecord_t *record, translator_function_t translator) {
-    if (record->event.pressed) {
-        bool is_shifted = check_shift(keycode);
-        uint32_t cp = translator(keycode, is_shifted);
-        if (!cp) {
-            return PROCESS_NOT_HANDLED;
-        }
-        register_unicode(cp);
-    }
-    return PROCESS_HANDLED;
+    return true;
 }
 
 bool process_record_unicode(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_UCTM_NONE ... KC_UCTM_NONE + (UCTM__COUNT - 1):
-            if (record->event.pressed) {
-                if (unicode_typing_mode != keycode - KC_UCTM_NONE) {
-                    unicode_typing_mode = keycode - KC_UCTM_NONE;
-                }
-                else {
-                    unicode_typing_mode = UCTM_NONE;
-                }
+    if (KC_UCTM_NONE <= keycode && keycode < KC_UCTM_NONE + UCTM__COUNT) {
+        if (record->event.pressed) {
+            if (unicode_typing_mode != keycode - KC_UCTM_NONE) {
+                unicode_typing_mode = keycode - KC_UCTM_NONE;
             }
-            return PROCESS_HANDLED;
+            else {
+                unicode_typing_mode = UCTM_NONE;
+            }
+        }
+        return PROCESS_HANDLED;
     }
-
-    if (unicode_typing_mode == UCTM_NONE) {
+    else if (unicode_typing_mode == UCTM_NONE) {
         return PROCESS_NOT_HANDLED;
     }
 
@@ -186,59 +172,51 @@ bool process_record_unicode(uint16_t keycode, keyrecord_t *record) {
             break;
     }
 
-    if (((get_mods() | get_oneshot_mods()) & ~MOD_MASK_SHIFT) != 0) {
+    if (!(KC_A <= keycode && keycode <= KC_0) && keycode != KC_SPACE) {
         return PROCESS_NOT_HANDLED;
+    }
+    else if (process_caps_word(keycode, record) == PROCESS_HANDLED) {
+        return PROCESS_HANDLED;
+    }
+    else if (!record->event.pressed) {
+        return PROCESS_HANDLED;
+    }
+    else if ((get_mods() | get_weak_mods() | get_oneshot_mods()) & ~MOD_MASK_SHIFT) {
+        return PROCESS_HANDLED;
     }
 
     switch (unicode_typing_mode) {
         case UCTM_CZECH:
-            if ((KC_A <= keycode) && (keycode <= KC_Z)) {
-                return process_record_unicode_replacement(keycode, record, unicode_translator_czech);
-            }
+            process_record_unicode_replacement(keycode, unicode_translator_czech);
             break;
         case UCTM_MATH_SCRIPT:
-            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
-                return process_record_unicode_replacement(keycode, record, unicode_translator_math_script);
-            }
+            process_record_unicode_replacement(keycode, unicode_translator_math_script);
             break;
         case UCTM_MATH_FRAKTUR:
-            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
-                return process_record_unicode_replacement(keycode, record, unicode_translator_math_fraktur);
-            }
+            process_record_unicode_replacement(keycode, unicode_translator_math_fraktur);
             break;
         case UCTM_CIRCLE:
-            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
-                return process_record_unicode_replacement(keycode, record, unicode_translator_circle);
-            }
+            process_record_unicode_replacement(keycode, unicode_translator_circle);
             break;
         case UCTM_SQUARE:
-            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
-                return process_record_unicode_replacement(keycode, record, unicode_translator_square);
-            }
+            process_record_unicode_replacement(keycode, unicode_translator_square);
             break;
         case UCTM_SQUARE_OUTLINE:
-            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
-                return process_record_unicode_replacement(keycode, record, unicode_translator_square_outline);
-            }
+            process_record_unicode_replacement(keycode, unicode_translator_square_outline);
             break;
         case UCTM_REGIONAL:
-            if (((KC_A <= keycode) && (keycode <= KC_0)) || keycode == KC_SPACE) {
-                if (process_record_unicode_replacement(keycode, record, unicode_translator_regional) == PROCESS_HANDLED) {
-                    wait_ms(1);
-                    register_unicode(0x200c);
-                    return PROCESS_HANDLED;
-                }
-                else {
-                    return PROCESS_NOT_HANDLED;
-                }
+            if (process_record_unicode_replacement(keycode, unicode_translator_regional)) {
+                wait_ms(1);
+                register_unicode(0x200c);
             }
             break;
         case UCTM_ZALGO:
-            if ((KC_A <= keycode) && (keycode <= KC_0)) {
-                return process_record_zalgo(keycode, record);
-            }
+            process_record_zalgo(keycode);
+            break;
+        default:
+            tap_code16(keycode);
             break;
     }
 
-    return PROCESS_NOT_HANDLED;
+    return PROCESS_HANDLED;
 }
