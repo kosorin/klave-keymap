@@ -10,5 +10,5 @@ enum combo_events {
     C_CAPS_WORD,
     C_MOCKING_CASE,
 #endif
-    C__COUNT,
+    combo_events_COUNT,
 };
