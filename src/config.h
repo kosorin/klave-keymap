@@ -19,14 +19,6 @@
 #define MATRIX_ROW_PINS { B6, B2, B3, B1, F7, F6 }
 #define DIODE_DIRECTION COL2ROW
 
-// Rotary encoder
-#define ENCODERS_PAD_A { F4 }
-#define ENCODERS_PAD_B { F5 }
-#define ENCODER_RESOLUTIONS { 2 }
-#define ENCODERS_PAD_A_RIGHT { F5 }
-#define ENCODERS_PAD_B_RIGHT { F4 }
-#define ENCODER_RESOLUTIONS_RIGHT { 2 }
-
 // Communication
 #define SOFT_SERIAL_PIN D0
 

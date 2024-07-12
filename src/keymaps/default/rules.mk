@@ -1,7 +1,3 @@
-# HW feature options
-ENCODER_ENABLE = no
-OLED_ENABLE = no
-
 # Base SW feature options
 CONSOLE_ENABLE = no
 EXTRAKEY_ENABLE = yes
