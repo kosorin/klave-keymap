@@ -9,9 +9,25 @@
 #if defined(CUSTOM_UNICODE_ENABLE)
     #include "uc.h"
 #endif
+#if defined(CAPS_WORD_ENABLE)
+    #include "smart_case.h"
+#endif
+#if defined(SECRETS_ENABLE)
+    #include "secrets.h"
+#endif
+#if defined(COMBO_ENABLE)
+    #include "combos.h"
+#endif
+#if defined(TAP_DANCE_ENABLE)
+    #include "tap_dances.h"
+#endif
 
 #include "quantum.h"
 
+
+// ========================================================================== //
+// Keymap
+// ========================================================================== //
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_BASE] = LAYOUT(
@@ -254,4 +270,188 @@ void oneshot_layer_changed_user(uint8_t layer) {
         unicode_typing_mode = UCTM_NONE;
     }
 #endif
+}
+
+
+// ========================================================================== //
+// Combos
+// ========================================================================== //
+
+uint16_t COMBO_LEN = combo_events_COUNT;
+
+const uint16_t combo_COPY[] PROGMEM = { KC_X, KC_C, COMBO_END };
+const uint16_t combo_SAVE[] PROGMEM = { HRK_L3, HRK_L2, COMBO_END };
+const uint16_t combo_FIND[] PROGMEM = { KC_W, KC_F, COMBO_END };
+const uint16_t combo_CAPS_LOCK[] PROGMEM = { KC_P, KC_M, COMBO_END };
+#if defined(CAPS_WORD_ENABLE)
+const uint16_t combo_CAPS_WORD[] PROGMEM = { HRK_L1, HRK_R1, COMBO_END };
+const uint16_t combo_MOCKING_CASE[] PROGMEM = { HRK_L1, HRK_R1, KC_F, KC_U, COMBO_END };
+#endif
+
+combo_t key_combos[] = {
+    [C_COPY] = COMBO(combo_COPY, C(KC_C)),
+    [C_SAVE] = COMBO(combo_SAVE, C(KC_S)),
+    [C_FIND] = COMBO(combo_FIND, C(KC_F)),
+    [C_CAPS_LOCK] = COMBO(combo_CAPS_LOCK, KC_CAPS_LOCK),
+#if defined(CAPS_WORD_ENABLE)
+    [C_CAPS_WORD] = COMBO_ACTION(combo_CAPS_WORD),
+    [C_MOCKING_CASE] = COMBO_ACTION(combo_MOCKING_CASE),
+#endif
+};
+
+#if defined(CAPS_WORD_ENABLE)
+static void caps_word_toggle_combo(uint16_t combo_index) {
+    switch(combo_index) {
+        case C_MOCKING_CASE:
+            smart_case = (smart_case_t){ .type = SC_MOCKING, .mocking = { .upper_case = false, }, };
+            break;
+        case C_CAPS_WORD:
+        default:
+            smart_case = (smart_case_t){ .type = SC_CAPS_WORD, };
+            break;
+    }
+    caps_word_toggle();
+}
+#endif
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+#if defined(CAPS_WORD_ENABLE)
+        case C_CAPS_WORD:
+        case C_MOCKING_CASE:
+            if (pressed) {
+                caps_word_toggle_combo(combo_index);
+            }
+            break;
+#endif
+        default:
+            break;
+    }
+}
+
+#ifdef COMBO_PROCESS_KEY_RELEASE
+bool process_combo_key_release(uint16_t combo_index, combo_t *combo, uint8_t key_index, uint16_t keycode) {
+    return false;
+}
+#endif
+
+#ifdef COMBO_SHOULD_TRIGGER
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    return true;
+}
+#endif
+
+#ifdef COMBO_TERM_PER_COMBO
+uint16_t get_combo_term(uint16_t combo_index, combo_t *combo) {
+    return COMBO_TERM;
+}
+#endif
+
+#ifdef COMBO_MUST_PRESS_IN_ORDER_PER_COMBO
+bool get_combo_must_press_in_order(uint16_t combo_index, combo_t *combo) {
+    return false;
+}
+#endif
+
+#ifdef COMBO_MUST_HOLD_PER_COMBO
+bool get_combo_must_hold(uint16_t combo_index, combo_t *combo) {
+    return false;
+}
+#endif
+
+#ifdef COMBO_MUST_TAP_PER_COMBO
+bool get_combo_must_tap(uint16_t combo_index, combo_t *combo) {
+    switch (combo_index) {
+        case C_CAPS_LOCK:
+            return false;
+        default:
+            return true;
+    }
+}
+#endif
+
+
+// ========================================================================== //
+// Tap Dance
+// ========================================================================== //
+
+static td_context_t td_context = {
+    .state = TDS_NONE,
+};
+
+
+#if defined(KEY_CHAIN_ENABLE)
+
+static void finished_system_key_chain(tap_dance_state_t *state, void *user_data) {
+    td_context.state = tap_dance_state(state, false);
+    switch (td_context.state) {
+        case TDS_SINGLE_TAP:
+            key_chain_start(NULL);
+            break;
+#if defined(SECRETS_ENABLE)
+        case TDS_DOUBLE_TAP:
+            key_chain_start(secret_key_chain_start);
+            break;
+#endif
+        case TDS_SINGLE_HOLD:
+            layer_on(L_SYSTEM);
+            break;
+        default:
+            break;
+    }
+}
+
+static void reset_system_key_chain(tap_dance_state_t *state, void *user_data) {
+    switch (td_context.state) {
+        case TDS_SINGLE_HOLD:
+            layer_off(L_SYSTEM);
+            break;
+        default:
+            break;
+    }
+    td_context.state = TDS_NONE;
+}
+
+#endif
+
+
+tap_dance_action_t tap_dance_actions[] = {
+#if defined(SECRETS_ENABLE)
+    [TD_SECRET1] = TD_SECRET1_ACTION,
+    [TD_SECRET2] = TD_SECRET2_ACTION,
+    [TD_SECRET3] = TD_SECRET3_ACTION,
+    [TD_SECRET4] = TD_SECRET4_ACTION,
+    [TD_SECRET5] = TD_SECRET5_ACTION,
+    [TD_SECRET6] = TD_SECRET6_ACTION,
+    [TD_SECRET7] = TD_SECRET7_ACTION,
+    [TD_SECRET8] = TD_SECRET8_ACTION,
+    [TD_SECRET9] = TD_SECRET9_ACTION,
+    [TD_SECRET10] = TD_SECRET10_ACTION,
+    [TD_SECRET11] = TD_SECRET11_ACTION,
+    [TD_SECRET12] = TD_SECRET12_ACTION,
+#endif
+#if defined(KEY_CHAIN_ENABLE)
+    [TD_SYSTEM_KEY_CHAIN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, finished_system_key_chain, reset_system_key_chain),
+#endif
+    [TD_DECIMAL_POINT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COMMA),
+};
+
+
+td_state_t tap_dance_state(tap_dance_state_t *state, bool interrupt_tap) {
+    if (state->count == 1) {
+        return state->pressed && (!interrupt_tap || !state->interrupted)
+            ? TDS_SINGLE_HOLD
+            : TDS_SINGLE_TAP;
+    }
+    else if (state->count == 2) {
+        return state->pressed && (!interrupt_tap || !state->interrupted)
+            ? TDS_DOUBLE_HOLD
+            : TDS_DOUBLE_TAP;
+    }
+    else if (state->count == 3) {
+        return state->pressed && (!interrupt_tap || !state->interrupted)
+            ? TDS_TRIPLE_HOLD
+            : TDS_TRIPLE_TAP;
+    }
+    return TDS_UNKNOWN;
 }

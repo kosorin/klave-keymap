@@ -63,19 +63,9 @@ ifeq ($(strip $(CAPS_WORD_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/smart_case.c
 endif
 
-COMBO_ENABLE ?= no
-ifeq ($(strip $(COMBO_ENABLE)), yes)
-	INTROSPECTION_KEYMAP_C = $(KEYMAP_PATH)/combos.c
-endif
-
 DYNAMIC_MACRO_ENABLE ?= no
 ifeq ($(strip $(DYNAMIC_MACRO_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/dyn_macro.c
-endif
-
-TAP_DANCE_ENABLE ?= no
-ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/tap_dances.c
 endif
 
 
