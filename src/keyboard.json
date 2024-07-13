@@ -13,5 +13,32 @@
     "bootloader": "caterina",
     "build": {
         "lto": true
+    },
+    "split": {
+        "enabled": true,
+        "soft_serial_pin": "D0"
+    },
+    "debounce": 5,
+    "diode_direction": "COL2ROW",
+    "matrix_pins": {
+        "cols": [ "B5", "B4", "E6", "D7", "C6", "D4" ],
+        "rows": [ "B6", "B2", "B3", "B1", "F7", "F6" ]
     }
 }
+
+/*
+
+Pins:
+- D0 (SCL)
+- D1 (SDA)
+- D2
+- D3
+
+LEDs:
+- B0 Left
+- D5 Right
+
+writePinLow(<led>) - turn on
+writePinHigh(<led>) - turn off
+
+*/
