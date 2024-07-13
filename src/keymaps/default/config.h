@@ -2,6 +2,9 @@
 
 #define ENABLE_COMPILE_KEYCODE
 
+// Handedness
+#define EE_HANDS
+
 // [custom] Switcher
 #define SWITCH_MOD_KEY KC_LALT
 
