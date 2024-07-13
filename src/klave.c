@@ -1,5 +1,3 @@
-#include "klave.h"
-
 #include "gpio.h"
 #include "keyboard.h"
 #if defined(SWAP_HANDS_ENABLE)
