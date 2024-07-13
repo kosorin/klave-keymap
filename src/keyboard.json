@@ -1,8 +1,9 @@
 {
     "keyboard_name": "Klave",
     "url": "https://github.com/kosorin/klave",
-    "maintainer": "David Kosorin",
+    "maintainer": "kosorin",
     "manufacturer": "David Kosorin",
+    "tags": [ "split" ],
     "usb": {
         "vid": "0x444B",
         "pid": "0x0001",
@@ -126,8 +127,5 @@ Pins:
 LEDs:
 - B0 Left
 - D5 Right
-
-writePinLow(<led>) - turn on
-writePinHigh(<led>) - turn off
 
 */
