@@ -9,6 +9,7 @@
         "device_version": "1.0.0"
     },
     "development_board": "promicro",
+    "pin_compatible": "promicro",
     "processor": "atmega32u4",
     "bootloader": "caterina",
     "build": {
@@ -16,7 +17,10 @@
     },
     "split": {
         "enabled": true,
-        "soft_serial_pin": "D0"
+        "soft_serial_pin": "D0",
+        "transport": {
+            "protocol": "serial"
+        }
     },
     "debounce": 5,
     "diode_direction": "COL2ROW",
