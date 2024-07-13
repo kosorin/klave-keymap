@@ -12,7 +12,6 @@
         "pid": "0x0001",
         "device_version": "1.0.0"
     },
-    "development_board": "promicro",
     "pin_compatible": "promicro",
     "processor": "atmega32u4",
     "bootloader": "caterina",
