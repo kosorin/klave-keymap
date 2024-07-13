@@ -1,9 +1,12 @@
 {
+    // General
     "keyboard_name": "Klave",
-    "url": "https://github.com/kosorin/klave",
     "maintainer": "kosorin",
-    "manufacturer": "David Kosorin",
+    "url": "https://github.com/kosorin/klave",
     "tags": [ "split" ],
+
+    // Hardware
+    "manufacturer": "David Kosorin",
     "usb": {
         "vid": "0x444B",
         "pid": "0x0001",
@@ -13,9 +16,22 @@
     "pin_compatible": "promicro",
     "processor": "atmega32u4",
     "bootloader": "caterina",
-    "build": {
-        "lto": true
-    },
+
+    /*
+
+    Pins:
+    - D0 (SCL)
+    - D1 (SDA)
+    - D2
+    - D3
+
+    LEDs:
+    - B0 Left
+    - D5 Right
+
+    */
+
+    // Split
     "split": {
         "enabled": true,
         "soft_serial_pin": "D0",
@@ -23,12 +39,21 @@
             "protocol": "serial"
         }
     },
+
+    // Matrix
     "debounce": 5,
     "diode_direction": "COL2ROW",
     "matrix_pins": {
         "cols": [ "B5", "B4", "E6", "D7", "C6", "D4" ],
         "rows": [ "B6", "B2", "B3", "B1", "F7", "F6" ]
     },
+
+    // Firmware
+    "build": {
+        "lto": true
+    },
+
+    // Layouts
     "layouts": {
         "LAYOUT": {
             "layout": [
@@ -115,17 +140,3 @@
         }
     }
 }
-
-/*
-
-Pins:
-- D0 (SCL)
-- D1 (SDA)
-- D2
-- D3
-
-LEDs:
-- B0 Left
-- D5 Right
-
-*/
