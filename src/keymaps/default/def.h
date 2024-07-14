@@ -43,7 +43,7 @@ enum layers {
 
 // Custom keycodes
 enum custom_keycodes {
-    CK__SAFE_RANGE = QK_KB,
+    custom_keycodes_START = QK_USER,
 
 #if defined(CUSTOM_UNICODE_ENABLE)
     KC_UCTM_NONE,
