@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "def.h"
+
 #if defined(KEY_CHAIN_ENABLE)
     #include "features/key_chain.h"
 #endif

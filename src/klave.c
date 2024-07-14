@@ -1,4 +1,5 @@
-#include "gpio.h"
+#include "promicro_led.h"
+
 #include "keyboard.h"
 #if defined(SWAP_HANDS_ENABLE)
     #include "progmem.h"
@@ -27,11 +28,7 @@ __attribute__((weak)) const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] 
 
 void keyboard_pre_init_kb(void) {
 
-    setPinOutput(B0);
-    setPinOutput(D5);
-
-    writePinHigh(B0);
-    writePinHigh(D5);
+    led_init();
 
     keyboard_pre_init_user();
 }
