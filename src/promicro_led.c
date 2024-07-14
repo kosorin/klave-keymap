@@ -28,24 +28,24 @@ void led_blink_main(uint16_t delay, uint8_t count) {
 
 void led_blink_both(uint16_t delay, uint8_t count) {
     for (uint8_t i = 0; i < count; i++) {
-        led_blink(B0, delay / 2, 1);
-        led_blink(D5, delay / 2, 1);
+        led_blink(B0, delay, 1);
+        led_blink(D5, delay, 1);
     }
 }
 
 void led_blink_start(void) {
-    led_blink_main(400, 1);
+    led_blink_main(50, 2);
 }
 
 void led_blink_end(void) {
-    led_blink_main(200, 2);
+    led_blink_main(150, 2);
 }
 
 void led_blink_cancel(void) {
-    led_blink_both(100, 2);
-    led_blink_main(400, 1);
+    led_blink_both(50, 2);
+    led_blink_main(300, 1);
 }
 
 void led_blink_error(void) {
-    led_blink_both(100, 2);
+    led_blink_both(50, 2);
 }
