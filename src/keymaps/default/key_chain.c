@@ -106,7 +106,7 @@ static void *key_chain_unicode_typing_mode(uint8_t keycode) {
     }
 }
 
-void *key_chain_unicode(uint8_t keycode) {
+static void *key_chain_unicode(uint8_t keycode) {
     switch (keycode) {
         case KC_M:
             return key_chain_unicode_mode;
