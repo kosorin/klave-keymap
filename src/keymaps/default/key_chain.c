@@ -124,17 +124,16 @@ static void *handle_system(uint8_t keycode) {
         case KC_E:
             eeconfig_init();
             soft_reset_keyboard();
-            break;
+            return NULL;
         case KC_R:
             soft_reset_keyboard();
-            break;
+            return NULL;
         case KC_B:
             reset_keyboard();
-            break;
+            return NULL;
         default:
-            break;
+            return key_chain_bad_key;
     }
-    return key_chain_bad_key;
 }
 
 void *key_chain_user(uint8_t keycode) {
