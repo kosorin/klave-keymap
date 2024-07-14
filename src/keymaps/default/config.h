@@ -1,5 +1,6 @@
 #pragma once
 
+// Enable `QK_MAKE`
 #define ENABLE_COMPILE_KEYCODE
 
 // Handedness
