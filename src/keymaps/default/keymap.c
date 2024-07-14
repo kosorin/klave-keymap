@@ -265,6 +265,7 @@ void oneshot_layer_changed_user(uint8_t layer) {
 // ========================================================================== //
 // Combos
 // ========================================================================== //
+#if defined(COMBO_ENABLE)
 
 uint16_t COMBO_LEN = combo_events_COUNT;
 
@@ -359,10 +360,13 @@ bool get_combo_must_tap(uint16_t combo_index, combo_t *combo) {
 }
 #endif
 
+#endif
+
 
 // ========================================================================== //
 // Tap Dance
 // ========================================================================== //
+#if defined(TAP_DANCE_ENABLE)
 
 static td_context_t td_context = {
     .state = TDS_NONE,
@@ -444,3 +448,5 @@ td_state_t tap_dance_state(tap_dance_state_t *state, bool interrupt_tap) {
     }
     return TDS_UNKNOWN;
 }
+
+#endif
