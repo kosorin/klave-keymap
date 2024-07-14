@@ -14,11 +14,11 @@ bool is_dynamic_macro_recording(void) {
 void dynamic_macro_record_start_user(int8_t direction) {
     dynamic_macro_recording = true;
 
-    led_blink_main(500, 1);
+    led_blink_start();
 }
 
 void dynamic_macro_record_end_user(int8_t direction) {
     dynamic_macro_recording = false;
 
-    led_blink_main(200, 2);
+    led_blink_end();
 }

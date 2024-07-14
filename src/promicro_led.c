@@ -10,7 +10,7 @@ void led_init(void) {
     gpio_write_pin_high(D5);
 }
 
-void led_blink(uint8_t pin, uint16_t delay, uint8_t count) {
+void led_blink(pin_t pin, uint16_t delay, uint8_t count) {
     if (count == 0) {
         return;
     }
@@ -31,4 +31,21 @@ void led_blink_both(uint16_t delay, uint8_t count) {
         led_blink(B0, delay / 2, 1);
         led_blink(D5, delay / 2, 1);
     }
+}
+
+void led_blink_start(void) {
+    led_blink_main(400, 1);
+}
+
+void led_blink_end(void) {
+    led_blink_main(200, 2);
+}
+
+void led_blink_cancel(void) {
+    led_blink_both(100, 2);
+    led_blink_main(400, 1);
+}
+
+void led_blink_error(void) {
+    led_blink_both(100, 2);
 }
