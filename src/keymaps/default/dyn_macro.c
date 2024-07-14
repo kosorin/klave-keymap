@@ -22,7 +22,3 @@ void dynamic_macro_record_end_user(int8_t direction) {
 
     led_blink_main(200, 2);
 }
-
-void dynamic_macro_record_key_user(int8_t direction, keyrecord_t *record) {
-    led_blink_both(100, 2);
-}
