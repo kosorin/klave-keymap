@@ -4,11 +4,11 @@
 #include "quantum.h"
 
 
-static void *(*next_func)(uint8_t) = NULL;
+static key_chain_handler_t next_handler = NULL;
 
 
 bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
-    if (next_func) {
+    if (next_handler) {
         if (record->event.pressed) {
             switch (keycode) {
                 case QK_MOMENTARY ... QK_MOMENTARY_MAX:
@@ -38,8 +38,8 @@ bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
             }
 #endif
 
-            if (keycode <= 0xFF) {
-                next_func = next_func((uint8_t)keycode);
+            if (keycode <= QK_BASIC_MAX) {
+                next_handler = next_handler((uint8_t)keycode);
                 return PROCESS_HANDLED;
             }
             else {
@@ -51,27 +51,52 @@ bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
 }
 
 bool is_key_chain_active(void) {
-    return next_func != NULL;
+    return next_handler != NULL;
 }
 
-void key_chain_start(void *(*func)(uint8_t)) {
-    next_func = func != NULL ? func : key_chain_user;
+void key_chain_start(key_chain_handler_t handler) {
+    led_blink_start();
+
+    next_handler = handler != NULL ? handler : KEY_CHAIN_HANDLER(main);
 }
 
 void key_chain_stop(void) {
-    next_func = NULL;
+    if (is_key_chain_active()) {
+        led_blink_cancel();
+    }
+
+    next_handler = NULL;
 }
 
-void *key_chain_bad_key(uint8_t keycode) {
-    led_blink_main(100, 2);
+key_chain_handler_t key_chain_done(void) {
+    led_blink_end();
+    return NULL;
+}
+
+key_chain_handler_t key_chain_cancel(void) {
+    led_blink_cancel();
+    return NULL;
+}
 
 #if defined(KEY_CHAIN_CANCEL_KEY)
-    return key_chain_bad_key;
+static DEFINE_KEY_CHAIN_HANDLER(bad_key) {
+    return key_chain_bad_key();
+}
+#endif
+
+key_chain_handler_t key_chain_bad_key(void) {
+#if defined(KEY_CHAIN_CANCEL_KEY)
+    led_blink_error();
+    return KEY_CHAIN_HANDLER(bad_key);
 #else
-    return NULL;
+    return key_chain_cancel();
 #endif
 }
 
-__attribute__((weak)) void *key_chain_user(uint8_t keycode) {
-    return key_chain_bad_key;
+key_chain_handler_t key_chain_again(void) {
+    return next_handler;
+}
+
+__attribute__((weak)) DEFINE_KEY_CHAIN_HANDLER(main) {
+    return key_chain_bad_key();
 }

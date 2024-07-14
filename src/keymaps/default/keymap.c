@@ -387,11 +387,11 @@ static void finished_system_key_chain(tap_dance_state_t *state, void *user_data)
     td_context.state = tap_dance_state(state, false);
     switch (td_context.state) {
         case TDS_SINGLE_TAP:
-            key_chain_start(NULL);
+            key_chain_start(KEY_CHAIN_HANDLER(main));
             break;
 #if defined(SECRETS_ENABLE)
         case TDS_DOUBLE_TAP:
-            key_chain_start(secret_key_chain_start);
+            key_chain_start(KEY_CHAIN_HANDLER(secret));
             break;
 #endif
         case TDS_SINGLE_HOLD:
