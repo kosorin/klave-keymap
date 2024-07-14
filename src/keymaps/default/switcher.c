@@ -2,7 +2,7 @@
 #include "def.h"
 
 
-bool is_switching = false;
+static bool is_switching = false;
 
 
 bool process_record_switcher(uint16_t keycode, keyrecord_t *record) {
@@ -20,4 +20,13 @@ bool process_record_switcher(uint16_t keycode, keyrecord_t *record) {
             return PROCESS_HANDLED;
     }
     return PROCESS_NOT_HANDLED;
+}
+
+bool is_switcher_active(void) {
+    return is_switching;
+}
+
+void switcher_end(void) {
+    is_switching = false;
+    unregister_mods(MOD_BIT(SWITCH_MOD_KEY));
 }

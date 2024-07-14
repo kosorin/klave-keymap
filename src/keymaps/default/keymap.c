@@ -219,10 +219,9 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
 #if defined(SWITCHER_ENABLE)
-    if (is_switching && !layer_state_cmp(state, L_FUNCTION)) {
-        is_switching = false;
+    if (is_switcher_active() && !layer_state_cmp(state, L_FUNCTION)) {
         state &= ~(1 << L_SWITCH);
-        unregister_mods(MOD_BIT(SWITCH_MOD_KEY));
+        switcher_end();
     }
 #endif
     return state;
