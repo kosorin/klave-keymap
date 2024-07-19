@@ -28,6 +28,10 @@
     - B0 Left
     - D5 Right
 
+    Rotary encoders:
+    - F4
+    - F5
+
     */
 
     // Split
