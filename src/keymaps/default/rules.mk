@@ -17,7 +17,6 @@ SECRETS_ENABLE = yes
 GAMING_ENABLE = no
 
 
-
 # Custom SW feature options
 CUSTOM_UNICODE_ENABLE ?= no
 ifeq ($(strip $(CUSTOM_UNICODE_ENABLE)), yes)
@@ -32,7 +31,6 @@ endif
 COURSE_ENABLE ?= no
 ifeq ($(strip $(COURSE_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/features/course.c
-    SRC += $(KEYMAP_PATH)/course.c
     OPT_DEFS += -DCOURSE_ENABLE
 endif
 
@@ -52,11 +50,6 @@ endif
 CAPS_WORD_ENABLE ?= no
 ifeq ($(strip $(CAPS_WORD_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/features/smart_case.c
-endif
-
-DYNAMIC_MACRO_ENABLE ?= no
-ifeq ($(strip $(DYNAMIC_MACRO_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/dyn_macro.c
 endif
 
 TAP_DANCE_ENABLE ?= no
