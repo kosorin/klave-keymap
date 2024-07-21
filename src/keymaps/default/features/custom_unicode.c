@@ -1,7 +1,4 @@
-// qmk_firmware/users/drashna/keyrecords/unicode.md
-
-#include "uc.h"
-#include "keymap.h"
+#include "custom_unicode.h"
 
 #include "quantum.h"
 #include "process_unicode_common.h"
@@ -9,7 +6,7 @@
 #include "progmem.h"
 
 
-uint8_t unicode_typing_mode = UCTM_NONE;
+static uint8_t current_typing_mode = UCTM_NONE;
 
 
 typedef uint32_t (*translator_function_t)(uint32_t keycode, bool is_shifted);
@@ -153,21 +150,8 @@ static bool process_record_unicode_replacement(uint16_t keycode, keyrecord_t *re
     return PROCESS_HANDLED;
 }
 
-bool process_record_unicode(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_UCTM_NONE ... KC_UCTM_NONE + (unicode_typing_modes_COUNT - 1):
-            if (record->event.pressed) {
-                if (unicode_typing_mode != keycode - KC_UCTM_NONE) {
-                    unicode_typing_mode = keycode - KC_UCTM_NONE;
-                }
-                else {
-                    unicode_typing_mode = UCTM_NONE;
-                }
-            }
-            return PROCESS_HANDLED;
-    }
-
-    if (unicode_typing_mode == UCTM_NONE) {
+bool process_record_custom_unicode(uint16_t keycode, keyrecord_t *record) {
+    if (current_typing_mode == UCTM_NONE) {
         return PROCESS_NOT_HANDLED;
     }
 
@@ -190,7 +174,7 @@ bool process_record_unicode(uint16_t keycode, keyrecord_t *record) {
         return PROCESS_NOT_HANDLED;
     }
 
-    switch (unicode_typing_mode) {
+    switch (current_typing_mode) {
         case UCTM_CZECH:
             if ((KC_A <= keycode) && (keycode <= KC_Z)) {
                 return process_record_unicode_replacement(keycode, record, unicode_translator_czech);
@@ -241,4 +225,16 @@ bool process_record_unicode(uint16_t keycode, keyrecord_t *record) {
     }
 
     return PROCESS_NOT_HANDLED;
+}
+
+void set_unicode_typing_mode(uint8_t typing_mode) {
+    if (typing_mode <= 0 || typing_mode >= unicode_typing_modes_COUNT) {
+        clear_unicode_typing_mode();
+        return;
+    }
+    current_typing_mode = typing_mode;
+}
+
+void clear_unicode_typing_mode(void) {
+    current_typing_mode = UCTM_NONE;
 }

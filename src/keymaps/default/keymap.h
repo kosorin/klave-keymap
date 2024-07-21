@@ -3,7 +3,7 @@
 #include "layers.h"
 
 #if defined(CUSTOM_UNICODE_ENABLE)
-    #include "uc.h"
+    #include "features/custom_unicode.h"
 #endif
 #if defined(COMBO_ENABLE)
     #include "combos.h"
@@ -22,18 +22,6 @@
 // Custom keycodes
 enum custom_keycodes {
     custom_keycodes_START = QK_USER,
-
-#if defined(CUSTOM_UNICODE_ENABLE)
-    KC_UCTM_NONE,
-    KC_UCTM_CZECH,
-    KC_UCTM_MATH_SCRIPT,
-    KC_UCTM_MATH_FRAKTUR,
-    KC_UCTM_CIRCLE,
-    KC_UCTM_SQUARE,
-    KC_UCTM_SQUARE_OUTLINE,
-    KC_UCTM_REGIONAL,
-    KC_UCTM_ZALGO,
-#endif
 };
 
 // Layers

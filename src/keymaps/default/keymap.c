@@ -5,7 +5,7 @@
     #include "features/course.h"
 #endif
 #if defined(CUSTOM_UNICODE_ENABLE)
-    #include "uc.h"
+    #include "features/custom_unicode.h"
 #endif
 #if defined(CAPS_WORD_ENABLE)
     #include "smart_case.h"
@@ -183,7 +183,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 #endif
 #if defined(CUSTOM_UNICODE_ENABLE)
-    if (process_record_unicode(keycode, record) == PROCESS_HANDLED) {
+    if (process_record_custom_unicode(keycode, record) == PROCESS_HANDLED) {
         return PROCESS_HANDLED;
     }
 #endif
@@ -226,10 +226,10 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 void oneshot_layer_changed_user(uint8_t layer) {
 #if defined(CUSTOM_UNICODE_ENABLE)
     if (layer == L_CZECH) {
-        unicode_typing_mode = UCTM_CZECH;
+        set_unicode_typing_mode(UCTM_CZECH);
     }
     else {
-        unicode_typing_mode = UCTM_NONE;
+        clear_unicode_typing_mode();
     }
 #endif
 }

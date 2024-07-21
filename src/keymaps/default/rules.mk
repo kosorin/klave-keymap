@@ -21,7 +21,7 @@ GAMING_ENABLE = no
 # Custom SW feature options
 CUSTOM_UNICODE_ENABLE ?= no
 ifeq ($(strip $(CUSTOM_UNICODE_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/uc.c
+    SRC += $(KEYMAP_PATH)/features/custom_unicode.c
     OPT_DEFS += -DCUSTOM_UNICODE_ENABLE
     UNICODE_ENABLE := no
     UNICODEMAP_ENABLE := no

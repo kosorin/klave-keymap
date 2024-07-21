@@ -1,6 +1,6 @@
 #include "features/course.h"
 #if defined(CUSTOM_UNICODE_ENABLE)
-    #include "uc.h"
+    #include "features/custom_unicode.h"
 #endif
 
 #include "quantum.h"
@@ -78,28 +78,28 @@ static DEFINE_COURSE_HANDLER(unicode_mode) {
 static DEFINE_COURSE_HANDLER(unicode_typing_mode) {
     switch (keycode) {
         case KC_M:
-            unicode_typing_mode = UCTM_MATH_SCRIPT;
+            set_unicode_typing_mode(UCTM_MATH_SCRIPT);
             return course_done();
         case KC_N:
-            unicode_typing_mode = UCTM_MATH_FRAKTUR;
+            set_unicode_typing_mode(UCTM_MATH_FRAKTUR);
             return course_done();
         case KC_C:
-            unicode_typing_mode = UCTM_CIRCLE;
+            set_unicode_typing_mode(UCTM_CIRCLE);
             return course_done();
         case KC_S:
-            unicode_typing_mode = UCTM_SQUARE;
+            set_unicode_typing_mode(UCTM_SQUARE);
             return course_done();
         case KC_T:
-            unicode_typing_mode = UCTM_SQUARE_OUTLINE;
+            set_unicode_typing_mode(UCTM_SQUARE_OUTLINE);
             return course_done();
         case KC_R:
-            unicode_typing_mode = UCTM_REGIONAL;
+            set_unicode_typing_mode(UCTM_REGIONAL);
             return course_done();
         case KC_Z:
-            unicode_typing_mode = UCTM_ZALGO;
+            set_unicode_typing_mode(UCTM_ZALGO);
             return course_done();
         case KC_F:
-            unicode_typing_mode = UCTM_NONE;
+            clear_unicode_typing_mode();
             return course_done();
         default:
             return course_bad_key();
