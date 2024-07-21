@@ -1,5 +1,5 @@
 #include QMK_KEYBOARD_H
-#include "def.h"
+#include "keymap.h"
 
 #if defined(COURSE_ENABLE)
     #include "features/course.h"

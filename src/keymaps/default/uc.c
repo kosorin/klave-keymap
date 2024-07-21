@@ -1,7 +1,7 @@
 // qmk_firmware/users/drashna/keyrecords/unicode.md
 
 #include "uc.h"
-#include "def.h"
+#include "keymap.h"
 
 #include "quantum.h"
 #include "process_unicode_common.h"
