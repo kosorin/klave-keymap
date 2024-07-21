@@ -34,12 +34,6 @@ enum custom_keycodes {
     KC_UCTM_REGIONAL,
     KC_UCTM_ZALGO,
 #endif
-
-#if defined(SWITCHER_ENABLE)
-    SWITCH,
-#else
-    #define SWITCH KC_NO
-#endif
 };
 
 // Layers

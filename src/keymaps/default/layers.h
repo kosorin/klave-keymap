@@ -7,9 +7,6 @@ enum layers {
 #endif
     L_SYMBOL,
     L_FUNCTION,
-#if defined(SWITCHER_ENABLE)
-    L_SWITCH,
-#endif
     L_MEDIA,
     L_NUMBER,
     L_NUMBER_SYMBOL,

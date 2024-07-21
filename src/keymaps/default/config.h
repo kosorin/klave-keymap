@@ -6,9 +6,6 @@
 // Handedness
 #define EE_HANDS
 
-// [custom] Switcher
-#define SWITCH_MOD_KEY KC_LALT
-
 // [custom] Compose
 #define COMPOSE_KEY KC_APP
 

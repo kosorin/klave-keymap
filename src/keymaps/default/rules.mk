@@ -11,7 +11,6 @@ SWAP_HANDS_ENABLE = no
 TAP_DANCE_ENABLE = yes
 
 # Custom SW feature options
-SWITCHER_ENABLE = yes
 CUSTOM_UNICODE_ENABLE = yes
 COURSE_ENABLE = yes
 SECRETS_ENABLE = yes
@@ -20,12 +19,6 @@ GAMING_ENABLE = no
 
 
 # Custom SW feature options
-SWITCHER_ENABLE ?= no
-ifeq ($(strip $(SWITCHER_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/switcher.c
-    OPT_DEFS += -DSWITCHER_ENABLE
-endif
-
 CUSTOM_UNICODE_ENABLE ?= no
 ifeq ($(strip $(CUSTOM_UNICODE_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/uc.c
