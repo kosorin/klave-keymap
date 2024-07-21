@@ -51,7 +51,7 @@ endif
 # SW feature options
 CAPS_WORD_ENABLE ?= no
 ifeq ($(strip $(CAPS_WORD_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/smart_case.c
+    SRC += $(KEYMAP_PATH)/features/smart_case.c
 endif
 
 DYNAMIC_MACRO_ENABLE ?= no

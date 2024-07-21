@@ -8,7 +8,7 @@
     #include "features/custom_unicode.h"
 #endif
 #if defined(CAPS_WORD_ENABLE)
-    #include "smart_case.h"
+    #include "features/smart_case.h"
 #endif
 #if defined(SECRETS_ENABLE)
     #include "secrets.h"
@@ -247,8 +247,8 @@ const uint16_t combo_SAVE[] PROGMEM = { HRK_L3, HRK_L2, COMBO_END };
 const uint16_t combo_FIND[] PROGMEM = { KC_W, KC_F, COMBO_END };
 const uint16_t combo_CAPS_LOCK[] PROGMEM = { KC_P, KC_M, COMBO_END };
 #if defined(CAPS_WORD_ENABLE)
-const uint16_t combo_CAPS_WORD[] PROGMEM = { HRK_L1, HRK_R1, COMBO_END };
-const uint16_t combo_MOCKING_CASE[] PROGMEM = { HRK_L1, HRK_R1, KC_F, KC_U, COMBO_END };
+const uint16_t combo_SMART_CASE_CAPS_WORD[] PROGMEM = { HRK_L1, HRK_R1, COMBO_END };
+const uint16_t combo_SMART_CASE_MOCKING[] PROGMEM = { HRK_L1, HRK_R1, KC_F, KC_U, COMBO_END };
 #endif
 
 combo_t key_combos[] = {
@@ -257,33 +257,24 @@ combo_t key_combos[] = {
     [C_FIND] = COMBO(combo_FIND, C(KC_F)),
     [C_CAPS_LOCK] = COMBO(combo_CAPS_LOCK, KC_CAPS_LOCK),
 #if defined(CAPS_WORD_ENABLE)
-    [C_CAPS_WORD] = COMBO_ACTION(combo_CAPS_WORD),
-    [C_MOCKING_CASE] = COMBO_ACTION(combo_MOCKING_CASE),
+    [C_SMART_CASE_CAPS_WORD] = COMBO_ACTION(combo_SMART_CASE_CAPS_WORD),
+    [C_SMART_CASE_MOCKING] = COMBO_ACTION(combo_SMART_CASE_MOCKING),
 #endif
 };
-
-#if defined(CAPS_WORD_ENABLE)
-static void caps_word_toggle_combo(uint16_t combo_index) {
-    switch (combo_index) {
-        case C_MOCKING_CASE:
-            smart_case = (smart_case_t){ .type = SC_MOCKING, .mocking = { .upper_case = false, }, };
-            break;
-        case C_CAPS_WORD:
-        default:
-            smart_case = (smart_case_t){ .type = SC_CAPS_WORD, };
-            break;
-    }
-    caps_word_toggle();
-}
-#endif
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
     switch (combo_index) {
 #if defined(CAPS_WORD_ENABLE)
-        case C_CAPS_WORD:
-        case C_MOCKING_CASE:
+        case C_SMART_CASE_CAPS_WORD:
             if (pressed) {
-                caps_word_toggle_combo(combo_index);
+                caps_word_toggle();
+                set_smart_case(SC_CAPS_WORD);
+            }
+            break;
+        case C_SMART_CASE_MOCKING:
+            if (pressed) {
+                caps_word_toggle();
+                set_smart_case(SC_MOCKING);
             }
             break;
 #endif
@@ -401,5 +392,29 @@ tap_dance_action_t tap_dance_actions[] = {
 #endif
     [TD_DECIMAL_POINT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COMMA),
 };
+
+#endif
+
+
+// ========================================================================== //
+// Caps Word & Smart Case
+// ========================================================================== //
+#if defined(CAPS_WORD_ENABLE)
+
+void caps_word_set_user(bool active) {
+    clear_smart_case();
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (smart_case_press(keycode)) {
+        case SCR_LOWER:
+            return true;
+        case SCR_UPPER:
+            add_weak_mods(MOD_BIT(KC_LSFT));
+            return true;
+        default:
+            return false;
+    }
+}
 
 #endif
