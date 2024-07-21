@@ -2,16 +2,6 @@
 
 #include "layers.h"
 
-#if defined(CUSTOM_UNICODE_ENABLE)
-    #include "features/custom_unicode.h"
-#endif
-#if defined(COMBO_ENABLE)
-    #include "combos.h"
-#endif
-#if defined(TAP_DANCE_ENABLE)
-    #include "tap_dance.h"
-#endif
-
 #include "keycode.h"
 #include "quantum_keycodes.h"
 
@@ -22,6 +12,7 @@
 // Custom keycodes
 enum custom_keycodes {
     custom_keycodes_START = QK_USER,
+    custom_keycodes_END,
 };
 
 // Layers
