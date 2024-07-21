@@ -264,7 +264,7 @@ combo_t key_combos[] = {
 
 #if defined(CAPS_WORD_ENABLE)
 static void caps_word_toggle_combo(uint16_t combo_index) {
-    switch(combo_index) {
+    switch (combo_index) {
         case C_MOCKING_CASE:
             smart_case = (smart_case_t){ .type = SC_MOCKING, .mocking = { .upper_case = false, }, };
             break;
@@ -278,7 +278,7 @@ static void caps_word_toggle_combo(uint16_t combo_index) {
 #endif
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
-    switch(combo_index) {
+    switch (combo_index) {
 #if defined(CAPS_WORD_ENABLE)
         case C_CAPS_WORD:
         case C_MOCKING_CASE:
