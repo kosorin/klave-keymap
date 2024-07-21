@@ -20,7 +20,8 @@
     #include "combos.h"
 #endif
 #if defined(TAP_DANCE_ENABLE)
-    #include "tap_dances.h"
+    #include "features/tap_dance.h"
+    #include "tap_dance.h"
 #endif
 
 #include "quantum.h"
@@ -367,16 +368,16 @@ bool get_combo_must_tap(uint16_t combo_index, combo_t *combo) {
 // ========================================================================== //
 #if defined(TAP_DANCE_ENABLE)
 
-static td_context_t td_context = {
-    .state = TDS_NONE,
+static tap_dance_context_t td_context = {
+    .result = TDS_NONE,
 };
 
 
 #if defined(COURSE_ENABLE)
 
 static void finished_system_course(tap_dance_state_t *state, void *user_data) {
-    td_context.state = tap_dance_state(state, false);
-    switch (td_context.state) {
+    td_context.result = get_tap_dance_result(state, false);
+    switch (td_context.result) {
         case TDS_SINGLE_TAP:
             course_start(COURSE_HANDLER(main));
             break;
@@ -394,14 +395,14 @@ static void finished_system_course(tap_dance_state_t *state, void *user_data) {
 }
 
 static void reset_system_course(tap_dance_state_t *state, void *user_data) {
-    switch (td_context.state) {
+    switch (td_context.result) {
         case TDS_SINGLE_HOLD:
             layer_off(L_SYSTEM);
             break;
         default:
             break;
     }
-    td_context.state = TDS_NONE;
+    td_context.result = TDS_NONE;
 }
 
 #endif
@@ -409,43 +410,23 @@ static void reset_system_course(tap_dance_state_t *state, void *user_data) {
 
 tap_dance_action_t tap_dance_actions[] = {
 #if defined(SECRETS_ENABLE)
-    [TD_SECRET1] = TD_SECRET1_ACTION,
-    [TD_SECRET2] = TD_SECRET2_ACTION,
-    [TD_SECRET3] = TD_SECRET3_ACTION,
-    [TD_SECRET4] = TD_SECRET4_ACTION,
-    [TD_SECRET5] = TD_SECRET5_ACTION,
-    [TD_SECRET6] = TD_SECRET6_ACTION,
-    [TD_SECRET7] = TD_SECRET7_ACTION,
-    [TD_SECRET8] = TD_SECRET8_ACTION,
-    [TD_SECRET9] = TD_SECRET9_ACTION,
-    [TD_SECRET10] = TD_SECRET10_ACTION,
-    [TD_SECRET11] = TD_SECRET11_ACTION,
-    [TD_SECRET12] = TD_SECRET12_ACTION,
+    [TD_SECRET1] = TDA_SECRET1,
+    [TD_SECRET2] = TDA_SECRET2,
+    [TD_SECRET3] = TDA_SECRET3,
+    [TD_SECRET4] = TDA_SECRET4,
+    [TD_SECRET5] = TDA_SECRET5,
+    [TD_SECRET6] = TDA_SECRET6,
+    [TD_SECRET7] = TDA_SECRET7,
+    [TD_SECRET8] = TDA_SECRET8,
+    [TD_SECRET9] = TDA_SECRET9,
+    [TD_SECRET10] = TDA_SECRET10,
+    [TD_SECRET11] = TDA_SECRET11,
+    [TD_SECRET12] = TDA_SECRET12,
 #endif
 #if defined(COURSE_ENABLE)
     [TD_SYSTEM_COURSE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, finished_system_course, reset_system_course),
 #endif
     [TD_DECIMAL_POINT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COMMA),
 };
-
-
-td_state_t tap_dance_state(tap_dance_state_t *state, bool interrupt_tap) {
-    if (state->count == 1) {
-        return state->pressed && (!interrupt_tap || !state->interrupted)
-            ? TDS_SINGLE_HOLD
-            : TDS_SINGLE_TAP;
-    }
-    else if (state->count == 2) {
-        return state->pressed && (!interrupt_tap || !state->interrupted)
-            ? TDS_DOUBLE_HOLD
-            : TDS_DOUBLE_TAP;
-    }
-    else if (state->count == 3) {
-        return state->pressed && (!interrupt_tap || !state->interrupted)
-            ? TDS_TRIPLE_HOLD
-            : TDS_TRIPLE_TAP;
-    }
-    return TDS_UNKNOWN;
-}
 
 #endif

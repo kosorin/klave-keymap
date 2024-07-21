@@ -66,6 +66,11 @@ ifeq ($(strip $(DYNAMIC_MACRO_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/dyn_macro.c
 endif
 
+TAP_DANCE_ENABLE ?= no
+ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
+    SRC += $(KEYMAP_PATH)/features/tap_dance.c
+endif
+
 
 # Other definitions
 OPT_DEFS += -DPROCESS_HANDLED=false -DPROCESS_NOT_HANDLED=true
