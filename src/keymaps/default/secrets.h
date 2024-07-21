@@ -1,0 +1,33 @@
+#pragma once
+
+#include <stdint.h>
+#include "action.h"
+
+
+#if defined(COURSE_ENABLE)
+#include "features/course.h"
+
+DEFINE_COURSE_HANDLER(secret);
+
+#endif
+
+
+#if defined(TAP_DANCE_ENABLE)
+#include "process_tap_dance.h"
+
+#define ACTION_TAP_DANCE_NOP { .fn = { NULL, NULL, NULL }, .user_data = NULL, }
+
+#define TDA_SECRET1 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET2 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET3 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET4 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET5 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET6 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET7 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET8 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET9 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET10 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET11 ACTION_TAP_DANCE_NOP
+#define TDA_SECRET12 ACTION_TAP_DANCE_NOP
+
+#endif
