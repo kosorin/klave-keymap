@@ -19,8 +19,8 @@ enum tap_dances {
     TD_SECRET11,
     TD_SECRET12,
 #endif
-#if defined(KEY_CHAIN_ENABLE)
-    TD_SYSTEM_KEY_CHAIN,
+#if defined(COURSE_ENABLE)
+    TD_SYSTEM_COURSE,
 #endif
     TD_DECIMAL_POINT,
 };

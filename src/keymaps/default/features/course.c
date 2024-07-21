@@ -1,13 +1,13 @@
-#include "features/key_chain.h"
+#include "features/course.h"
 #include "promicro_led.h"
 
 #include "quantum.h"
 
 
-static key_chain_handler_t next_handler = NULL;
+static course_handler_t next_handler = NULL;
 
 
-bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
+bool process_course(uint16_t keycode, const keyrecord_t *record) {
     if (next_handler) {
         if (record->event.pressed) {
             switch (keycode) {
@@ -31,9 +31,9 @@ bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
 
-#if defined(KEY_CHAIN_CANCEL_KEY)
-            if (keycode == KEY_CHAIN_CANCEL_KEY) {
-                key_chain_stop();
+#if defined(COURSE_CANCEL_KEY)
+            if (keycode == COURSE_CANCEL_KEY) {
+                course_stop();
                 return PROCESS_HANDLED;
             }
 #endif
@@ -50,53 +50,53 @@ bool process_key_chain(uint16_t keycode, const keyrecord_t *record) {
     return PROCESS_NOT_HANDLED;
 }
 
-bool is_key_chain_active(void) {
+bool is_course_active(void) {
     return next_handler != NULL;
 }
 
-void key_chain_start(key_chain_handler_t handler) {
+void course_start(course_handler_t handler) {
     led_blink_start();
 
-    next_handler = handler != NULL ? handler : KEY_CHAIN_HANDLER(main);
+    next_handler = handler != NULL ? handler : COURSE_HANDLER(main);
 }
 
-void key_chain_stop(void) {
-    if (is_key_chain_active()) {
+void course_stop(void) {
+    if (is_course_active()) {
         led_blink_cancel();
     }
 
     next_handler = NULL;
 }
 
-key_chain_handler_t key_chain_done(void) {
+course_handler_t course_done(void) {
     led_blink_end();
     return NULL;
 }
 
-key_chain_handler_t key_chain_cancel(void) {
+course_handler_t course_cancel(void) {
     led_blink_cancel();
     return NULL;
 }
 
-#if defined(KEY_CHAIN_CANCEL_KEY)
-static DEFINE_KEY_CHAIN_HANDLER(bad_key) {
-    return key_chain_bad_key();
+#if defined(COURSE_CANCEL_KEY)
+static DEFINE_COURSE_HANDLER(bad_key) {
+    return course_bad_key();
 }
 #endif
 
-key_chain_handler_t key_chain_bad_key(void) {
-#if defined(KEY_CHAIN_CANCEL_KEY)
+course_handler_t course_bad_key(void) {
+#if defined(COURSE_CANCEL_KEY)
     led_blink_error();
-    return KEY_CHAIN_HANDLER(bad_key);
+    return COURSE_HANDLER(bad_key);
 #else
-    return key_chain_cancel();
+    return course_cancel();
 #endif
 }
 
-key_chain_handler_t key_chain_again(void) {
+course_handler_t course_again(void) {
     return next_handler;
 }
 
-__attribute__((weak)) DEFINE_KEY_CHAIN_HANDLER(main) {
-    return key_chain_bad_key();
+__attribute__((weak)) DEFINE_COURSE_HANDLER(main) {
+    return course_bad_key();
 }

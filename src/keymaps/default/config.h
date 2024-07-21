@@ -12,9 +12,9 @@
 // [custom] Compose
 #define COMPOSE_KEY KC_APP
 
-// [custom] Key chain
-#define KEY_CHAIN_CANCEL_KEY KC_ESC
-#define KEY_CHAIN_TAPPING_TERM 500
+// [custom] Course
+#define COURSE_CANCEL_KEY KC_ESC
+#define COURSE_TAPPING_TERM 500
 
 // Console (debugging)
 #if defined(CONSOLE_ENABLE)

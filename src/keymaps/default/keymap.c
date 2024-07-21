@@ -1,8 +1,8 @@
 #include QMK_KEYBOARD_H
 #include "def.h"
 
-#if defined(KEY_CHAIN_ENABLE)
-    #include "features/key_chain.h"
+#if defined(COURSE_ENABLE)
+    #include "features/course.h"
 #endif
 #if defined(SWITCHER_ENABLE)
     #include "switcher.h"
@@ -192,8 +192,8 @@ void matrix_scan_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-#if defined(KEY_CHAIN_ENABLE)
-    if (process_key_chain(keycode, record) == PROCESS_HANDLED) {
+#if defined(COURSE_ENABLE)
+    if (process_course(keycode, record) == PROCESS_HANDLED) {
         return PROCESS_HANDLED;
     }
 #endif
@@ -230,9 +230,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #if defined(TAPPING_TERM_PER_KEY)
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-#if defined(KEY_CHAIN_ENABLE) && defined(TAP_DANCE_ENABLE)
-        case TD(TD_SYSTEM_KEY_CHAIN):
-            return KEY_CHAIN_TAPPING_TERM;
+#if defined(COURSE_ENABLE) && defined(TAP_DANCE_ENABLE)
+        case TD(TD_SYSTEM_COURSE):
+            return COURSE_TAPPING_TERM;
 #endif
         default:
             return TAPPING_TERM;
@@ -372,17 +372,17 @@ static td_context_t td_context = {
 };
 
 
-#if defined(KEY_CHAIN_ENABLE)
+#if defined(COURSE_ENABLE)
 
-static void finished_system_key_chain(tap_dance_state_t *state, void *user_data) {
+static void finished_system_course(tap_dance_state_t *state, void *user_data) {
     td_context.state = tap_dance_state(state, false);
     switch (td_context.state) {
         case TDS_SINGLE_TAP:
-            key_chain_start(KEY_CHAIN_HANDLER(main));
+            course_start(COURSE_HANDLER(main));
             break;
 #if defined(SECRETS_ENABLE)
         case TDS_DOUBLE_TAP:
-            key_chain_start(KEY_CHAIN_HANDLER(secret));
+            course_start(COURSE_HANDLER(secret));
             break;
 #endif
         case TDS_SINGLE_HOLD:
@@ -393,7 +393,7 @@ static void finished_system_key_chain(tap_dance_state_t *state, void *user_data)
     }
 }
 
-static void reset_system_key_chain(tap_dance_state_t *state, void *user_data) {
+static void reset_system_course(tap_dance_state_t *state, void *user_data) {
     switch (td_context.state) {
         case TDS_SINGLE_HOLD:
             layer_off(L_SYSTEM);
@@ -422,8 +422,8 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_SECRET11] = TD_SECRET11_ACTION,
     [TD_SECRET12] = TD_SECRET12_ACTION,
 #endif
-#if defined(KEY_CHAIN_ENABLE)
-    [TD_SYSTEM_KEY_CHAIN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, finished_system_key_chain, reset_system_key_chain),
+#if defined(COURSE_ENABLE)
+    [TD_SYSTEM_COURSE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, finished_system_course, reset_system_course),
 #endif
     [TD_DECIMAL_POINT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COMMA),
 };

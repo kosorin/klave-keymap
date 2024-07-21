@@ -57,10 +57,10 @@ enum custom_keycodes {
     KC_UCTM_ZALGO,
 #endif
 
-#if defined(KEY_CHAIN_ENABLE)
-    KEY_CHAIN,
+#if defined(COURSE_ENABLE)
+    COURSE,
 #else
-    #define KEY_CHAIN KC_NO
+    #define COURSE KC_NO
 #endif
 
 #if defined(SWITCHER_ENABLE)
@@ -127,8 +127,8 @@ enum custom_keycodes {
 #endif
 
 // System
-#if defined(KEY_CHAIN_ENABLE) && defined(TAP_DANCE_ENABLE)
-    #define CK_SYST TD(TD_SYSTEM_KEY_CHAIN)
+#if defined(COURSE_ENABLE) && defined(TAP_DANCE_ENABLE)
+    #define CK_SYST TD(TD_SYSTEM_COURSE)
 #else
     #define CK_SYST MO(L_SYSTEM)
 #endif

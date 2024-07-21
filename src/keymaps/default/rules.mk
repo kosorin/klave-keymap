@@ -13,7 +13,7 @@ TAP_DANCE_ENABLE = yes
 # Custom SW feature options
 SWITCHER_ENABLE = yes
 CUSTOM_UNICODE_ENABLE = yes
-KEY_CHAIN_ENABLE = yes
+COURSE_ENABLE = yes
 SECRETS_ENABLE = yes
 GAMING_ENABLE = no
 
@@ -36,11 +36,11 @@ ifeq ($(strip $(CUSTOM_UNICODE_ENABLE)), yes)
     UNICODE_COMMON := yes
 endif
 
-KEY_CHAIN_ENABLE ?= no
-ifeq ($(strip $(KEY_CHAIN_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/features/key_chain.c
-    SRC += $(KEYMAP_PATH)/key_chain.c
-    OPT_DEFS += -DKEY_CHAIN_ENABLE
+COURSE_ENABLE ?= no
+ifeq ($(strip $(COURSE_ENABLE)), yes)
+    SRC += $(KEYMAP_PATH)/features/course.c
+    SRC += $(KEYMAP_PATH)/course.c
+    OPT_DEFS += -DCOURSE_ENABLE
 endif
 
 SECRETS_ENABLE ?= no
