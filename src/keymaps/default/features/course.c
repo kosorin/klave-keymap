@@ -1,4 +1,4 @@
-#include "features/course.h"
+#include "course.h"
 #include "promicro_led.h"
 
 #include "quantum.h"
