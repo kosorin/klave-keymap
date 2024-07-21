@@ -3,7 +3,9 @@
 #include <stdint.h>
 #include "action.h"
 
-
+// ========================================================================== //
+// Course
+// ========================================================================== //
 #if defined(COURSE_ENABLE)
 #include "features/course.h"
 
@@ -11,11 +13,13 @@ DEFINE_COURSE_HANDLER(secret);
 
 #endif
 
-
+// ========================================================================== //
+// Tap Dance
+// ========================================================================== //
 #if defined(TAP_DANCE_ENABLE)
 #include "process_tap_dance.h"
 
-#define ACTION_TAP_DANCE_NOP { .fn = { NULL, NULL, NULL }, .user_data = NULL, }
+#define ACTION_TAP_DANCE_NOP { .fn = { NULL, NULL, NULL }, .user_data = NULL }
 
 #define TDA_SECRET1 ACTION_TAP_DANCE_NOP
 #define TDA_SECRET2 ACTION_TAP_DANCE_NOP

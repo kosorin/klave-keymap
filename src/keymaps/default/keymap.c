@@ -12,7 +12,7 @@
     #include "features/smart_case.h"
 #endif
 #if defined(SECRETS_ENABLE)
-    #include "secrets.h"
+    #include "keymap_secrets.h"
 #endif
 #if defined(COMBO_ENABLE)
     #include "combos.h"

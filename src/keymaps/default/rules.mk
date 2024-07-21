@@ -36,7 +36,7 @@ endif
 
 SECRETS_ENABLE ?= no
 ifeq ($(strip $(SECRETS_ENABLE)), yes)
-    SRC += $(KEYMAP_PATH)/secrets.c
+    SRC += $(KEYMAP_PATH)/keymap_secrets.c
     OPT_DEFS += -DSECRETS_ENABLE
 endif
 
