@@ -1,7 +1,6 @@
 #include "promicro_led.h"
 #include "wait.h"
 
-
 void led_init(void) {
     gpio_set_pin_output_push_pull(B0);
     gpio_set_pin_output_push_pull(D5);

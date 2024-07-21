@@ -1,23 +1,22 @@
-# Base SW feature options
-CONSOLE_ENABLE = no
+# QMK features
 EXTRAKEY_ENABLE = yes
 MOUSEKEY_ENABLE = no
-
-# SW feature options
 CAPS_WORD_ENABLE = yes
 COMBO_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 SWAP_HANDS_ENABLE = no
 TAP_DANCE_ENABLE = yes
 
-# Custom SW feature options
+# Custom features
 CUSTOM_UNICODE_ENABLE = yes
 COURSE_ENABLE = yes
 SECRETS_ENABLE = yes
 GAMING_ENABLE = no
 
+# Other definitions
+OPT_DEFS += -DPROCESS_HANDLED=false -DPROCESS_NOT_HANDLED=true
 
-# Custom SW feature options
+# Configure all features
 CUSTOM_UNICODE_ENABLE ?= no
 ifeq ($(strip $(CUSTOM_UNICODE_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/features/custom_unicode.c
@@ -45,8 +44,6 @@ ifeq ($(strip $(GAMING_ENABLE)), yes)
     OPT_DEFS += -DGAMING_ENABLE
 endif
 
-
-# SW feature options
 CAPS_WORD_ENABLE ?= no
 ifeq ($(strip $(CAPS_WORD_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/features/smart_case.c
@@ -56,7 +53,3 @@ TAP_DANCE_ENABLE ?= no
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
     SRC += $(KEYMAP_PATH)/features/tap_dance.c
 endif
-
-
-# Other definitions
-OPT_DEFS += -DPROCESS_HANDLED=false -DPROCESS_NOT_HANDLED=true

@@ -1,15 +1,80 @@
 #pragma once
 
-#include "layers.h"
-
-#include "keycode.h"
+#include "keycodes.h"
 #include "quantum_keycodes.h"
 
 #define ___V___ KC_TRANSPARENT
 #define ___T___ KC_TRANSPARENT
 
+// ========================================================================== //
+// Layers
+// ========================================================================== //
+enum layers {
+    L_BASE,
+#if defined(CUSTOM_UNICODE_ENABLE)
+    L_CZECH,
+#endif
+    L_SYMBOL,
+    L_FUNCTION,
+    L_MEDIA,
+    L_NUMBER,
+    L_NUMBER_SYMBOL,
+    L_NAVIGATION,
+    L_SYSTEM,
+#if defined(GAMING_ENABLE)
+    L_GAME,
+    L_GAME_EXTENDED,
+#endif
+    layers_COUNT,
+};
 
-// Custom keycodes
+// ========================================================================== //
+// Combos
+// ========================================================================== //
+#if defined(COMBO_ENABLE)
+enum combos {
+    C_COPY,
+    C_SAVE,
+    C_FIND,
+    C_CAPS_LOCK,
+#if defined(CAPS_WORD_ENABLE)
+    C_SMART_CASE_CAPS_WORD,
+    C_SMART_CASE_MOCKING,
+#endif
+    combos_COUNT,
+};
+#endif
+
+// ========================================================================== //
+// Tap Dance
+// ========================================================================== //
+#if defined(TAP_DANCE_ENABLE)
+enum tap_dance {
+#if defined(SECRETS_ENABLE)
+    TD_SECRET1,
+    TD_SECRET2,
+    TD_SECRET3,
+    TD_SECRET4,
+    TD_SECRET5,
+    TD_SECRET6,
+    TD_SECRET7,
+    TD_SECRET8,
+    TD_SECRET9,
+    TD_SECRET10,
+    TD_SECRET11,
+    TD_SECRET12,
+#endif
+#if defined(COURSE_ENABLE)
+    TD_SYSTEM_COURSE,
+#endif
+    TD_DECIMAL_POINT,
+    tap_dance_COUNT,
+};
+#endif
+
+// ========================================================================== //
+// Custom Keycodes
+// ========================================================================== //
 enum custom_keycodes {
     custom_keycodes_START = QK_USER,
     custom_keycodes_END,
@@ -37,7 +102,7 @@ _Static_assert((uint16_t)custom_keycodes_END - 1 < (uint16_t)QK_USER_MAX + 1, "T
     #define OSL_CZE KC_NO
 #endif
 
-// Tap dance
+// Tap Dance
 #if defined(TAP_DANCE_ENABLE)
     #define CK_DECP TD(TD_DECIMAL_POINT)
 #else
@@ -88,13 +153,13 @@ _Static_assert((uint16_t)custom_keycodes_END - 1 < (uint16_t)QK_USER_MAX + 1, "T
     #define CK_GON KC_NO
 #endif
 
-// Home row keys - left
+// Home Row Mod - left
 #define HRK_L4 GUI_T(KC_A)
 #define HRK_L3 ALT_T(KC_R)
 #define HRK_L2 CTL_T(KC_S)
 #define HRK_L1 SFT_T(KC_T)
 
-// Home row keys - right
+// Home Row Mod - right
 #define HRK_R1 SFT_T(KC_N)
 #define HRK_R2 CTL_T(KC_E)
 #define HRK_R3 ALT_T(KC_I)

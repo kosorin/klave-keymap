@@ -1,9 +1,8 @@
 #pragma once
 
+#include "gpio.h"
 #include <stdbool.h>
 #include <stdint.h>
-#include "gpio.h"
-
 
 void led_init(void);
 

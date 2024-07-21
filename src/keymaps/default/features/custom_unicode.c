@@ -1,5 +1,4 @@
 #include "custom_unicode.h"
-
 #include "quantum.h"
 #include "process_unicode_common.h"
 #include "unicode.h"

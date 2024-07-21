@@ -1,5 +1,4 @@
 #include "smart_case.h"
-
 #include "action_util.h"
 #include "keycode.h"
 #include "quantum_keycodes.h"

@@ -1,7 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "keymap.h"
 #include "promicro_led.h"
-
+#include "quantum.h"
 #if defined(COURSE_ENABLE)
     #include "features/course.h"
 #endif
@@ -11,18 +11,12 @@
 #if defined(CAPS_WORD_ENABLE)
     #include "features/smart_case.h"
 #endif
+#if defined(TAP_DANCE_ENABLE)
+    #include "features/tap_dance.h"
+#endif
 #if defined(SECRETS_ENABLE)
     #include "keymap_secrets.h"
 #endif
-#if defined(COMBO_ENABLE)
-    #include "combos.h"
-#endif
-#if defined(TAP_DANCE_ENABLE)
-    #include "features/tap_dance.h"
-    #include "tap_dance.h"
-#endif
-
-#include "quantum.h"
 
 
 // ========================================================================== //
@@ -50,7 +44,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    _______,    _______,    _______,    _______,    _______,    _______,                /**/                _______,    _______,    _______,    _______,    _______,    _______,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                _______,    _______,    /**/    _______,    _______,                                                                    /**/
-    /**/                            _______,    _______,    _______,    _______,    _______,    /**/    _______,    _______,    _______,    _______,    _______                                 /**/
+    /**/                            _______,    _______,    _______,    _______,    _______,    /**/    _______,    _______,    _______,    ___V___,    _______                                 /**/
     /*                                                                                                                                                                                            */
     ),
 #endif
@@ -157,26 +151,6 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
 #endif
 };
 
-uint16_t keycode_config(uint16_t keycode) {
-    return keycode;
-}
-
-
-void eeconfig_init_user(void) {
-}
-
-void keyboard_pre_init_user(void) {
-}
-
-void keyboard_post_init_user(void) {
-#if defined(CONSOLE_ENABLE) && !defined(NO_DEBUG)
-    debug_enable = true;
-#endif
-}
-
-void matrix_scan_user(void) {
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #if defined(COURSE_ENABLE)
     if (process_course(keycode, record) == PROCESS_HANDLED) {
@@ -191,8 +165,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return PROCESS_NOT_HANDLED;
 }
 
-void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+// ========================================================================== //
+// Initialization
+// ========================================================================== //
+
+void keyboard_post_init_user(void) {
+#if defined(CONSOLE_ENABLE) && !defined(NO_DEBUG)
+    debug_enable = true;
+#endif
 }
+
+
+// ========================================================================== //
+// Layers
+// ========================================================================== //
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     return state;
@@ -201,6 +188,11 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
+
+
+// ========================================================================== //
+// Tapping
+// ========================================================================== //
 
 #if defined(TAPPING_TERM_PER_KEY)
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -224,6 +216,11 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 }
 #endif
 
+
+// ========================================================================== //
+// One Shot
+// ========================================================================== //
+
 void oneshot_layer_changed_user(uint8_t layer) {
 #if defined(CUSTOM_UNICODE_ENABLE)
     if (layer == L_CZECH) {
@@ -240,8 +237,6 @@ void oneshot_layer_changed_user(uint8_t layer) {
 // Combos
 // ========================================================================== //
 #if defined(COMBO_ENABLE)
-
-uint16_t COMBO_LEN = combos_COUNT;
 
 const uint16_t combo_COPY[] PROGMEM = { KC_X, KC_C, COMBO_END };
 const uint16_t combo_SAVE[] PROGMEM = { HRK_L3, HRK_L2, COMBO_END };
