@@ -35,12 +35,6 @@ enum custom_keycodes {
     KC_UCTM_ZALGO,
 #endif
 
-#if defined(COURSE_ENABLE)
-    COURSE,
-#else
-    #define COURSE KC_NO
-#endif
-
 #if defined(SWITCHER_ENABLE)
     SWITCH,
 #else
