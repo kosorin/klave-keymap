@@ -241,7 +241,7 @@ void oneshot_layer_changed_user(uint8_t layer) {
 // ========================================================================== //
 #if defined(COMBO_ENABLE)
 
-uint16_t COMBO_LEN = combo_events_COUNT;
+uint16_t COMBO_LEN = combos_COUNT;
 
 const uint16_t combo_COPY[] PROGMEM = { KC_X, KC_C, COMBO_END };
 const uint16_t combo_SAVE[] PROGMEM = { HRK_L3, HRK_L2, COMBO_END };
@@ -375,18 +375,18 @@ static void reset_system_course(tap_dance_state_t *state, void *user_data) {
 
 tap_dance_action_t tap_dance_actions[] = {
 #if defined(SECRETS_ENABLE)
-    [TD_SECRET1] = TDA_SECRET1,
-    [TD_SECRET2] = TDA_SECRET2,
-    [TD_SECRET3] = TDA_SECRET3,
-    [TD_SECRET4] = TDA_SECRET4,
-    [TD_SECRET5] = TDA_SECRET5,
-    [TD_SECRET6] = TDA_SECRET6,
-    [TD_SECRET7] = TDA_SECRET7,
-    [TD_SECRET8] = TDA_SECRET8,
-    [TD_SECRET9] = TDA_SECRET9,
-    [TD_SECRET10] = TDA_SECRET10,
-    [TD_SECRET11] = TDA_SECRET11,
-    [TD_SECRET12] = TDA_SECRET12,
+    [TD_SECRET1] = ACTION_TAP_DANCE_FN(tap_dance_secret1),
+    [TD_SECRET2] = ACTION_TAP_DANCE_FN(tap_dance_secret2),
+    [TD_SECRET3] = ACTION_TAP_DANCE_FN(tap_dance_secret3),
+    [TD_SECRET4] = ACTION_TAP_DANCE_FN(tap_dance_secret4),
+    [TD_SECRET5] = ACTION_TAP_DANCE_FN(tap_dance_secret5),
+    [TD_SECRET6] = ACTION_TAP_DANCE_FN(tap_dance_secret6),
+    [TD_SECRET7] = ACTION_TAP_DANCE_FN(tap_dance_secret7),
+    [TD_SECRET8] = ACTION_TAP_DANCE_FN(tap_dance_secret8),
+    [TD_SECRET9] = ACTION_TAP_DANCE_FN(tap_dance_secret9),
+    [TD_SECRET10] = ACTION_TAP_DANCE_FN(tap_dance_secret10),
+    [TD_SECRET11] = ACTION_TAP_DANCE_FN(tap_dance_secret11),
+    [TD_SECRET12] = ACTION_TAP_DANCE_FN(tap_dance_secret12),
 #endif
 #if defined(COURSE_ENABLE)
     [TD_SYSTEM_COURSE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, finished_system_course, reset_system_course),

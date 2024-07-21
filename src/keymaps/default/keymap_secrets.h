@@ -19,19 +19,17 @@ DEFINE_COURSE_HANDLER(secret);
 #if defined(TAP_DANCE_ENABLE)
 #include "process_tap_dance.h"
 
-#define ACTION_TAP_DANCE_NOP { .fn = { NULL, NULL, NULL }, .user_data = NULL }
-
-#define TDA_SECRET1 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET2 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET3 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET4 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET5 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET6 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET7 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET8 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET9 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET10 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET11 ACTION_TAP_DANCE_NOP
-#define TDA_SECRET12 ACTION_TAP_DANCE_NOP
+void tap_dance_secret1(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret2(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret3(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret4(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret5(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret6(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret7(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret8(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret9(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret10(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret11(tap_dance_state_t *state, void *user_data);
+void tap_dance_secret12(tap_dance_state_t *state, void *user_data);
 
 #endif
