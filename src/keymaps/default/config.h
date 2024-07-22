@@ -48,9 +48,16 @@
 // Mouse
 #define MK_COMBINED
 #define MOUSEKEY_INTERVAL 24
-#define MK_C_OFFEST_0 1
-#define MK_C_OFFEST_1 3
-#define MK_C_OFFEST_2 12
+#define MOUSEKEY_WHEEL_INTERVAL 80
+#define MK_C_OFFSET_0 1
+#define MK_C_OFFSET_1 1
+#define MK_C_OFFSET_2 2
 #define MK_C_INTERVAL_0 32
-#define MK_C_INTERVAL_1 32
-#define MK_C_INTERVAL_2 32
+#define MK_C_INTERVAL_1 24
+#define MK_C_INTERVAL_2 16
+#define MK_W_OFFSET_0 1
+#define MK_W_OFFSET_1 1
+#define MK_W_OFFSET_2 1
+#define MK_W_INTERVAL_0 800
+#define MK_W_INTERVAL_1 200
+#define MK_W_INTERVAL_2 50
