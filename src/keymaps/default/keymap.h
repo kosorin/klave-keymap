@@ -71,6 +71,7 @@ enum tap_dance {
     TD_SYSTEM_COURSE,
 #endif
     TD_DECIMAL_POINT,
+    TD_HEX_PREFIX,
     tap_dance_COUNT,
 };
 #endif
@@ -113,8 +114,10 @@ _Static_assert((uint16_t)custom_keycodes_END - 1 < (uint16_t)QK_USER_MAX + 1, "T
 // Tap Dance
 #if defined(TAP_DANCE_ENABLE)
     #define CK_DECP TD(TD_DECIMAL_POINT)
+    #define CK_HEXP TD(TD_HEX_PREFIX)
 #else
     #define CK_DECP KC_DOT
+    #define CK_HEXP KC_HASH
 #endif
 
 #if defined(TAP_DANCE_ENABLE) && defined(SECRETS_ENABLE)

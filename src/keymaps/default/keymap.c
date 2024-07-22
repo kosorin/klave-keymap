@@ -84,9 +84,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     [L_NUMBER] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
-    /**/    XXXXXXX,    KC_SLSH,    KC_ASTR,    KC_MINS,    KC_PLUS,    XXXXXXX,                /**/                KC_PLUS,    KC_7,       KC_8,       KC_9,       KC_MINS,    KC_UNDS,        /**/
-    /**/    XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    XXXXXXX,                /**/                CK_DECP,    KC_4,       KC_5,       KC_6,       KC_0,       KC_ENT,         /**/
-    /**/    XXXXXXX,    KC_Y,       KC_X,       XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_SLSH,    KC_BSLS,        /**/
+    /**/    XXXXXXX,    XXXXXXX,    KC_D,       KC_E,       KC_F,       XXXXXXX,                /**/                KC_PLUS,    KC_7,       KC_8,       KC_9,       KC_MINS,    KC_UNDS,        /**/
+    /**/    XXXXXXX,    KC_LGUI,    ALT_T(KC_A),CTL_T(KC_B),SFT_T(KC_C),CK_HEXP,                /**/                CK_DECP,    KC_4,       KC_5,       KC_6,       KC_0,       KC_ENT,         /**/
+    /**/    XXXXXXX,    XXXXXXX,    KC_X,       KC_Y,       KC_Z,       XXXXXXX,                /**/                KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_SLSH,    KC_PERC,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    KC_CALC,                                                                    /**/
     /**/                            ___T___,    KC_ESC,     KC_TAB,     SPC_NSY,    KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX                                 /**/
@@ -384,6 +384,34 @@ static void reset_system_course(tap_dance_state_t *state, void *user_data) {
 
 #endif
 
+static void finished_hex_prefix(tap_dance_state_t *state, void *user_data) {
+    td_context.result = get_tap_dance_result(state, false);
+    switch (td_context.result) {
+        case TDS_SINGLE_TAP:
+            tap_code16(KC_HASH);
+            break;
+        case TDS_SINGLE_HOLD:
+            register_code16(KC_HASH);
+            break;
+        case TDS_DOUBLE_TAP:
+            SEND_STRING("0x");
+            break;
+        default:
+            break;
+    }
+}
+
+static void reset_hex_prefix(tap_dance_state_t *state, void *user_data) {
+    switch (td_context.result) {
+        case TDS_SINGLE_HOLD:
+            unregister_code16(KC_HASH);
+            break;
+        default:
+            break;
+    }
+    td_context.result = TDS_NONE;
+}
+
 
 tap_dance_action_t tap_dance_actions[] = {
 #if defined(SECRETS_ENABLE)
@@ -404,6 +432,7 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_SYSTEM_COURSE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, finished_system_course, reset_system_course),
 #endif
     [TD_DECIMAL_POINT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COMMA),
+    [TD_HEX_PREFIX] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, finished_hex_prefix, reset_hex_prefix),
 };
 
 #endif
