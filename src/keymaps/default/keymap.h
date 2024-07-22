@@ -20,6 +20,9 @@ enum layers {
     L_NUMBER,
     L_NUMBER_SYMBOL,
     L_NAVIGATION,
+#if defined(MOUSEKEY_ENABLE)
+    L_MOUSE,
+#endif
     L_SYSTEM,
 #if defined(GAMING_ENABLE)
     L_GAME,
@@ -89,6 +92,11 @@ _Static_assert((uint16_t)custom_keycodes_END - 1 < (uint16_t)QK_USER_MAX + 1, "T
 #define SPC_SYM LT(L_SYMBOL, KC_SPACE)
 #define SPC_NSY LT(L_NUMBER_SYMBOL, KC_SPACE)
 #define BSP_NUM LT(L_NUMBER, KC_BACKSPACE)
+#if defined(MOUSEKEY_ENABLE)
+    #define TT_MSE TT(L_MOUSE)
+#else
+    #define TT_MSE KC_NO
+#endif
 
 // Zoom
 #define Z_PLUS C(KC_EQUAL)

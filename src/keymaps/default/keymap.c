@@ -32,7 +32,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    KC_GRV,     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                G(KC_A),    KC_PSCR,    /**/    XXXXXXX,    CK_SYST,                                                                    /**/
-    /**/                            XXXXXXX,    ESC_MED,    TAB_FUN,    SPC_SYM,    KC_ENT,     /**/    KC_DEL,     BSP_NUM,    MO_NAV,     OSL_CZE,    KC_CMPS                                 /**/
+    /**/                            TT_MSE,     ESC_MED,    TAB_FUN,    SPC_SYM,    KC_ENT,     /**/    KC_DEL,     BSP_NUM,    MO_NAV,     OSL_CZE,    KC_CMPS                                 /**/
     /*                                                                                                                                                                                            */
     ),
 #if defined(CUSTOM_UNICODE_ENABLE)
@@ -89,7 +89,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    KC_Y,       KC_X,       XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                KC_ASTR,    KC_1,       KC_2,       KC_3,       KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    KC_CALC,                                                                    /**/
-    /**/                            XXXXXXX,    KC_ESC,     KC_TAB,     SPC_NSY,    KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX                                 /**/
+    /**/                            ___T___,    KC_ESC,     KC_TAB,     SPC_NSY,    KC_ENT,     /**/    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX,    XXXXXXX                                 /**/
     /*                                                                                                                                                                                            */
     ),
     [L_NUMBER_SYMBOL] = LAYOUT(
@@ -111,9 +111,22 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    KC_PGDN,    KC_PGUP,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
-    /**/                            XXXXXXX,    KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX                                 /**/
+    /**/                            ___T___,    KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    XXXXXXX,    ___V___,    XXXXXXX,    XXXXXXX                                 /**/
     /*                                                                                                                                                                                            */
     ),
+#if defined(MOUSEKEY_ENABLE)
+    [L_MOUSE] = LAYOUT(
+    /*                                                                                                                                                                                            */
+    /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_ACL1,    KC_BTN4,    KC_WH_U,    KC_BTN5,    XXXXXXX,                /**/                XXXXXXX,    KC_BTN4,    KC_MS_U,    KC_BTN5,    KC_ACL1,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_ACL0,    KC_WH_L,    KC_WH_D,    KC_WH_R,    XXXXXXX,                /**/                XXXXXXX,    KC_MS_L,    KC_MS_D,    KC_MS_R,    KC_ACL0,    XXXXXXX,        /**/
+    /**/    XXXXXXX,    KC_ACL2,    KC_BTN2,    KC_BTN3,    KC_BTN1,    XXXXXXX,                /**/                KC_WH_L,    KC_WH_D,    KC_WH_U,    KC_WH_R,    KC_ACL2,    XXXXXXX,        /**/
+    /**/                                                                                        /**/                                                                                            /**/
+    /**/                                                                XXXXXXX,    XXXXXXX,    /**/    XXXXXXX,    XXXXXXX,                                                                    /**/
+    /**/                            ___V___,    KC_ESC,     KC_TAB,     KC_SPC,     KC_ENT,     /**/    XXXXXXX,    KC_BTN1,    KC_BTN3,    KC_BTN2,    XXXXXXX                                 /**/
+    /*                                                                                                                                                                                            */
+    ),
+#endif
     [L_SYSTEM] = LAYOUT(
     /*                                                                                                                                                                                            */
     /**/    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                /**/                XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,        /**/
@@ -210,6 +223,10 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 #if defined(QUICK_TAP_TERM_PER_KEY)
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+#if defined(MOUSEKEY_ENABLE)
+        case TT_MSE:
+            return QUICK_TAP_TERM;
+#endif
         default:
             return 0;
     }

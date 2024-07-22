@@ -44,3 +44,13 @@
 #define COMBO_TERM 50
 #define COMBO_STRICT_TIMER
 #define COMBO_MUST_TAP_PER_COMBO
+
+// Mouse
+#define MK_COMBINED
+#define MOUSEKEY_INTERVAL 24
+#define MK_C_OFFEST_0 1
+#define MK_C_OFFEST_1 3
+#define MK_C_OFFEST_2 12
+#define MK_C_INTERVAL_0 32
+#define MK_C_INTERVAL_1 32
+#define MK_C_INTERVAL_2 32
