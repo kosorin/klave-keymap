@@ -1,5 +1,7 @@
 #include "course.h"
-#include "promicro_led.h"
+#if defined(KEYBOARD_klave_rev1)
+    #include "promicro_led.h"
+#endif
 #include "quantum.h"
 
 
@@ -54,26 +56,34 @@ bool is_course_active(void) {
 }
 
 void course_start(course_handler_t handler) {
-    led_blink_start();
+#if defined(KEYBOARD_klave_rev1)
+    pmled_blink_start();
+#endif
 
     next_handler = handler != NULL ? handler : COURSE_HANDLER(main);
 }
 
 void course_stop(void) {
     if (is_course_active()) {
-        led_blink_cancel();
+#if defined(KEYBOARD_klave_rev1)
+        pmled_blink_cancel();
+#endif
     }
 
     next_handler = NULL;
 }
 
 course_handler_t course_done(void) {
-    led_blink_end();
+#if defined(KEYBOARD_klave_rev1)
+    pmled_blink_end();
+#endif
     return NULL;
 }
 
 course_handler_t course_cancel(void) {
-    led_blink_cancel();
+#if defined(KEYBOARD_klave_rev1)
+    pmled_blink_cancel();
+#endif
     return NULL;
 }
 
@@ -85,7 +95,9 @@ static DEFINE_COURSE_HANDLER(bad_key) {
 
 course_handler_t course_bad_key(void) {
 #if defined(COURSE_CANCEL_KEY)
-    led_blink_error();
+#if defined(KEYBOARD_klave_rev1)
+    pmled_blink_error();
+#endif
     return COURSE_HANDLER(bad_key);
 #else
     return course_cancel();

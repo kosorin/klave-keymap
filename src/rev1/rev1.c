@@ -1,4 +1,3 @@
-#include "klave.h"
 #include "promicro_led.h"
 #include "keyboard.h"
 #include "progmem.h"
@@ -23,6 +22,6 @@ __attribute__((weak)) const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] 
 #endif
 
 void keyboard_pre_init_kb(void) {
-    led_init();
+    pmled_init();
     keyboard_pre_init_user();
 }

@@ -1,0 +1,19 @@
+{
+    // General
+    "keyboard_name": "Klave",
+    "maintainer": "kosorin",
+    "url": "https://github.com/kosorin/klave",
+    "tags": [ "split" ],
+
+    // Hardware
+    "manufacturer": "David Kosorin",
+    "usb": {
+        "vid": "0x444B",
+        "pid": "0x0001"
+    },
+
+    // Split
+    "split": {
+        "enabled": true
+    }
+}

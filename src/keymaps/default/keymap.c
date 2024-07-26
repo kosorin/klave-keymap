@@ -1,7 +1,8 @@
-#include QMK_KEYBOARD_H
 #include "keymap.h"
-#include "promicro_led.h"
-#include "quantum.h"
+#include QMK_KEYBOARD_H
+#if defined(KEYBOARD_klave_rev1)
+    #include "promicro_led.h"
+#endif
 #if defined(COURSE_ENABLE)
     #include "features/course.h"
 #endif
@@ -17,6 +18,7 @@
 #if defined(SECRETS_ENABLE)
     #include "keymap_secrets.h"
 #endif
+#include "quantum.h"
 
 
 // ========================================================================== //
@@ -611,11 +613,15 @@ DEFINE_COURSE_HANDLER(main) {
 #if defined(DYNAMIC_MACRO_ENABLE)
 
 void dynamic_macro_record_start_user(int8_t direction) {
-    led_blink_start();
+#if defined(KEYBOARD_klave_rev1)
+    pmled_blink_start();
+#endif
 }
 
 void dynamic_macro_record_end_user(int8_t direction) {
-    led_blink_end();
+#if defined(KEYBOARD_klave_rev1)
+    pmled_blink_end();
+#endif
 }
 
 #endif

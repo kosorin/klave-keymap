@@ -3,9 +3,6 @@
 // Enable `QK_MAKE`
 #define ENABLE_COMPILE_KEYCODE
 
-// Handedness
-#define EE_HANDS
-
 // Compose
 #define COMPOSE_KEY KC_APP
 

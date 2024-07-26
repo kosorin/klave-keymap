@@ -1,1 +1,1 @@
-SRC += promicro_led.c
+DEFAULT_FOLDER = klave/rev1
