@@ -77,7 +77,7 @@ DEFINE_UNICODE_ALPHABET_TRANSLATOR(unicode_translator_czech,
     0x00cd, // I -> Í
     0x0000, // J
     0x0000, // K
-    0x016e, // L -> Ů
+    0x00da, // L -> Ú
     0x0147, // M -> Ň
     0x00c9, // N -> É
     0x00d3, // O -> Ó
@@ -86,7 +86,7 @@ DEFINE_UNICODE_ALPHABET_TRANSLATOR(unicode_translator_czech,
     0x0158, // R -> Ř
     0x0160, // S -> Š
     0x0164, // T -> Ť
-    0x00da, // U -> Ú
+    0x016e, // U -> Ů
     0x0000, // V
     0x0000, // W
     0x0000, // X
