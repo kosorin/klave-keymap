@@ -33,7 +33,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    KC_QUOT,    HRK_L4,     HRK_L3,     HRK_L2,     HRK_L1,     KC_P,                   /**/                KC_M,       HRK_R1,     HRK_R2,     HRK_R3,     HRK_R4,     KC_SCLN,        /**/
     /**/    KC_GRV,     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
-    /**/                                                                G(KC_A),    KC_PSCR,    /**/    KC_INS,     CK_SYST,                                                                    /**/
+    /**/                                                                KC_LNCH,    KC_PSCR,    /**/    KC_INS,     CK_SYST,                                                                    /**/
     /**/                            TT_MSE,     ESC_MED,    TAB_FUN,    SPC_SYM,    KC_ENT,     /**/    KC_DEL,     BSP_NUM,    MO_NAV,     OSL_CZE,    KC_CMPS                                 /**/
     /*                                                                                                                                                                                            */
     ),
@@ -177,6 +177,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return PROCESS_HANDLED;
     }
 #endif
+    switch (keycode) {
+        case KC_LNCH:
+            if (record->event.pressed) {
+                switch (detected_host_os()) {
+                    case OS_LINUX:
+                        tap_code16(QK_LGUI | KC_A);
+                        break;
+                    default:
+                        tap_code(KC_LEFT_GUI);
+                        break;
+                }
+            }
+            return PROCESS_HANDLED;
+    }
     return PROCESS_NOT_HANDLED;
 }
 
