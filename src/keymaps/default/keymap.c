@@ -612,16 +612,18 @@ DEFINE_COURSE_HANDLER(main) {
 // ========================================================================== //
 #if defined(DYNAMIC_MACRO_ENABLE)
 
-void dynamic_macro_record_start_user(int8_t direction) {
+bool dynamic_macro_record_start_user(int8_t direction) {
 #if defined(KEYBOARD_klave_rev1)
     pmled_blink_start();
 #endif
+    return true;
 }
 
-void dynamic_macro_record_end_user(int8_t direction) {
+bool dynamic_macro_record_end_user(int8_t direction) {
 #if defined(KEYBOARD_klave_rev1)
     pmled_blink_end();
 #endif
+    return true;
 }
 
 #endif
