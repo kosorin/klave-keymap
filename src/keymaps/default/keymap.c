@@ -180,6 +180,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_LNCH:
             if (record->event.pressed) {
+#if defined(OS_DETECTION_ENABLE)
                 switch (detected_host_os()) {
                     case OS_LINUX:
                         tap_code16(QK_LGUI | KC_A);
@@ -188,6 +189,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code(KC_LEFT_GUI);
                         break;
                 }
+#else
+                tap_code(KC_LEFT_GUI);
+#endif
             }
             return PROCESS_HANDLED;
     }
@@ -636,6 +640,28 @@ bool dynamic_macro_record_start_user(int8_t direction) {
 bool dynamic_macro_record_end_user(int8_t direction) {
 #if defined(KEYBOARD_klave_rev1)
     pmled_blink_end();
+#endif
+    return true;
+}
+
+#endif
+
+
+// ========================================================================== //
+// OS Detection
+// ========================================================================== //
+#if defined(OS_DETECTION_ENABLE)
+
+bool process_detected_host_os_user(os_variant_t detected_os) {
+#if defined(CUSTOM_UNICODE_ENABLE)
+    switch (detected_os) {
+        case OS_LINUX:
+            set_unicode_input_mode(UNICODE_MODE_LINUX);
+            break;
+        default:
+            set_unicode_input_mode(UNICODE_MODE_WINCOMPOSE);
+            break;
+    }
 #endif
     return true;
 }
