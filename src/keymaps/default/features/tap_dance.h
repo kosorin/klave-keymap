@@ -17,4 +17,6 @@ typedef struct {
     tap_dance_result_t result;
 } tap_dance_context_t;
 
-tap_dance_result_t get_tap_dance_result(tap_dance_state_t *state, bool interrupt_tap);
+bool is_tap_dance_hold(tap_dance_state_t *state);
+
+tap_dance_result_t get_tap_dance_result(tap_dance_state_t *state);

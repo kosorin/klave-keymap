@@ -362,7 +362,7 @@ static tap_dance_context_t td_context = {
 #if defined(COURSE_ENABLE)
 
 static void finished_system_course(tap_dance_state_t *state, void *user_data) {
-    td_context.result = get_tap_dance_result(state, false);
+    td_context.result = get_tap_dance_result(state);
     switch (td_context.result) {
         case TDS_SINGLE_TAP:
             course_start(COURSE_HANDLER(main));
@@ -394,7 +394,7 @@ static void reset_system_course(tap_dance_state_t *state, void *user_data) {
 #endif
 
 static void finished_hex_prefix(tap_dance_state_t *state, void *user_data) {
-    td_context.result = get_tap_dance_result(state, false);
+    td_context.result = get_tap_dance_result(state);
     switch (td_context.result) {
         case TDS_SINGLE_TAP:
             tap_code16(KC_HASH);
