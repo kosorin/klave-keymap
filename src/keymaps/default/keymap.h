@@ -82,6 +82,7 @@ enum tap_dance {
 enum custom_keycodes {
     custom_keycodes_START = QK_USER,
     KC_LNCH,
+    KC_ALTB,
     custom_keycodes_END,
 };
 _Static_assert((uint16_t)custom_keycodes_END - 1 < (uint16_t)QK_USER_MAX + 1, "Too many custom keycodes!");

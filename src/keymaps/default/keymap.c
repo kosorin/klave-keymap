@@ -34,7 +34,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
     /**/    KC_GRV,     KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,                   /**/                KC_K,       KC_H,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_BSLS,        /**/
     /**/                                                                                        /**/                                                                                            /**/
     /**/                                                                KC_LNCH,    KC_PSCR,    /**/    KC_INS,     CK_SYST,                                                                    /**/
-    /**/                            XXXXXXX,    ESC_MED,    TAB_FUN,    SPC_SYM,    KC_ENT,     /**/    KC_DEL,     BSP_NUM,    MO_NAV,     OSL_CZE,    KC_CMPS                                 /**/
+    /**/                            KC_ALTB,    ESC_MED,    TAB_FUN,    SPC_SYM,    KC_ENT,     /**/    KC_DEL,     BSP_NUM,    MO_NAV,     OSL_CZE,    KC_CMPS                                 /**/
     /*                                                                                                                                                                                            */
     ),
 #if defined(CUSTOM_UNICODE_ENABLE)
@@ -192,6 +192,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #else
                 tap_code(KC_LEFT_GUI);
 #endif
+            }
+            return PROCESS_HANDLED;
+        case KC_ALTB:
+            if (record->event.pressed) {
+                register_code(KC_LALT);
+                wait_ms(50);
+                tap_code_delay(KC_TAB, 50);
+            }
+            else {
+                wait_ms(50);
+                unregister_code(KC_LALT);
             }
             return PROCESS_HANDLED;
     }
